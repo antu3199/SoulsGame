@@ -43712,6 +43712,8 @@
           <e p="CharacterAbilitySystemComponent.h" t="Include" />
           <e p="CharacterBase.cpp" t="Include" />
           <e p="CharacterBase.h" t="Include" />
+          <e p="MyGameModeBase.cpp" t="Include" />
+          <e p="MyGameModeBase.h" t="Include" />
           <e p="PlayerCharacter.cpp" t="Include" />
           <e p="PlayerCharacter.h" t="Include" />
           <e p="SoulsGame.Build.cs" t="Include" />
