@@ -3,6 +3,9 @@
 
 #include "MyPlayerController.h"
 
+#include "PlayerCharacter.h"
+#include "Kismet/GameplayStatics.h"
+
 AMyPlayerController::AMyPlayerController()
 {
     PrimaryActorTick.bCanEverTick = true;
@@ -25,6 +28,19 @@ void AMyPlayerController::Tick(float DeltaTime)
 void AMyPlayerController::UpdateRotation(float DeltaTime)
 {
     Super::UpdateRotation(DeltaTime);
+    
+    APlayerCharacter *pawnCharacter = Cast<APlayerCharacter>(GetPawn());
+    float MoveForward = 1; // InputAxis
+
+    //PlayerCameraManager 
+    //PlayerCameraManager->GetCameraRotation()
+    //APlayerCameraManager* PlayerCameraManager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+    const FRotator Rotator = PlayerCameraManager->GetCameraRotation();
+
+    // See: KismetMathLibrary.cpp
+    const FVector Forward = Rotator.Vector();
+    pawnCharacter->AddMovementInput(Forward, MoveForward);
+
     
     this->HandleCameraRotation();
 }

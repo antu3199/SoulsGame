@@ -6,14 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_MyGameModeBase.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_MyGameModeBase.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerController.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/MyPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/MyPlayerController.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +26,8 @@
         <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.h" />
         <option value="$PROJECT_DIR$/Source/SoulsGame/MyPlayerController.h" />
         <option value="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" />
-        <option value="$PROJECT_DIR$/Source/SoulsGame/MyPlayerController.cpp" />
         <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" />
+        <option value="$PROJECT_DIR$/Source/SoulsGame/MyPlayerController.cpp" />
       </list>
     </option>
   </component>
@@ -273,7 +267,8 @@
       <workItem from="1610409023905" duration="1587000" />
       <workItem from="1610411031522" duration="3161000" />
       <workItem from="1610492616718" duration="1602000" />
-      <workItem from="1610578370957" duration="6533000" />
+      <workItem from="1610578370957" duration="7216000" />
+      <workItem from="1610586647094" duration="1351000" />
     </task>
     <servers />
   </component>
@@ -286,6 +281,15 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="616" y="240" key="run.anything.popup" timestamp="1610587395306">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610587395306" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1610587815116">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610586674495" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1610587815116" />
     <state x="682" y="433" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1610584839734">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
