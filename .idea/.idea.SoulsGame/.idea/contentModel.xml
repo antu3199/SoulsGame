@@ -43695,6 +43695,7 @@
         <e p="DefaultEditor.ini" t="Include" />
         <e p="DefaultEngine.ini" t="Include" />
         <e p="DefaultGame.ini" t="Include" />
+        <e p="DefaultInput.ini" t="Include" />
       </e>
       <e p="Engine" t="Include" />
       <e p="Games" t="Include" />
@@ -43714,6 +43715,8 @@
           <e p="CharacterBase.h" t="Include" />
           <e p="MyGameModeBase.cpp" t="Include" />
           <e p="MyGameModeBase.h" t="Include" />
+          <e p="MyPlayerController.cpp" t="Include" />
+          <e p="MyPlayerController.h" t="Include" />
           <e p="PlayerCharacter.cpp" t="Include" />
           <e p="PlayerCharacter.h" t="Include" />
           <e p="SoulsGame.Build.cs" t="Include" />

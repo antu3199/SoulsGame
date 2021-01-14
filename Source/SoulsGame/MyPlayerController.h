@@ -3,19 +3,18 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CharacterBase.h"
-#include "PlayerCharacter.generated.h"
+#include "GameFramework/PlayerController.h"
+#include "MyPlayerController.generated.h"
 
 /**
  * 
  */
-UCLASS(Blueprintable, ClassGroup=(Custom))
-class SOULSGAME_API APlayerCharacter : public ACharacterBase
+UCLASS()
+class SOULSGAME_API AMyPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-
 public:
-	APlayerCharacter();
+	AMyPlayerController();
 	
 protected:
 	// Called when the game starts or when spawned
@@ -24,6 +23,13 @@ protected:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void UpdateRotation(float DeltaTime) override;
+
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual void SetupInputComponent() override;
+
+	void HandleCameraRotation();
+
+	void RotateCamera(float InputAxis);
 };
