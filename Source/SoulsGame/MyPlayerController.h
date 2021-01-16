@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "PlayerCharacter.h"
 #include "GameFramework/PlayerController.h"
 #include "MyPlayerController.generated.h"
 
@@ -32,4 +34,9 @@ protected:
 	void HandleCameraRotation();
 
 	void RotateCamera(float InputAxis);
+	void MoveForward(float InputAxis);
+	void MoveRight(float InputAxis);
+
+
+	APlayerCharacter * GetPawnCharacter() const;
 };

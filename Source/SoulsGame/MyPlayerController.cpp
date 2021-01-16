@@ -5,6 +5,7 @@
 
 #include "PlayerCharacter.h"
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
 
 AMyPlayerController::AMyPlayerController()
 {
@@ -29,19 +30,6 @@ void AMyPlayerController::UpdateRotation(float DeltaTime)
 {
     Super::UpdateRotation(DeltaTime);
     
-    APlayerCharacter *pawnCharacter = Cast<APlayerCharacter>(GetPawn());
-    float MoveForward = 1; // InputAxis
-
-    //PlayerCameraManager 
-    //PlayerCameraManager->GetCameraRotation()
-    //APlayerCameraManager* PlayerCameraManager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
-    const FRotator Rotator = PlayerCameraManager->GetCameraRotation();
-
-    // See: KismetMathLibrary.cpp
-    const FVector Forward = Rotator.Vector();
-    pawnCharacter->AddMovementInput(Forward, MoveForward);
-
-    
     this->HandleCameraRotation();
 }
 
@@ -53,8 +41,8 @@ void AMyPlayerController::SetupInputComponent()
     this->InputComponent->BindAxis(TEXT("ChangePitch"));
 
     // You can do it this way, but I want to do it less segmentedly.
-    //this->InputComponent->BindAxis(TEXT("RotateCamera"), this, &AMyPlayerController::RotateCamera);
-    //this->BindAxis(TEXT("ChangePitch"), this, &APlayerCharacter::ChangePitch);
+    this->InputComponent->BindAxis(TEXT("MoveForward"), this, &AMyPlayerController::MoveForward);
+    this->InputComponent->BindAxis(TEXT("MoveRight"), this, &AMyPlayerController::MoveRight);
 }
 
 
@@ -70,8 +58,31 @@ void AMyPlayerController::HandleCameraRotation()
     UE_LOG(LogTemp, Warning, TEXT("Bind axes pitch %f"), ChangePitchValue);
 }
 
-void AMyPlayerController::RotateCamera(float InputAxis)
+void AMyPlayerController::RotateCamera(const float InputAxis)
 {
     this->AddYawInput(InputAxis);
     UE_LOG(LogTemp, Warning, TEXT("Bind axes camera %f"), InputAxis);
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void AMyPlayerController::MoveForward(const float InputAxis)
+{
+    const FRotator Rotator = PlayerCameraManager->GetCameraRotation();
+    const FVector Forward = UKismetMathLibrary::GetForwardVector(Rotator);
+    APlayerCharacter* PawnCharacter = this->GetPawnCharacter();
+    PawnCharacter->AddMovementInput(Forward, InputAxis);
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void AMyPlayerController::MoveRight(const float InputAxis)
+{
+    const FRotator Rotator = PlayerCameraManager->GetCameraRotation();
+    const FVector Right = UKismetMathLibrary::GetRightVector(Rotator);
+    APlayerCharacter* PawnCharacter = this->GetPawnCharacter();
+    PawnCharacter->AddMovementInput(Right, InputAxis);
+}
+
+APlayerCharacter* AMyPlayerController::GetPawnCharacter() const
+{
+    return Cast<APlayerCharacter>(GetPawn());
 }

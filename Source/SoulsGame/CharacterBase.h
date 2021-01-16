@@ -27,6 +27,10 @@ protected:
 
 	UPROPERTY()
 	UCharacterAbilitySystemComponent* AbilitySystemComponent;
+
+    bool IsDead;
+
+	float AnimMovementSpeed;
 	
 public:	
 	// Called every frame
@@ -35,4 +39,20 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintCallable)
+	bool GetIsDead() const;
+	
+	//UPROPERTY(BlueprintReadWrite)
+	//float Speed;
+
+   // Animation blueprint property
+	UFUNCTION(BlueprintCallable)
+	float GetAnimMovementSpeed() const;
+
+	UFUNCTION(BlueprintCallable)
+    void UpdateAnimMovementSpeed();
+	
+	
+
+	
 };

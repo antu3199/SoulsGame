@@ -33,3 +33,21 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 }
 
+bool ACharacterBase::GetIsDead() const
+{
+	return this->IsDead;
+}
+
+float ACharacterBase::GetAnimMovementSpeed() const
+{
+	return this->AnimMovementSpeed;
+}
+
+void ACharacterBase::UpdateAnimMovementSpeed()
+{
+	const FVector Velocity = this->GetVelocity();
+	const float NormalizedVelocity = Velocity.Size();
+
+	this->AnimMovementSpeed = NormalizedVelocity;
+}
+
