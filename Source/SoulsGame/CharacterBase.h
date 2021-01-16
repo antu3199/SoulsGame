@@ -46,13 +46,11 @@ public:
 	//float Speed;
 
    // Animation blueprint property
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, meta = (BlueprintThreadSafe)) // Needs to be BlueprintThreadSafe otherwise warning in ABP
 	float GetAnimMovementSpeed() const;
 
 	UFUNCTION(BlueprintCallable)
     void UpdateAnimMovementSpeed();
 	
-	
-
 	
 };
