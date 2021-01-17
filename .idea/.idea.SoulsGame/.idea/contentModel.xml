@@ -43695,6 +43695,7 @@
         <e p="DefaultEditor.ini" t="Include" />
         <e p="DefaultEngine.ini" t="Include" />
         <e p="DefaultGame.ini" t="Include" />
+        <e p="DefaultGameplayTags.ini" t="Include" />
         <e p="DefaultInput.ini" t="Include" />
       </e>
       <e p="Engine" t="Include" />
@@ -43713,8 +43714,18 @@
           <e p="CharacterAbilitySystemComponent.h" t="Include" />
           <e p="CharacterBase.cpp" t="Include" />
           <e p="CharacterBase.h" t="Include" />
+          <e p="DataAssets" t="Include">
+            <e p="AbilityAsset.cpp" t="Include" />
+            <e p="AbilityAsset.h" t="Include" />
+            <e p="MyPrimaryDataAsset.cpp" t="Include" />
+            <e p="MyPrimaryDataAsset.h" t="Include" />
+          </e>
+          <e p="MyAssetManager.cpp" t="Include" />
+          <e p="MyAssetManager.h" t="Include" />
           <e p="MyGameModeBase.cpp" t="Include" />
           <e p="MyGameModeBase.h" t="Include" />
+          <e p="MyGameplayAbility.cpp" t="Include" />
+          <e p="MyGameplayAbility.h" t="Include" />
           <e p="MyPlayerController.cpp" t="Include" />
           <e p="MyPlayerController.h" t="Include" />
           <e p="PlayerCharacter.cpp" t="Include" />

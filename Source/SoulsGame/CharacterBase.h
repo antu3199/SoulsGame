@@ -31,6 +31,15 @@ protected:
     bool IsDead;
 
 	float AnimMovementSpeed;
+
+	void InitializeAbilitySystem();
+
+	void AddStartupGameplayAbilities();
+
+	UPROPERTY()
+	int32 bAbilitiesInitialized;
+
+	TArray<FGameplayAbilitySpecHandle> AbilitiesSpecHandles;
 	
 public:	
 	// Called every frame
@@ -51,6 +60,16 @@ public:
 
 	UFUNCTION(BlueprintCallable)
     void UpdateAnimMovementSpeed();
-	
+
+	UFUNCTION(BlueprintCallable)
+    bool CanUseAnyAbility() const;
+
+	UPROPERTY(EditAnywhere, Category="Meta Data")
+	FGameplayTagContainer MeleeAttackTag;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Inventory)
+	TArray<FPrimaryAssetId> DefaultSlottedAbilities;
+
+
 	
 };

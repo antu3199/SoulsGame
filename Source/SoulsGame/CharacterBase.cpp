@@ -3,6 +3,10 @@
 
 #include "CharacterBase.h"
 
+#include "GameplayTagsManager.h"
+#include "MyAssetManager.h"
+#include "DataAssets/AbilityAsset.h"
+
 // Sets default values
 ACharacterBase::ACharacterBase()
 {
@@ -11,16 +15,62 @@ ACharacterBase::ACharacterBase()
 
 	AbilitySystemComponent = CreateDefaultSubobject<UCharacterAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 	AbilitySystemComponent->SetIsReplicated(true);
+
+	if (MeleeAttackTag.Num() == 0)
+	{
+		FGameplayTag tag = UGameplayTagsManager::Get().RequestGameplayTag(TEXT("Ability.Melee"));
+		MeleeAttackTag.AddTag(tag);
+		//UE_LOG(LogTemp, Error, TEXT("ERROR: Melee attack tag not created!"));
+	}
 }
 
 // Called when the game starts or when spawned
 void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
+    this->InitializeAbilitySystem();
+	
+
+	
+}
+
+void ACharacterBase::InitializeAbilitySystem()
+{
+
+	if (this->AbilitySystemComponent)
+	{
+		this->AbilitySystemComponent->InitAbilityActorInfo(this, this);
+		this->AddStartupGameplayAbilities();
+	}
+}
+
+void ACharacterBase::AddStartupGameplayAbilities()
+{
+	if (this->AbilitiesSpecHandles.Num() != 0)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Warning: Ability spec handles not empty"));
+	}
+
+	UMyAssetManager & MyAssetManager = UMyAssetManager::Get();
+
+	for (const FPrimaryAssetId & AssetId : this->DefaultSlottedAbilities)
+	{
+		UAbilityAsset * ItemAsset = MyAssetManager.ForceLoad<UAbilityAsset>(AssetId);
+		if (ItemAsset)
+		{
+			//this->AbilitiesSpecHandles.Add
+			FGameplayAbilityDataContainer & DataContainer = this->AbilitySystemComponent->AddNewGameplayAbilityDataContainer(); 
+			DataContainer.SetGameplayAbility(ItemAsset->GrantedAbility.GetDefaultObject());
+			DataContainer.GameplayAbilitySpec = FGameplayAbilitySpec(DataContainer.MyGameplayAbility);
+			DataContainer.GameplayAbilitySpecHandle = AbilitySystemComponent->GiveAbility(DataContainer.GameplayAbilitySpec);
+
+			UE_LOG(LogTemp, Warning, TEXT("Ability granted %s"), *DataContainer.GetMyGameplayAbilityName());
+		}
+	}
 }
 
 // Called every frame
-void ACharacterBase::Tick(float DeltaTime)
+void ACharacterBase::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
@@ -50,4 +100,10 @@ void ACharacterBase::UpdateAnimMovementSpeed()
 
 	this->AnimMovementSpeed = NormalizedVelocity;
 }
+
+bool ACharacterBase::CanUseAnyAbility() const
+{
+	return !this->IsDead;
+}
+
 

@@ -43,6 +43,11 @@ void AMyPlayerController::SetupInputComponent()
     // You can do it this way, but I want to do it less segmentedly.
     this->InputComponent->BindAxis(TEXT("MoveForward"), this, &AMyPlayerController::MoveForward);
     this->InputComponent->BindAxis(TEXT("MoveRight"), this, &AMyPlayerController::MoveRight);
+    
+    //FGameplayTagContainer newContainer;
+    //const FGameplayTag tag("TagName");
+    //newContainer.AddTag(tag);
+    
 }
 
 
@@ -54,14 +59,14 @@ void AMyPlayerController::HandleCameraRotation()
     this->AddYawInput(RotateCameraValue);
     this->AddPitchInput(ChangePitchValue);
 
-    UE_LOG(LogTemp, Warning, TEXT("Bind axes camera %f"), RotateCameraValue);
-    UE_LOG(LogTemp, Warning, TEXT("Bind axes pitch %f"), ChangePitchValue);
+    //UE_LOG(LogTemp, Warning, TEXT("Bind axes camera %f"), RotateCameraValue);
+    //UE_LOG(LogTemp, Warning, TEXT("Bind axes pitch %f"), ChangePitchValue);
 }
 
 void AMyPlayerController::RotateCamera(const float InputAxis)
 {
     this->AddYawInput(InputAxis);
-    UE_LOG(LogTemp, Warning, TEXT("Bind axes camera %f"), InputAxis);
+    //UE_LOG(LogTemp, Warning, TEXT("Bind axes camera %f"), InputAxis);
 }
 
 // ReSharper disable once CppMemberFunctionMayBeConst

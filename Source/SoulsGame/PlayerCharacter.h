@@ -16,6 +16,8 @@ class SOULSGAME_API APlayerCharacter : public ACharacterBase
 
 public:
 	APlayerCharacter();
+
+	virtual void DoMeleeAttack();
 	
 protected:
 	// Called when the game starts or when spawned

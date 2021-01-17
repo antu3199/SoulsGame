@@ -28,3 +28,22 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
     //PlayerInputComponent->BindAxis(TEXT("ChangePitch"), this, &APlayerCharacter::ChangePitch);
 }
 
+
+void APlayerCharacter::DoMeleeAttack()
+{
+    if (!this->CanUseAnyAbility())
+    {
+        return;
+    }
+
+    if (this->AbilitySystemComponent->IsUsingAbilityWithTag("Ability.Melee"))
+    {
+        return;
+    }
+
+    
+
+    
+     // AbilitySystemComponent->Get
+    
+}
