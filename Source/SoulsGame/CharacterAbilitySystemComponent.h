@@ -27,33 +27,15 @@ struct FGameplayAbilityDataContainer
 	bool IsMany = true;
 	
 	// Only useful if more than one (not sure how common this is yet)
-	TArray<UGameplayAbility*> GetAllGameplayAbilityInstances() const
-	{
-		return GameplayAbilitySpec.GetAbilityInstances();
-	}
+	TArray<UGameplayAbility*> GetAllGameplayAbilityInstances() const;
 
-	void SetGameplayAbility(UGameplayAbility * Ability)
-	{
-		this->MyGameplayAbility = Ability;
-		this->IsMany = false;
-	}
+	void SetGameplayAbility(UGameplayAbility * Ability);
 
-	bool GetIsMany() const
-	{
-		return IsMany;
-	}
+	bool GetIsMany() const;
 
-	FString GetMyGameplayAbilityName() const
-	{
-		if (MyGameplayAbility == nullptr || this->GetIsMany())
-		{
-			return TEXT("");
-		}
-		else
-		{
-			return MyGameplayAbility->AbilityTags.ToString();
-		}
-	}
+	FString GetMyGameplayAbilityName() const;
+
+	bool HasTag(const FName TagName) const;
 
 	// Note: Would it be useful to also store the UMyAbilityAsset?
 };
@@ -71,13 +53,20 @@ public:
 	void GetActiveAbilitiesWithTags(const ::FGameplayTagContainer& GameplayTagContainer, OUT TArray<UMyGameplayAbility*> ActiveAbilities) const;
 	void GetActiveAbilitiesWithTag(const FName TagName, OUT TArray<UMyGameplayAbility*> ActiveAbilities) const;
 	bool  IsUsingAbilityWithTag(const FName Tag) const;
-
-	TArray<FGameplayAbilityDataContainer> GameplayAbilityDataContainer;
+	bool ActivateAbilityWithTag(const FName TagName);
 
     FGameplayAbilityDataContainer & AddNewGameplayAbilityDataContainer()
     {
 	    this->GameplayAbilityDataContainer.Add(FGameplayAbilityDataContainer());
     	return this->GameplayAbilityDataContainer.Last();
     }
+
+	const TArray<FGameplayAbilityDataContainer> & GetGameplayAbilityDataContainer() const
+	{
+	    return this->GameplayAbilityDataContainer;
+    }
+
+protected:
+	TArray<FGameplayAbilityDataContainer> GameplayAbilityDataContainer;
 	
 };

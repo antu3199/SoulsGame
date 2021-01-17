@@ -30,7 +30,6 @@ void ACharacterBase::BeginPlay()
 	Super::BeginPlay();
     this->InitializeAbilitySystem();
 	
-
 	
 }
 
@@ -105,5 +104,6 @@ bool ACharacterBase::CanUseAnyAbility() const
 {
 	return !this->IsDead;
 }
+
 
 

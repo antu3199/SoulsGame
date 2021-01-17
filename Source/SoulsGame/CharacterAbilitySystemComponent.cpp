@@ -6,6 +6,76 @@
 #include "GameplayTagsManager.h"
 #include "MyGameplayAbility.h"
 
+// FGameplayAbilityDataContainer =====================================================
+
+// Only useful if more than one (not sure how common this is yet)
+TArray<UGameplayAbility*> FGameplayAbilityDataContainer::GetAllGameplayAbilityInstances() const
+{
+    if (IsMany)
+    {
+        return GameplayAbilitySpec.GetAbilityInstances();
+    }
+    else
+    {
+        if (MyGameplayAbility != nullptr)
+        {
+            return TArray<UGameplayAbility*>{MyGameplayAbility};
+        }
+        else
+        {
+            return TArray<UGameplayAbility*>();
+        }
+    }
+}
+
+void FGameplayAbilityDataContainer::SetGameplayAbility(UGameplayAbility * Ability)
+{
+    this->MyGameplayAbility = Ability;
+    this->IsMany = false;
+}
+
+
+bool FGameplayAbilityDataContainer::GetIsMany() const
+{
+    return IsMany;
+}
+
+FString FGameplayAbilityDataContainer::GetMyGameplayAbilityName() const
+{
+    if (MyGameplayAbility == nullptr || this->GetIsMany())
+    {
+        return TEXT("");
+    }
+    else
+    {
+        return MyGameplayAbility->AbilityTags.ToString();
+    }
+}
+
+bool FGameplayAbilityDataContainer::HasTag(const FName TagName) const
+{
+    const FGameplayTag Tag = UGameplayTagsManager::Get().RequestGameplayTag(TagName);
+    
+    const TArray<UGameplayAbility*> MyGameplayAbilities = this->GetAllGameplayAbilityInstances();
+    if (MyGameplayAbilities.Num() == 0)
+    {
+        return false;
+    }
+    else
+    {
+        for (UGameplayAbility* const& Ability : MyGameplayAbilities)
+        {
+            if (Ability->AbilityTags.HasTag(Tag))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+// UCharacterAbilitySystemComponent =====================================
 
 // Gets activatableAbilities with tags
 void UCharacterAbilitySystemComponent::GetActiveAbilitiesWithTags(const FGameplayTagContainer & GameplayTagContainer, OUT TArray<UMyGameplayAbility *> ActiveAbilities) const
@@ -44,4 +114,21 @@ bool  UCharacterAbilitySystemComponent::IsUsingAbilityWithTag(const FName Tag) c
     const TArray<UMyGameplayAbility*> MyAbilities;
     this->GetActiveAbilitiesWithTag(Tag, MyAbilities);
     return MyAbilities.Num() > 0;
+}
+
+bool UCharacterAbilitySystemComponent::ActivateAbilityWithTag(const FName TagName)
+{
+    const TArray<FGameplayAbilityDataContainer> & ContainerArray = this->GetGameplayAbilityDataContainer();
+	
+    for (int i = 0; i < ContainerArray.Num(); i++)
+    {
+        const FGameplayAbilityDataContainer & Container = ContainerArray[i];
+
+        if (Container.HasTag(TagName))
+        {
+            return this->TryActivateAbility(Container.GameplayAbilitySpecHandle);
+        }
+    }
+
+    return false;
 }

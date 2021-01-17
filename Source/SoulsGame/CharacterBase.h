@@ -69,7 +69,5 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Inventory)
 	TArray<FPrimaryAssetId> DefaultSlottedAbilities;
-
-
 	
 };

@@ -31,19 +31,24 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 void APlayerCharacter::DoMeleeAttack()
 {
+    if (!this->AbilitySystemComponent)
+    {
+        return;
+    }
+    
     if (!this->CanUseAnyAbility())
     {
         return;
     }
 
-    if (this->AbilitySystemComponent->IsUsingAbilityWithTag("Ability.Melee"))
+
+    const FName MeleeAbilityTag = "Ability.Melee";
+
+    if (this->AbilitySystemComponent->IsUsingAbilityWithTag(MeleeAbilityTag))
     {
         return;
     }
 
-    
+    this->AbilitySystemComponent->ActivateAbilityWithTag(MeleeAbilityTag);
 
-    
-     // AbilitySystemComponent->Get
-    
 }

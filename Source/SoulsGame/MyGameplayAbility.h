@@ -13,5 +13,5 @@ UCLASS()
 class SOULSGAME_API UMyGameplayAbility : public UGameplayAbility
 {
 	GENERATED_BODY()
-	
+//	virtual void OnGameplayTaskActivated(UGameplayTask& Task) override;
 };
