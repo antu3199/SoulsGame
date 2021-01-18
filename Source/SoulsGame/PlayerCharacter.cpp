@@ -31,6 +31,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 void APlayerCharacter::DoMeleeAttack()
 {
+    UE_LOG(LogTemp, Warning, TEXT("Start Do melee attack"));
     if (!this->AbilitySystemComponent)
     {
         return;
@@ -48,7 +49,10 @@ void APlayerCharacter::DoMeleeAttack()
     {
         return;
     }
+    
+    UE_LOG(LogTemp, Warning, TEXT("ActivateAbility %s"), *MeleeAbilityTag.ToString());
 
-    this->AbilitySystemComponent->ActivateAbilityWithTag(MeleeAbilityTag);
-
+    if (this->AbilitySystemComponent->ActivateAbilityWithTag(MeleeAbilityTag))
+    {
+    }
 }

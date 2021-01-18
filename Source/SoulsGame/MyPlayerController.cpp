@@ -43,6 +43,9 @@ void AMyPlayerController::SetupInputComponent()
     // You can do it this way, but I want to do it less segmentedly.
     this->InputComponent->BindAxis(TEXT("MoveForward"), this, &AMyPlayerController::MoveForward);
     this->InputComponent->BindAxis(TEXT("MoveRight"), this, &AMyPlayerController::MoveRight);
+
+    this->InputComponent->BindAction("NormalAttack", IE_Pressed, this, &AMyPlayerController::NormalAttack);
+
     
     //FGameplayTagContainer newContainer;
     //const FGameplayTag tag("TagName");
@@ -90,4 +93,10 @@ void AMyPlayerController::MoveRight(const float InputAxis)
 APlayerCharacter* AMyPlayerController::GetPawnCharacter() const
 {
     return Cast<APlayerCharacter>(GetPawn());
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void AMyPlayerController::NormalAttack()
+{
+    this->GetPawnCharacter()->DoMeleeAttack();
 }

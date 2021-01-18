@@ -36,6 +36,8 @@ protected:
 	void RotateCamera(float InputAxis);
 	void MoveForward(float InputAxis);
 	void MoveRight(float InputAxis);
+	
+	void NormalAttack();
 
 
 	APlayerCharacter * GetPawnCharacter() const;

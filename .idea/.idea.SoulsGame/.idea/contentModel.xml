@@ -43710,6 +43710,12 @@
       <e p="SoulsGame.uproject" t="Include" />
       <e p="Source" t="Include">
         <e p="SoulsGame" t="Include">
+          <e p="Abilities" t="Include">
+            <e p="AbilityPlayMontageAndWait.cpp" t="Include" />
+            <e p="AbilityPlayMontageAndWait.h" t="Include" />
+            <e p="PlayMontageAndWaitTask.cpp" t="Include" />
+            <e p="PlayMontageAndWaitTask.h" t="Include" />
+          </e>
           <e p="CharacterAbilitySystemComponent.cpp" t="Include" />
           <e p="CharacterAbilitySystemComponent.h" t="Include" />
           <e p="CharacterBase.cpp" t="Include" />

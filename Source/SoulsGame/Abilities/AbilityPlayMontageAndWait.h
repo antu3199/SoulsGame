@@ -3,21 +3,23 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Abilities/GameplayAbility.h"
-#include "MyGameplayAbility.generated.h"
+
+#include "PlayMontageAndWaitTask.h"
+#include "SoulsGame/MyGameplayAbility.h"
+#include "AbilityPlayMontageAndWait.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class SOULSGAME_API UMyGameplayAbility : public UGameplayAbility
+class SOULSGAME_API UAbilityPlayMontageAndWait : public UMyGameplayAbility
 {
 	GENERATED_BODY()
-    
+
 protected:
     virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
     virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
 
-    
-//	virtual void OnGameplayTaskActivated(UGameplayTask& Task) override;
+	void OnMontageCompleted(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
+	
 };
