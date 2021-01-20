@@ -43711,8 +43711,8 @@
       <e p="Source" t="Include">
         <e p="SoulsGame" t="Include">
           <e p="Abilities" t="Include">
-            <e p="AbilityPlayMontageAndWait.cpp" t="Include" />
-            <e p="AbilityPlayMontageAndWait.h" t="Include" />
+            <e p="AbilityMeleeBase.cpp" t="Include" />
+            <e p="AbilityMeleeBase.h" t="Include" />
             <e p="PlayMontageAndWaitTask.cpp" t="Include" />
             <e p="PlayMontageAndWaitTask.h" t="Include" />
           </e>

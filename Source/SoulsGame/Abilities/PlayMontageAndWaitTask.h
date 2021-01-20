@@ -11,6 +11,27 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FPlayMontageAndWaitTaskDelegate, FGameplayTag, varNameFGameplayTag, FGameplayEventData, varNameFGameplayEventData);
 
+USTRUCT(BlueprintType)
+struct FPlayMontageAndWaitTaskData
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere)
+	FName TaskInstanceName = "TaskName";
+	UPROPERTY(EditAnywhere)
+	UAnimMontage *MontageToPlay;
+	UPROPERTY(EditAnywhere)
+	FGameplayTagContainer EventTags;
+	UPROPERTY(EditAnywhere)
+	float Rate = 1.0;
+	UPROPERTY(EditAnywhere)
+	FName StartSection = "None";
+	UPROPERTY(EditAnywhere)
+	bool StopWhenAbilityEnds = true;
+	UPROPERTY(EditAnywhere)
+	float AnimRootMotionTranslationScale = 1.0;
+};
+
 /**
  * 
  */
