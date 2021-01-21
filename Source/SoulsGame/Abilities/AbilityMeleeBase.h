@@ -20,9 +20,12 @@ protected:
     virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
     virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
 
-	void OnMontageCompleted(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
+	virtual void OnBlendOut(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
+	virtual void OnInterrupted(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
+	virtual void OnCancelled(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
+	virtual void OnCompleted(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
+	virtual void OnEventReceived(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
 
 	UPROPERTY(EditAnywhere)
 	FPlayMontageAndWaitTaskData PlayMontageAndWaitTaskData;
-	
 };

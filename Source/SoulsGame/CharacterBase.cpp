@@ -45,6 +45,11 @@ void ACharacterBase::InitializeAbilitySystem()
 
 void ACharacterBase::AddStartupGameplayAbilities()
 {
+	if (!this->AbilitySystemComponent)
+	{
+		return;
+	}
+	
 	if (this->AbilitiesSpecHandles.Num() != 0)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Warning: Ability spec handles not empty"));
@@ -61,7 +66,7 @@ void ACharacterBase::AddStartupGameplayAbilities()
 			FGameplayAbilityDataContainer & DataContainer = this->AbilitySystemComponent->AddNewGameplayAbilityDataContainer(); 
 			DataContainer.SetGameplayAbility(ItemAsset->GrantedAbility.GetDefaultObject());
 			DataContainer.GameplayAbilitySpec = FGameplayAbilitySpec(DataContainer.MyGameplayAbility);
-			DataContainer.GameplayAbilitySpecHandle = AbilitySystemComponent->GiveAbility(DataContainer.GameplayAbilitySpec);
+			DataContainer.GameplayAbilitySpecHandle = this->AbilitySystemComponent->GiveAbility(DataContainer.GameplayAbilitySpec);
 
 			UE_LOG(LogTemp, Warning, TEXT("Ability granted %s"), *DataContainer.GetMyGameplayAbilityName());
 		}

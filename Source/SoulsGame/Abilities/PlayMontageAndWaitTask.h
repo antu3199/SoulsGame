@@ -30,6 +30,8 @@ struct FPlayMontageAndWaitTaskData
 	bool StopWhenAbilityEnds = true;
 	UPROPERTY(EditAnywhere)
 	float AnimRootMotionTranslationScale = 1.0;
+	UPROPERTY(EditAnywhere, Category= "Optional")
+	UGameplayAbility* OwningAbility = nullptr;
 };
 
 /**
@@ -44,17 +46,38 @@ class SOULSGAME_API UPlayMontageAndWaitTask : public UAbilityTask
 public:
 	UPlayMontageAndWaitTask(const FObjectInitializer & ObjectInitializer);
 
-
 	// Callbacks:
-	UPROPERTY(BlueprintAssignable)
 	FPlayMontageAndWaitTaskDelegate OnCompleted;
+	FPlayMontageAndWaitTaskDelegate OnBlendOut;
+	FPlayMontageAndWaitTaskDelegate OnInterrupted;
+	FPlayMontageAndWaitTaskDelegate OnCancelled;
+
+	// Triggering gameplay event
+	FPlayMontageAndWaitTaskDelegate OnEventReceived;
+	
+	static UPlayMontageAndWaitTask *CreatePlayMontageAndWaitEvent(FPlayMontageAndWaitTaskData & TaskData);
+
 	
 protected:
 	virtual void Activate() override;
 	virtual void ExternalCancel() override;
 	virtual void OnDestroy(bool AbilityEnded) override;
 
+
+	FPlayMontageAndWaitTaskData TaskData;
 	UCharacterAbilitySystemComponent * GetTargetAbilitySystemComponent() const;
 
-	
+	// Delegate handles
+	FDelegateHandle EventDelegateHandle;
+	FDelegateHandle CancelledDelegateHandle;
+	FOnMontageBlendingOutStarted BlendingOutDelegate;
+	FOnMontageEnded MontageEndedDelegate;
+
+	// Delegate callbacks
+	void OnGameplayEvent(FGameplayTag EventTag, const FGameplayEventData* Payload);
+	void OnAbilityCancelled();
+	void OnMontageEnded(UAnimMontage  * Montage, bool bInterrupted);
+	void OnMontageBlendingOut(UAnimMontage* Montage, bool bInterrupted);
+
+	bool PlayedMontage = false;
 };

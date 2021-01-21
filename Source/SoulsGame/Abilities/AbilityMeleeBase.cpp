@@ -6,6 +6,7 @@
 
 #include "PlayMontageAndWaitTask.h"
 #include "Abilities/Tasks/AbilityTask.h"
+#include <functional>
 
 void UAbilityMeleeBase::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                                  const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
@@ -16,9 +17,19 @@ void UAbilityMeleeBase::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
     
     if (this->CommitAbility(Handle, ActorInfo, ActivationInfo))
     {
-        const FName TaskName = "Task Name";
-        UPlayMontageAndWaitTask *PlayMontageAndWaitTask = UAbilityTask::NewAbilityTask<UPlayMontageAndWaitTask>(this, TaskName);
-        PlayMontageAndWaitTask->OnCompleted.AddDynamic(this, &UAbilityMeleeBase::OnMontageCompleted);
+        if (this->PlayMontageAndWaitTaskData.OwningAbility == nullptr)
+        {
+            this->PlayMontageAndWaitTaskData.OwningAbility = this;
+        }
+        
+        UPlayMontageAndWaitTask *PlayMontageAndWaitTask = UPlayMontageAndWaitTask::CreatePlayMontageAndWaitEvent(this->PlayMontageAndWaitTaskData);
+        
+        PlayMontageAndWaitTask->OnCompleted.AddDynamic(this, &UAbilityMeleeBase::OnCompleted);
+        PlayMontageAndWaitTask->OnBlendOut.AddDynamic(this, &UAbilityMeleeBase::OnBlendOut);
+        PlayMontageAndWaitTask->OnInterrupted.AddDynamic(this, &UAbilityMeleeBase::OnInterrupted);
+        PlayMontageAndWaitTask->OnCancelled.AddDynamic(this, &UAbilityMeleeBase::OnCancelled);
+        PlayMontageAndWaitTask->OnEventReceived.AddDynamic(this, &UAbilityMeleeBase::OnEventReceived);
+        
         PlayMontageAndWaitTask->ReadyForActivation();
     }
 }
@@ -30,8 +41,35 @@ void UAbilityMeleeBase::EndAbility(const FGameplayAbilitySpecHandle Handle,
     Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
 }
 
-void UAbilityMeleeBase::OnMontageCompleted(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
+void UAbilityMeleeBase::OnBlendOut(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    UE_LOG(LogTemp, Warning, TEXT("OnMontage Completed %s"), *GameplayTag.ToString());
+    UE_LOG(LogTemp, Warning, TEXT("OnBlendOut Completed %s"), *GameplayTag.ToString());
     this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, false);
 }
+
+void UAbilityMeleeBase::OnInterrupted(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
+{
+    UE_LOG(LogTemp, Warning, TEXT("OnInterrupted Completed %s"), *GameplayTag.ToString());
+    this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, true);
+}
+
+void UAbilityMeleeBase::OnCancelled(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
+{
+    UE_LOG(LogTemp, Warning, TEXT("OnCancelled Completed %s"), *GameplayTag.ToString());
+    this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, true);
+}
+
+void UAbilityMeleeBase::OnCompleted(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
+{
+    UE_LOG(LogTemp, Warning, TEXT("OnCompleted Completed %s"), *GameplayTag.ToString());
+    // Don't want to do anything here
+    //this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, false);
+}
+
+void UAbilityMeleeBase::OnEventReceived(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
+{
+    UE_LOG(LogTemp, Warning, TEXT("OnMontage Completed %s"), *GameplayTag.ToString());
+    // TODO
+}
+
+
