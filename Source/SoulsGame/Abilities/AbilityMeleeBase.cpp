@@ -8,12 +8,19 @@
 #include "Abilities/Tasks/AbilityTask.h"
 #include <functional>
 
+#include "GameplayTagsManager.h"
+
+UAbilityMeleeBase::UAbilityMeleeBase() : Super()
+{
+    const FGameplayTag Tag = UGameplayTagsManager::Get().RequestGameplayTag(TEXT("Ability.Melee"));
+    this->AbilityTags.AddTag(Tag);
+}
+
 void UAbilityMeleeBase::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
-                                                 const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
-                                                 const FGameplayEventData* TriggerEventData)
+                                        const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
+                                        const FGameplayEventData* TriggerEventData)
 {
     Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
-    UE_LOG(LogTemp, Warning, TEXT("UAbilityMeleeBase::ActivateAbility!"));
     
     if (this->CommitAbility(Handle, ActorInfo, ActivationInfo))
     {

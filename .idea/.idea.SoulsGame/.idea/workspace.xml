@@ -7,14 +7,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Abilities/MeleeBase.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/DataAssets/TestAbilityAsset.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/DataAssets/TestAbilityAsset.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Abilities/GA_MeleeBase.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Abilities/GA_MeleeBase.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAndWaitTask.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAndWaitTask.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAndWaitTask.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAndWaitTask.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,14 +40,14 @@
         <option value="$PROJECT_DIR$/Source/SoulsGame/MyPlayerController.cpp" />
         <option value="$PROJECT_DIR$/Source/SoulsGame/MyGameplayAbility.cpp" />
         <option value="$PROJECT_DIR$/Source/SoulsGame/MyGameplayAbility.h" />
-        <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" />
         <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityPlayMontageAndWait.h" />
         <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityPlayMontageAndWait.cpp" />
         <option value="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" />
-        <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.h" />
+        <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" />
         <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.cpp" />
-        <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAndWaitTask.h" />
         <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAndWaitTask.cpp" />
+        <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.h" />
+        <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAndWaitTask.h" />
       </list>
     </option>
   </component>
@@ -298,7 +296,8 @@
       <workItem from="1610902190116" duration="16365000" />
       <workItem from="1610928134194" duration="7560000" />
       <workItem from="1611107679892" duration="2393000" />
-      <workItem from="1611186122279" duration="6727000" />
+      <workItem from="1611186122279" duration="7422000" />
+      <workItem from="1611272081598" duration="4463000" />
     </task>
     <servers />
   </component>
@@ -319,18 +318,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611189676864" />
-    <state x="638" y="253" width="644" height="534" key="find.popup" timestamp="1610759409084">
+    <state x="638" y="253" width="812" height="534" key="find.popup" timestamp="1611273143993">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="638" y="253" width="644" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610759409084" />
+    <state x="638" y="253" width="812" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611273143993" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1611190730181">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611190730181" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1611186942012">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1611273343160">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611186942012" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611273343160" />
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1610587815116" />
     <state x="682" y="433" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1610584839734">
       <screen x="0" y="0" width="1920" height="1040" />

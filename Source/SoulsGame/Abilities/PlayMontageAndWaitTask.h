@@ -30,7 +30,7 @@ struct FPlayMontageAndWaitTaskData
 	bool StopWhenAbilityEnds = true;
 	UPROPERTY(EditAnywhere)
 	float AnimRootMotionTranslationScale = 1.0;
-	UPROPERTY(EditAnywhere, Category= "Optional")
+	UPROPERTY()
 	UGameplayAbility* OwningAbility = nullptr;
 };
 
@@ -46,7 +46,7 @@ class SOULSGAME_API UPlayMontageAndWaitTask : public UAbilityTask
 public:
 	UPlayMontageAndWaitTask(const FObjectInitializer & ObjectInitializer);
 
-	// Callbacks:
+	// Callbacks
 	FPlayMontageAndWaitTaskDelegate OnCompleted;
 	FPlayMontageAndWaitTaskDelegate OnBlendOut;
 	FPlayMontageAndWaitTaskDelegate OnInterrupted;
@@ -75,6 +75,7 @@ protected:
 
 	// Delegate callbacks
 	void OnGameplayEvent(FGameplayTag EventTag, const FGameplayEventData* Payload);
+	bool StopPlayingMontage();
 	void OnAbilityCancelled();
 	void OnMontageEnded(UAnimMontage  * Montage, bool bInterrupted);
 	void OnMontageBlendingOut(UAnimMontage* Montage, bool bInterrupted);
