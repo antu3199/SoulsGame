@@ -37,4 +37,8 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	FPlayMontageAndWaitTaskData PlayMontageAndWaitTaskData;
+
+	UPROPERTY(EditAnywhere)
+	TArray<TSubclassOf<UGameplayEffect>> AppliedGameplayEffects;
+	
 };

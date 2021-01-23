@@ -21,6 +21,7 @@ void UAbilityMeleeBase::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                         const FGameplayEventData* TriggerEventData)
 {
     Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+
     
     if (this->CommitAbility(Handle, ActorInfo, ActivationInfo))
     {
@@ -28,6 +29,7 @@ void UAbilityMeleeBase::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
         {
             this->PlayMontageAndWaitTaskData.OwningAbility = this;
         }
+
         
         UPlayMontageAndWaitTask *PlayMontageAndWaitTask = UPlayMontageAndWaitTask::CreatePlayMontageAndWaitEvent(this->PlayMontageAndWaitTaskData);
         
@@ -76,7 +78,17 @@ void UAbilityMeleeBase::OnCompleted(const FGameplayTag GameplayTag, FGameplayEve
 void UAbilityMeleeBase::OnEventReceived(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
     UE_LOG(LogTemp, Warning, TEXT("OnMontage Completed %s"), *GameplayTag.ToString());
-    // TODO
+    //this->CurrentActorInfo->AbilitySystemComponent->ApplyGameplayEffectSpecToTarget
+
+    // TODO Make my own gamepaly effect class & a struct for handlers
+    for (TSubclassOf<UGameplayEffect> & Effect : this->AppliedGameplayEffects)
+    {
+        int level = 1;
+        FGameplayEffectSpecHandle SpecHandle = MakeOutgoingGameplayEffectSpec(Effect, 1);
+        FGameplayAbilityTargetDataHandle TargetData;
+        
+        K2_ApplyGameplayEffectSpecToTarget(SpecHandle, TargetData);
+    }
 }
 
 

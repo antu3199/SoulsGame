@@ -54,6 +54,7 @@ void UPlayMontageAndWaitTask::Activate()
         return;
     }
 
+
     EventDelegateHandle = AbilitySystemComponent->AddGameplayEventTagContainerDelegate(this->TaskData.EventTags, OnGameplayEventCallback);
     CancelledDelegateHandle = this->Ability->OnGameplayAbilityCancelled.AddUObject(this, &UPlayMontageAndWaitTask::OnAbilityCancelled);
 
