@@ -48,6 +48,8 @@ void UAbilityMeleeBase::EndAbility(const FGameplayAbilitySpecHandle Handle,
     bool bReplicateEndAbility, bool bWasCancelled)
 {
     Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
+
+    this->ActiveGameplayEffects.Reset();
 }
 
 void UAbilityMeleeBase::OnBlendOut(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
@@ -81,13 +83,19 @@ void UAbilityMeleeBase::OnEventReceived(const FGameplayTag GameplayTag, FGamepla
     //this->CurrentActorInfo->AbilitySystemComponent->ApplyGameplayEffectSpecToTarget
 
     // TODO Make my own gamepaly effect class & a struct for handlers
-    for (TSubclassOf<UGameplayEffect> & Effect : this->AppliedGameplayEffects)
+    for (TSubclassOf<UMyGameplayEffect> & Effect : this->AppliedGameplayEffects)
     {
         int level = 1;
-        FGameplayEffectSpecHandle SpecHandle = MakeOutgoingGameplayEffectSpec(Effect, 1);
-        FGameplayAbilityTargetDataHandle TargetData;
+        this->ActiveGameplayEffects.Add(FGameplayEffectDataContainer());
+        FGameplayEffectDataContainer & Container = this->ActiveGameplayEffects.Last();
+
+        Container.GameplayEffectSpecHandle = MakeOutgoingGameplayEffectSpec(Effect, 1);
+
+        const FGameplayAbilityTargetDataHandle TargetData;
+        Container.TargetData = TargetData;
         
-        K2_ApplyGameplayEffectSpecToTarget(SpecHandle, TargetData);
+        Container.ActiveGameplayEffectHandles = K2_ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
+        
     }
 }
 

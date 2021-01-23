@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 
+
+#include "MyGameplayEffect.h"
 #include "PlayMontageAndWaitTask.h"
 #include "SoulsGame/MyGameplayAbility.h"
 #include "AbilityMeleeBase.generated.h"
@@ -39,6 +41,8 @@ protected:
 	FPlayMontageAndWaitTaskData PlayMontageAndWaitTaskData;
 
 	UPROPERTY(EditAnywhere)
-	TArray<TSubclassOf<UGameplayEffect>> AppliedGameplayEffects;
-	
+	TArray<TSubclassOf<UMyGameplayEffect>> AppliedGameplayEffects;
+
+
+	TArray<FGameplayEffectDataContainer> ActiveGameplayEffects;
 };

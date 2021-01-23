@@ -43713,6 +43713,8 @@
           <e p="Abilities" t="Include">
             <e p="AbilityMeleeBase.cpp" t="Include" />
             <e p="AbilityMeleeBase.h" t="Include" />
+            <e p="MyGameplayEffect.cpp" t="Include" />
+            <e p="MyGameplayEffect.h" t="Include" />
             <e p="PlayMontageAndWaitTask.cpp" t="Include" />
             <e p="PlayMontageAndWaitTask.h" t="Include" />
           </e>
