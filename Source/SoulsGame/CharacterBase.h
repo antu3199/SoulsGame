@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "CharacterAbilitySystemComponent.h"
+#include "Abilities/MyAttributeSet.h"
 #include "DataAssets/WeaponAsset.h"
 #include "GameFramework/Character.h"
 #include "CharacterBase.generated.h"
@@ -56,6 +57,8 @@ public:
 	//virtual void OnDamaged(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser);
 	//virtual void OnHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
 
+	UWeaponAsset * GetWeaponAsset() const;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -80,6 +83,8 @@ protected:
 	bool IsDead;
 	float AnimMovementSpeed;
 	TArray<FGameplayAbilitySpecHandle> AbilitiesSpecHandles;
-	
 
+	UPROPERTY()
+	UMyAttributeSet* AttributeSet;
+	
 };

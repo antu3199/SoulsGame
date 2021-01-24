@@ -23,6 +23,13 @@ ACharacterBase::ACharacterBase()
 		MeleeAttackTag.AddTag(Tag);
 		//UE_LOG(LogTemp, Error, TEXT("ERROR: Melee attack tag not created!"));
 	}
+
+	AttributeSet = CreateDefaultSubobject<UMyAttributeSet>(TEXT("AttributeSet"));
+}
+
+UWeaponAsset* ACharacterBase::GetWeaponAsset() const
+{
+	return this->WeaponAsset;
 }
 
 // Called when the game starts or when spawned

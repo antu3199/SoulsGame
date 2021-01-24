@@ -30,6 +30,8 @@ void UMyAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallback
 {
     Super::PostGameplayEffectExecute(Data);
 
+    UE_LOG(LogTemp, Warning, TEXT("PostGameplayEffectExecute"));
+
     FGameplayEffectContextHandle Context = Data.EffectSpec.GetContext();
     UAbilitySystemComponent * Source = Context.GetOriginalInstigatorAbilitySystemComponent();
     const FGameplayTagContainer & SourceTags =  *(Data.EffectSpec.CapturedSourceTags.GetAggregatedTags());
