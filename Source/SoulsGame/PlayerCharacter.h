@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "CharacterBase.h"
+#include "DataAssets/WeaponAsset.h"
+
 #include "PlayerCharacter.generated.h"
 
 /**
@@ -18,6 +20,8 @@ public:
 	APlayerCharacter();
 
 	virtual void DoMeleeAttack();
+
+	virtual void MakeWeapon();
 	
 protected:
 	// Called when the game starts or when spawned
@@ -28,4 +32,6 @@ protected:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	
 };

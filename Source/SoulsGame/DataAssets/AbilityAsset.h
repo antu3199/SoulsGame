@@ -19,4 +19,6 @@ class SOULSGAME_API UAbilityAsset : public UMyPrimaryDataAsset
 public:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Abilities)
     TSubclassOf<UMyGameplayAbility> GrantedAbility;
+
+    
 };

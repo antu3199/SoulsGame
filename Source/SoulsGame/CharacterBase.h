@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "CharacterAbilitySystemComponent.h"
+#include "DataAssets/WeaponAsset.h"
 #include "GameFramework/Character.h"
 #include "CharacterBase.generated.h"
 
@@ -17,31 +18,6 @@ public:
 	// Sets default values for this character's properties
 	ACharacterBase();
 
-	UPROPERTY(EditAnywhere)
-	int32 TestInt;
-
-	
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	UCharacterAbilitySystemComponent* AbilitySystemComponent;
-
-    bool IsDead;
-
-	float AnimMovementSpeed;
-
-	void InitializeAbilitySystem();
-
-	void AddStartupGameplayAbilities();
-
-	UPROPERTY()
-	int32 bAbilitiesInitialized;
-
-	TArray<FGameplayAbilitySpecHandle> AbilitiesSpecHandles;
-	
-public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -64,15 +40,15 @@ public:
 	UFUNCTION(BlueprintCallable)
     bool CanUseAnyAbility() const;
 
+	// Calls OnDamaged in the C++ side (Done in MyAttributeSet)
+	virtual void HandleDamage(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser);
+	virtual void HandleHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
+	
 	UPROPERTY(EditAnywhere, Category="Meta Data")
 	FGameplayTagContainer MeleeAttackTag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Inventory)
 	TArray<FPrimaryAssetId> DefaultSlottedAbilities;
-
-	// Calls OnDamaged in the C++ side (Done in MyAttributeSet)
-	virtual void HandleDamage(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser);
-	virtual void HandleHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
 
 
 	// Handles what happens on damaged in BP size
@@ -80,5 +56,30 @@ public:
 	//virtual void OnDamaged(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser);
 	//virtual void OnHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
 
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+	void InitializeAbilitySystem();
+	void AddStartupGameplayAbilities();
+	void InitializeItems();
+
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UCharacterAbilitySystemComponent* AbilitySystemComponent;
+	
+	UPROPERTY()
+	int32 bAbilitiesInitialized;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Inventory)
+	FPrimaryAssetId WeaponAssetId;
+
+	UPROPERTY()
+	UWeaponAsset * WeaponAsset = nullptr;
+	
+	bool IsDead;
+	float AnimMovementSpeed;
+	TArray<FGameplayAbilitySpecHandle> AbilitiesSpecHandles;
+	
 
 };

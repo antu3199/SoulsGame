@@ -43729,6 +43729,8 @@
             <e p="AbilityAsset.h" t="Include" />
             <e p="MyPrimaryDataAsset.cpp" t="Include" />
             <e p="MyPrimaryDataAsset.h" t="Include" />
+            <e p="WeaponAsset.cpp" t="Include" />
+            <e p="WeaponAsset.h" t="Include" />
           </e>
           <e p="MyAssetManager.cpp" t="Include" />
           <e p="MyAssetManager.h" t="Include" />

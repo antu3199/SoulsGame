@@ -6,6 +6,7 @@
 #include "GameplayTagsManager.h"
 #include "MyAssetManager.h"
 #include "DataAssets/AbilityAsset.h"
+#include "DataAssets/WeaponAsset.h"
 
 // Sets default values
 ACharacterBase::ACharacterBase()
@@ -18,8 +19,8 @@ ACharacterBase::ACharacterBase()
 
 	if (MeleeAttackTag.Num() == 0)
 	{
-		FGameplayTag tag = UGameplayTagsManager::Get().RequestGameplayTag(TEXT("Ability.Melee"));
-		MeleeAttackTag.AddTag(tag);
+		FGameplayTag Tag = UGameplayTagsManager::Get().RequestGameplayTag(TEXT("Ability.Melee"));
+		MeleeAttackTag.AddTag(Tag);
 		//UE_LOG(LogTemp, Error, TEXT("ERROR: Melee attack tag not created!"));
 	}
 }
@@ -29,8 +30,8 @@ void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
     this->InitializeAbilitySystem();
-	
-	
+
+	this->InitializeItems();
 }
 
 void ACharacterBase::InitializeAbilitySystem()
@@ -70,6 +71,20 @@ void ACharacterBase::AddStartupGameplayAbilities()
 
 			UE_LOG(LogTemp, Warning, TEXT("Ability granted %s"), *DataContainer.GetMyGameplayAbilityName());
 		}
+	}
+}
+
+void ACharacterBase::InitializeItems()
+{
+	// Load items
+	// 
+	// Load weapon
+	UMyAssetManager & MyAssetManager = UMyAssetManager::Get();
+	UWeaponAsset * TheAsset = MyAssetManager.ForceLoad<UWeaponAsset>(this->WeaponAssetId);
+	if (TheAsset)
+	{
+		this->WeaponAsset = TheAsset;
+		UE_LOG(LogTemp, Warning, TEXT("Weapon granted %s"), *WeaponAsset->ItemName.ToString());
 	}
 }
 
