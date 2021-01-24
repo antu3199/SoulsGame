@@ -10,10 +10,16 @@ AWeaponActor::AWeaponActor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	SetRootComponent(Root);
+
 	this->CapsuleComponent = CreateDefaultSubobject<UCapsuleComponent>(TEXT("CapsuleComponent"));
+	this->CapsuleComponent->SetupAttachment(Root);
+
 	this->CapsuleComponent->IgnoreActorWhenMoving(this, true);
 
-	this->SkeletalMesh = CreateDefaultSubobject<USkeletalMesh>(TEXT("SkeletalMesh"));
+	this->SkeletalMeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponent"));
+	this->SkeletalMeshComponent->SetupAttachment(Root);
 }
 
 // Called when the game starts or when spawned

@@ -24,14 +24,17 @@ protected:
 
 	FGameplayTag AttackEventTag;
 
-	UPROPERTY(EditAnywhere)
-	USkeletalMesh * SkeletalMesh;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	USceneComponent * Root;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	USkeletalMeshComponent * SkeletalMeshComponent;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UCapsuleComponent * CapsuleComponent;
 
 	void BeginWeaponAttack(const FGameplayTag AttackTag);
