@@ -69,5 +69,16 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Inventory)
 	TArray<FPrimaryAssetId> DefaultSlottedAbilities;
+
+	// Calls OnDamaged in the C++ side (Done in MyAttributeSet)
+	virtual void HandleDamage(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser);
+	virtual void HandleHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
+
+
+	// Handles what happens on damaged in BP size
 	
+	//virtual void OnDamaged(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser);
+	//virtual void OnHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
+
+
 };

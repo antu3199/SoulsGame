@@ -43713,6 +43713,8 @@
           <e p="Abilities" t="Include">
             <e p="AbilityMeleeBase.cpp" t="Include" />
             <e p="AbilityMeleeBase.h" t="Include" />
+            <e p="MyAttributeSet.cpp" t="Include" />
+            <e p="MyAttributeSet.h" t="Include" />
             <e p="MyGameplayEffect.cpp" t="Include" />
             <e p="MyGameplayEffect.h" t="Include" />
             <e p="PlayMontageAndWaitTask.cpp" t="Include" />
@@ -43743,6 +43745,10 @@
           <e p="SoulsGame.h" t="Include" />
           <e p="SoulsGameGameModeBase.cpp" t="Include" />
           <e p="SoulsGameGameModeBase.h" t="Include" />
+          <e p="Weapon" t="Include">
+            <e p="WeaponActor.cpp" t="Include" />
+            <e p="WeaponActor.h" t="Include" />
+          </e>
         </e>
         <e p="SoulsGame.Target.cs" t="Include" />
         <e p="SoulsGameEditor.Target.cs" t="Include" />
