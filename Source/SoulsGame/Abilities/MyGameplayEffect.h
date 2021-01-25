@@ -3,12 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameplayEffect.h"
 #include "Abilities/GameplayAbilityTargetTypes.h"
+#include "SoulsGame/CharacterBase.h"
+
 
 #include "MyGameplayEffect.generated.h"
 
 class UMyGameplayEffect;
+
 // Helper to organize gameplay abilities
 USTRUCT()
 struct FGameplayEffectDataContainer
@@ -22,8 +24,10 @@ struct FGameplayEffectDataContainer
 	
 	// ReSharper disable once CppUE4ProbableMemoryIssuesWithUObject
 	// Always check for null before using this
-	UMyGameplayEffect * MyGameplayEffect; // Useful only if this data container is only one
+	UMyGameplayEffect * GameplayEffect; // Useful only if this data container is only one
 	FGameplayAbilityTargetDataHandle TargetData;
+
+	void AddTargets(const TArray<FHitResult>& HitResults, const TArray<AActor*> & TargetActors);
 	// Note: Would it be useful to also store the UMyAbilityAsset?
 };
 
@@ -35,5 +39,8 @@ UCLASS()
 class SOULSGAME_API UMyGameplayEffect : public UGameplayEffect
 {
 	GENERATED_BODY()
+
+public:
+	static void GetTargets_UseEventData(ACharacterBase* TargetingCharacter, AActor* TargetingActor, FGameplayEventData EventData, TArray<FHitResult>& OutHitResults, TArray<AActor*>& OutActors);
 	
 };

@@ -4,14 +4,19 @@
 
 #include "CoreMinimal.h"
 
+
+#include "AbilitySystemInterface.h"
 #include "CharacterAbilitySystemComponent.h"
 #include "Abilities/MyAttributeSet.h"
 #include "DataAssets/WeaponAsset.h"
 #include "GameFramework/Character.h"
+#include "Weapon/WeaponActor.h"
+
 #include "CharacterBase.generated.h"
 
+// Note: IAbilitySystemInterface needed otherwise it won't listen to gameplay events
 UCLASS()
-class SOULSGAME_API ACharacterBase : public ACharacter
+class SOULSGAME_API ACharacterBase : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -24,6 +29,9 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// Implement IAbilitySystemInterface
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
 	UFUNCTION(BlueprintCallable)
 	bool GetIsDead() const;
@@ -58,6 +66,9 @@ public:
 	//virtual void OnHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
 
 	UWeaponAsset * GetWeaponAsset() const;
+
+	UPROPERTY()
+	AWeaponActor * WeaponActor = nullptr;
 	
 protected:
 	// Called when the game starts or when spawned
@@ -86,5 +97,7 @@ protected:
 
 	UPROPERTY()
 	UMyAttributeSet* AttributeSet;
+
+
 	
 };

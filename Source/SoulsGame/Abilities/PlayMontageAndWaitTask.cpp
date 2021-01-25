@@ -17,7 +17,6 @@ UPlayMontageAndWaitTask::UPlayMontageAndWaitTask(const FObjectInitializer& Objec
 void UPlayMontageAndWaitTask::Activate()
 {
     Super::Activate();
-    UE_LOG(LogTemp, Warning, TEXT("UPlayMontageAndWaitTask Activate"));
 
     if (UAbilityTask::Ability != nullptr && UAbilityTask::Ability != this->TaskData.OwningAbility)
     {
@@ -54,7 +53,6 @@ void UPlayMontageAndWaitTask::Activate()
         return;
     }
 
-
     EventDelegateHandle = AbilitySystemComponent->AddGameplayEventTagContainerDelegate(this->TaskData.EventTags, OnGameplayEventCallback);
     CancelledDelegateHandle = this->Ability->OnGameplayAbilityCancelled.AddUObject(this, &UPlayMontageAndWaitTask::OnAbilityCancelled);
 
@@ -78,6 +76,7 @@ void UPlayMontageAndWaitTask::Activate()
     {
         OnCancelled.Broadcast(FGameplayTag(), FGameplayEventData());
     }
+    
 }
 
 void UPlayMontageAndWaitTask::ExternalCancel()

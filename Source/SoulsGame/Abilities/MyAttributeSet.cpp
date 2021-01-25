@@ -30,8 +30,6 @@ void UMyAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallback
 {
     Super::PostGameplayEffectExecute(Data);
 
-    UE_LOG(LogTemp, Warning, TEXT("PostGameplayEffectExecute"));
-
     FGameplayEffectContextHandle Context = Data.EffectSpec.GetContext();
     UAbilitySystemComponent * Source = Context.GetOriginalInstigatorAbilitySystemComponent();
     const FGameplayTagContainer & SourceTags =  *(Data.EffectSpec.CapturedSourceTags.GetAggregatedTags());
@@ -83,6 +81,7 @@ void UMyAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallback
         {
             const float OldHealth = GetHealth();
             const float NewHealth = FMath::Clamp(OldHealth - LocalDamageDone, 0.0f, GetMaxHealth());
+            SetHealth(NewHealth);
 
             UE_LOG(LogTemp, Warning, TEXT("OldHealth: %f , NewHealth %f"), OldHealth, NewHealth);
             if (TargetCharacter)

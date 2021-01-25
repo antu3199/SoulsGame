@@ -78,13 +78,21 @@ void APlayerCharacter::MakeWeapon()
     const FTransform Transform(Rotation,Location, Scale);
     FActorSpawnParameters SpawnParameters;
     SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::Undefined; //Default
+    SpawnParameters.Instigator = this; // Needed for WeaponActor.cpp
+    SpawnParameters.Owner = this;
 
-    AActor * SpawnedObject = GetWorld()->SpawnActor<AActor>(this->WeaponAsset->WeaponActor, Location, Rotation, SpawnParameters);
+    AActor * SpawnedObject = GetWorld()->SpawnActor<AActor>(this->WeaponAsset->WeaponActorTemplate, Location, Rotation, SpawnParameters);
     if (SpawnedObject)
     {
-       //this->AttachToComponent(this->GetMesh(), SpawnedObject,
-       const FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, true );
-       const FName SocketName = "hand_rSocket";
-       SpawnedObject->AttachToComponent(this->GetMesh(), AttachmentRules, SocketName);
+        //this->AttachToComponent(this->GetMesh(), SpawnedObject,
+        const FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, true );
+        const FName SocketName = "hand_rSocket";
+        SpawnedObject->AttachToComponent(this->GetMesh(), AttachmentRules, SocketName);
+
+        this->WeaponActor = Cast<AWeaponActor>(SpawnedObject);
+        if (this->WeaponActor == nullptr)
+        {
+            UE_LOG(LogTemp, Error, TEXT("Weapon was null!"));
+        }
     }
 }

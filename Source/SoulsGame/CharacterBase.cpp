@@ -109,6 +109,11 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 }
 
+UAbilitySystemComponent* ACharacterBase::GetAbilitySystemComponent() const
+{
+	return this->AbilitySystemComponent;
+}
+
 bool ACharacterBase::GetIsDead() const
 {
 	return this->IsDead;
@@ -136,15 +141,17 @@ void ACharacterBase::HandleDamage(float DamageAmount, const FHitResult& HitInfo,
 	const FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser)
 {
 	UE_LOG(LogTemp, Warning, TEXT("I Got hit: %s"), *this->GetName());
+	
 	//this->OnDamaged(DamageAmount, HitInfo, DamageTags, InstigatorCharacter, DamageCauser);
 }
 
 void ACharacterBase::HandleHealthChanged(float DeltaValue, const FGameplayTagContainer& EventTags)
 {
+	UE_LOG(LogTemp, Warning, TEXT("Handle health changed: %s"), *EventTags.ToString());
+
 	if (this->bAbilitiesInitialized)
 	{
-		//this->OnHealthChanged()
-		UE_LOG(LogTemp, Warning, TEXT("Handle health changed: %s"), *EventTags.ToString());
+		//this->OnHealthChanged(DeltaValue, EventTags);
 	}
 }
 

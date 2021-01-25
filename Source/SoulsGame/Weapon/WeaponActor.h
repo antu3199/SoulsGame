@@ -27,6 +27,11 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USceneComponent * Root;
 
+	bool CanHit = true;
+	FTimerHandle CanHitTimer;
+
+	void SetCanHitTimer();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -40,6 +45,10 @@ public:
 	void BeginWeaponAttack(const FGameplayTag AttackTag);
 
 	void EndWeaponAttack();
+
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+
+	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
 
 	bool IsAttacking = false;
 };

@@ -17,5 +17,5 @@ class SOULSGAME_API UWeaponAsset : public UMyPrimaryDataAsset
 public:
 	// Weapon actor to spawn
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Weapon)
-	TSubclassOf<AActor> WeaponActor;
+	TSubclassOf<AActor> WeaponActorTemplate;
 };

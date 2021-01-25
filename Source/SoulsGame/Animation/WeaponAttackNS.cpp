@@ -4,6 +4,8 @@
 #include "WeaponAttackNS.h"
 
 
+
+#include "GameplayTagsManager.h"
 #include "SoulsGame/CharacterBase.h"
 #include "SoulsGame/DataAssets/WeaponAsset.h"
 #include "SoulsGame/Weapon/WeaponActor.h"
@@ -22,22 +24,15 @@ void UWeaponAttackNS::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenc
         return;
     }
     
-    UWeaponAsset * WeaponAsset = Character->GetWeaponAsset();
-    if (!WeaponAsset)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("ERROR: No weapon asset!"));
-        return;
-    }
-
-    AWeaponActor * WeaponActor = Cast<AWeaponActor>(WeaponAsset->WeaponActor->GetDefaultObject());
+    AWeaponActor * WeaponActor = Character->WeaponActor;
     if (!WeaponActor)
     {
         UE_LOG(LogTemp, Warning, TEXT("ERROR: No weapon actor!"));
         return;
     }
 
-    UE_LOG(LogTemp, Warning, TEXT("Attack triggered NS"));
-
-    const FGameplayTag DummyTag;
-    WeaponActor->BeginWeaponAttack(DummyTag);
+    // TODO: Expose this
+    const FGameplayTag EventTag = UGameplayTagsManager::Get().RequestGameplayTag(TEXT("Event.Montage.Shared.WeaponHit"));
+    UE_LOG(LogTemp, Warning, TEXT("EventTagNS: %s"), *EventTag.ToString());
+    WeaponActor->BeginWeaponAttack(EventTag);
 }

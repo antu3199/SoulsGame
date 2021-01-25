@@ -6,9 +6,9 @@
 
 #include "PlayMontageAndWaitTask.h"
 #include "Abilities/Tasks/AbilityTask.h"
-#include <functional>
 
 #include "GameplayTagsManager.h"
+#include "SoulsGame/CharacterBase.h"
 
 UAbilityMeleeBase::UAbilityMeleeBase() : Super()
 {
@@ -54,45 +54,50 @@ void UAbilityMeleeBase::EndAbility(const FGameplayAbilitySpecHandle Handle,
 
 void UAbilityMeleeBase::OnBlendOut(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    UE_LOG(LogTemp, Warning, TEXT("OnBlendOut Completed %s"), *GameplayTag.ToString());
+    UE_LOG(LogTemp, Warning, TEXT("OnBlendOut %s"), *GameplayTag.ToString());
     this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, false);
 }
 
 void UAbilityMeleeBase::OnInterrupted(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    UE_LOG(LogTemp, Warning, TEXT("OnInterrupted Completed %s"), *GameplayTag.ToString());
+    UE_LOG(LogTemp, Warning, TEXT("OnInterrupted %s"), *GameplayTag.ToString());
     this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, true);
 }
 
 void UAbilityMeleeBase::OnCancelled(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    UE_LOG(LogTemp, Warning, TEXT("OnCancelled Completed %s"), *GameplayTag.ToString());
+    UE_LOG(LogTemp, Warning, TEXT("OnCancelled %s"), *GameplayTag.ToString());
     this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, true);
 }
 
 void UAbilityMeleeBase::OnCompleted(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    UE_LOG(LogTemp, Warning, TEXT("OnCompleted Completed %s"), *GameplayTag.ToString());
+    UE_LOG(LogTemp, Warning, TEXT("OnCompleted %s"), *GameplayTag.ToString());
     // Don't want to do anything here
     //this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, false);
 }
 
 void UAbilityMeleeBase::OnEventReceived(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    UE_LOG(LogTemp, Warning, TEXT("OnMontage Completed %s"), *GameplayTag.ToString());
     //this->CurrentActorInfo->AbilitySystemComponent->ApplyGameplayEffectSpecToTarget
-
+    AActor * OwningActor = GetOwningActorFromActorInfo();
+    ACharacterBase * OwningCharacter = Cast<ACharacterBase>(OwningActor);
+    AActor * AvatarActor = GetAvatarActorFromActorInfo();
+    
     // TODO Make my own gamepaly effect class & a struct for handlers
     for (TSubclassOf<UMyGameplayEffect> & Effect : this->AppliedGameplayEffects)
     {
         int level = 1;
         this->ActiveGameplayEffects.Add(FGameplayEffectDataContainer());
         FGameplayEffectDataContainer & Container = this->ActiveGameplayEffects.Last();
-
+        Container.GameplayEffect = Effect.GetDefaultObject();
         Container.GameplayEffectSpecHandle = MakeOutgoingGameplayEffectSpec(Effect, 1);
 
-        const FGameplayAbilityTargetDataHandle TargetData;
-        Container.TargetData = TargetData;
+        // Get Target data
+        TArray<FHitResult> HitResults;
+        TArray<AActor *> TargetActors;
+        UMyGameplayEffect::GetTargets_UseEventData(OwningCharacter, AvatarActor, GameplayEventData, HitResults, TargetActors);
+        Container.AddTargets(HitResults, TargetActors);
         
         Container.ActiveGameplayEffectHandles = K2_ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
         
