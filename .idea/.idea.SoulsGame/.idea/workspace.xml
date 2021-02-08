@@ -32,6 +32,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Editor/UnrealEd/Classes/Preferences/UnrealEdOptions.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Developer/Localization/Private/PortableObjectFormatDOM.cpp" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" />
+    </changedPaths>
+  </component>
   <component name="ProjectId" id="1mthZgxZ44M9oRjkJqVw1h9UFg6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -292,6 +301,7 @@
       <workItem from="1611520441681" duration="10732000" />
       <workItem from="1611533800202" duration="2383000" />
       <workItem from="1611714658092" duration="89000" />
+      <workItem from="1612826735978" duration="1353000" />
     </task>
     <servers />
   </component>
@@ -314,98 +324,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1611536213531">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213531" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1611536213531">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213531" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1611536213530">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213530" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1611536213531">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213531" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1611536213531">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213531" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1611536213531">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213531" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1611536213531">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213531" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1611536213531">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213531" />
-    <state width="1877" height="348" key="GridCell.Tab.2.bottom" timestamp="1611536213532">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213532" />
-    <state width="1877" height="348" key="GridCell.Tab.2.center" timestamp="1611536213532">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213532" />
-    <state width="1877" height="348" key="GridCell.Tab.2.left" timestamp="1611536213531">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213531" />
-    <state width="1877" height="348" key="GridCell.Tab.2.right" timestamp="1611536213532">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213532" />
-    <state width="1877" height="348" key="GridCell.Tab.3.bottom" timestamp="1611536213532">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.3.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213532" />
-    <state width="1877" height="348" key="GridCell.Tab.3.center" timestamp="1611536213532">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.3.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213532" />
-    <state width="1877" height="348" key="GridCell.Tab.3.left" timestamp="1611536213532">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.3.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213532" />
-    <state width="1877" height="348" key="GridCell.Tab.3.right" timestamp="1611536213532">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.3.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611536213532" />
-    <state x="663" y="226" key="RiderGenerateDialog" timestamp="1611456425081">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="663" y="226" key="RiderGenerateDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611456425081" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1611189676864">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611189676864" />
-    <state x="2989" y="286" width="812" height="534" key="find.popup" timestamp="1611535687742">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1108" y="282" width="812" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611529856698" />
-    <state x="2989" y="286" width="812" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1611535687742" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1611190730181">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611190730181" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1611525864907">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611525864907" />
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1610587815116" />
-    <state x="682" y="433" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1610584839734">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="682" y="433" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610584839734" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

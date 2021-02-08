@@ -86,7 +86,7 @@ void APlayerCharacter::MakeWeapon()
     {
         //this->AttachToComponent(this->GetMesh(), SpawnedObject,
         const FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, true );
-        const FName SocketName = "hand_rSocket";
+        const FName SocketName = "l_handSocket";
         SpawnedObject->AttachToComponent(this->GetMesh(), AttachmentRules, SocketName);
 
         this->WeaponActor = Cast<AWeaponActor>(SpawnedObject);
