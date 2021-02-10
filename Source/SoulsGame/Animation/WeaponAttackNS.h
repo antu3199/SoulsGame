@@ -15,5 +15,5 @@ class SOULSGAME_API UWeaponAttackNS : public UMyAnimNotifyState
 {
 	GENERATED_BODY()
 
-    virtual void OnNotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
+    virtual void NotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
 };

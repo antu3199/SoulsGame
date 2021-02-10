@@ -54,7 +54,8 @@ public:
 
 	// Triggering gameplay event
 	FPlayMontageAndWaitTaskDelegate OnEventReceived;
-	
+
+	UFUNCTION(BlueprintCallable, Category="Ability|Tasks", meta = (HidePin = "OwningAbility", DefaultToSelf = "OwningAbility"))
 	static UPlayMontageAndWaitTask *CreatePlayMontageAndWaitEvent(FPlayMontageAndWaitTaskData & TaskData);
 
 	

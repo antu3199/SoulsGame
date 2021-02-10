@@ -3,7 +3,7 @@
 
 #include "MyAnimNotifyState.h"
 
-void UMyAnimNotifyState::OnNotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation,
+void UMyAnimNotifyState::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation,
 	float TotalDuration)
 {
 	// TODO: Override me!

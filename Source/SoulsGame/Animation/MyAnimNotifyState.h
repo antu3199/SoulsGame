@@ -15,6 +15,6 @@ class SOULSGAME_API UMyAnimNotifyState : public UAnimNotifyState
 	GENERATED_BODY()
 
 	UFUNCTION(BlueprintCallable)
-	virtual void OnNotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration);
+	virtual void NotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
 	
 };
