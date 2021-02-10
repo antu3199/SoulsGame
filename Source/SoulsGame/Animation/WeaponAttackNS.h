@@ -3,17 +3,17 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Animation/AnimNotifies/AnimNotifyState.h"
+
+#include "MyAnimNotifyState.h"
 #include "WeaponAttackNS.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class SOULSGAME_API UWeaponAttackNS : public UAnimNotifyState
+class SOULSGAME_API UWeaponAttackNS : public UMyAnimNotifyState
 {
 	GENERATED_BODY()
 
-    virtual void NotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
-    
+    virtual void OnNotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
 };

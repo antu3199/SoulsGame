@@ -39,6 +39,7 @@
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.h" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mthZgxZ44M9oRjkJqVw1h9UFg6" />
@@ -303,6 +304,7 @@
       <workItem from="1611714658092" duration="89000" />
       <workItem from="1612826735978" duration="1353000" />
       <workItem from="1612839778151" duration="172000" />
+      <workItem from="1612917082252" duration="346000" />
     </task>
     <servers />
   </component>

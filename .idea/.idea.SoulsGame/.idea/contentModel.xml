@@ -49303,6 +49303,8 @@
             <e p="PlayMontageAndWaitTask.h" t="Include" />
           </e>
           <e p="Animation" t="Include">
+            <e p="MyAnimNotifyState.cpp" t="Include" />
+            <e p="MyAnimNotifyState.h" t="Include" />
             <e p="WeaponAttackNS.cpp" t="Include" />
             <e p="WeaponAttackNS.h" t="Include" />
           </e>

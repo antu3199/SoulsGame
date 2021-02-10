@@ -10,7 +10,7 @@
 #include "SoulsGame/DataAssets/WeaponAsset.h"
 #include "SoulsGame/Weapon/WeaponActor.h"
 
-void UWeaponAttackNS::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
+void UWeaponAttackNS::OnNotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
 {
     if (MeshComp == nullptr)
     {
