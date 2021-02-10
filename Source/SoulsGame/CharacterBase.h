@@ -6,7 +6,7 @@
 
 
 #include "AbilitySystemInterface.h"
-#include "CharacterAbilitySystemComponent.h"
+#include "Abilities/CharacterAbilitySystemComponent.h"
 #include "Abilities/MyAttributeSet.h"
 #include "DataAssets/WeaponAsset.h"
 #include "GameFramework/Character.h"

@@ -6,7 +6,7 @@
 
 #include "AbilitySystemGlobals.h"
 #include "GameFramework/Character.h"
-#include "SoulsGame/CharacterAbilitySystemComponent.h"
+#include "CharacterAbilitySystemComponent.h"
 
 UPlayMontageAndWaitTask::UPlayMontageAndWaitTask(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {

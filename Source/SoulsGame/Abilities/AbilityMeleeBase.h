@@ -7,7 +7,7 @@
 
 #include "MyGameplayEffect.h"
 #include "PlayMontageAndWaitTask.h"
-#include "SoulsGame/MyGameplayAbility.h"
+#include "SoulsGame/Abilities/MyGameplayAbility.h"
 #include "AbilityMeleeBase.generated.h"
 
 /**

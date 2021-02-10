@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/Tasks/AbilityTask.h"
-#include "SoulsGame/CharacterAbilitySystemComponent.h"
+#include "SoulsGame/Abilities/CharacterAbilitySystemComponent.h"
 
 #include "PlayMontageAndWaitTask.generated.h"
 

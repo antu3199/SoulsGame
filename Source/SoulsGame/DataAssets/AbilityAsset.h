@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "MyPrimaryDataAsset.h"
-#include "SoulsGame/MyGameplayAbility.h"
+#include "SoulsGame/Abilities/MyGameplayAbility.h"
 
 #include "AbilityAsset.generated.h"
 
