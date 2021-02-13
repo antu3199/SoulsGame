@@ -6,7 +6,34 @@
 #include "Abilities/GameplayAbility.h"
 #include "MyGameplayAbility.generated.h"
 
+// Helper to organize gameplay abilities
+USTRUCT()
+struct FGameplayAbilityDataContainer
+{
+	GENERATED_BODY()
+	
+	FGameplayAbilitySpec GameplayAbilitySpec;
+	FGameplayAbilitySpecHandle GameplayAbilitySpecHandle;
+	
+	// ReSharper disable once CppUE4ProbableMemoryIssuesWithUObject
+	// Always check for null before using this
+	UGameplayAbility * MyGameplayAbility; // Useful only if this data container is only one
 
+	bool IsMany = true;
+	
+	// Only useful if more than one (not sure how common this is yet)
+	TArray<UGameplayAbility*> GetAllGameplayAbilityInstances() const;
+
+	void SetGameplayAbility(UGameplayAbility * Ability);
+
+	bool GetIsMany() const;
+
+	FString GetMyGameplayAbilityName() const;
+
+	bool HasTag(const FName TagName) const;
+
+	// Note: Would it be useful to also store the UMyAbilityAsset?
+};
 
 /**
  * 
