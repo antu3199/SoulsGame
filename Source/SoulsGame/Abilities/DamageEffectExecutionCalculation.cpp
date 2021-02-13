@@ -36,6 +36,8 @@ void UDamageEffectExecutionCalculation::Execute_Implementation(
     const FGameplayEffectCustomExecutionParameters& ExecutionParams,
     FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
 {
+    Super::Execute_Implementation(ExecutionParams, OutExecutionOutput);
+    
     UAbilitySystemComponent * TargetAbilitySystemComponent = ExecutionParams.GetTargetAbilitySystemComponent();
     UAbilitySystemComponent * SourceAbilitySystemComponent = ExecutionParams.GetSourceAbilitySystemComponent();
     

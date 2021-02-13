@@ -12,6 +12,8 @@
 
 void UWeaponAttackNS::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
 {
+    Super::NotifyBegin(MeshComp, Animation, TotalDuration);
+    
     if (MeshComp == nullptr)
     {
         return;
@@ -32,7 +34,7 @@ void UWeaponAttackNS::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenc
     }
 
     // TODO: Expose this
-    const FGameplayTag EventTag = UGameplayTagsManager::Get().RequestGameplayTag(TEXT("Event.Montage.Shared.WeaponHit"));
+    const FGameplayTag EventTag = Data.GameplayTag;
     UE_LOG(LogTemp, Warning, TEXT("EventTagNS: %s"), *EventTag.ToString());
     WeaponActor->BeginWeaponAttack(EventTag);
 }

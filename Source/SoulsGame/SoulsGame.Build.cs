@@ -9,7 +9,10 @@ public class SoulsGame : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		// GameplayAbilities
 		PublicDependencyModuleNames.AddRange(new string[] { "GameplayAbilities", "GameplayTags", "GameplayTasks" });
+		// Needed for BindKey
+		PublicDependencyModuleNames.AddRange(new string[] { "SlateCore", "Slate" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

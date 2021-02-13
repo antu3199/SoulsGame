@@ -39,6 +39,8 @@ protected:
 	
 	void NormalAttack();
 
+	void UseAbility();
+
 
 	APlayerCharacter * GetPawnCharacter() const;
 };

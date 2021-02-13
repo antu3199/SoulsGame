@@ -46,6 +46,8 @@ void AMyPlayerController::SetupInputComponent()
 
     this->InputComponent->BindAction("NormalAttack", IE_Pressed, this, &AMyPlayerController::NormalAttack);
 
+    // Note: BindKey requires Slate/SlateCore
+    this->InputComponent->BindKey(EKeys::F, IE_Pressed, this, &AMyPlayerController::UseAbility);
     
     //FGameplayTagContainer newContainer;
     //const FGameplayTag tag("TagName");
@@ -99,4 +101,12 @@ APlayerCharacter* AMyPlayerController::GetPawnCharacter() const
 void AMyPlayerController::NormalAttack()
 {
     this->GetPawnCharacter()->DoMeleeAttack();
+}
+
+
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void AMyPlayerController::UseAbility()
+{
+    this->GetPawnCharacter()->UseAbility();
 }

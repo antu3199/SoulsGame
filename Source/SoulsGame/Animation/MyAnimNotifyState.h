@@ -3,8 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "GameplayTagContainer.h"
 #include "Animation/AnimNotifies/AnimNotifyState.h"
 #include "MyAnimNotifyState.generated.h"
+
+USTRUCT(BlueprintType)
+struct FAnimNotifyData
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere)
+	FGameplayTag GameplayTag;
+};
 
 /**
  * 
@@ -13,8 +24,11 @@ UCLASS()
 class SOULSGAME_API UMyAnimNotifyState : public UAnimNotifyState
 {
 	GENERATED_BODY()
-
-	UFUNCTION(BlueprintCallable)
-	virtual void NotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
 	
+protected:
+	virtual void NotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
+
+public:
+	UPROPERTY(EditAnywhere)
+	FAnimNotifyData Data;
 };

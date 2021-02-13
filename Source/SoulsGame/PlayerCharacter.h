@@ -22,6 +22,8 @@ public:
 	virtual void DoMeleeAttack();
 
 	virtual void MakeWeapon();
+
+	virtual void UseAbility();
 	
 protected:
 	// Called when the game starts or when spawned
