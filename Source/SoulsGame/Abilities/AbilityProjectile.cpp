@@ -36,7 +36,7 @@ void UAbilityProjectile::OnEventReceived(FGameplayTag GameplayTag, FGameplayEven
 	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn; //Default
 	SpawnParameters.Instigator = Cast<APawn>(AvatarActor);
 
-	AActor * SpawnedObject = GetWorld()->SpawnActor<AActor>(this->ProjectileTemplate, Transform, SpawnParameters);
+	AProjectileActor * SpawnedObject = GetWorld()->SpawnActor<AProjectileActor>(this->ProjectileTemplate, Transform, SpawnParameters);
 	if (SpawnedObject)
 	{
 		// Do something

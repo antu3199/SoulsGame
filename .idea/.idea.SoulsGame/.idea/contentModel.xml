@@ -49342,6 +49342,8 @@
           <e p="SoulsGameGameModeBase.cpp" t="Include" />
           <e p="SoulsGameGameModeBase.h" t="Include" />
           <e p="Weapon" t="Include">
+            <e p="ProjectileActor.cpp" t="Include" />
+            <e p="ProjectileActor.h" t="Include" />
             <e p="WeaponActor.cpp" t="Include" />
             <e p="WeaponActor.h" t="Include" />
           </e>

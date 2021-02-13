@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "PlayMontageAbility.h"
+#include "SoulsGame/Weapon/ProjectileActor.h"
+
 #include "AbilityProjectile.generated.h"
 
 /**
@@ -18,6 +20,6 @@ protected:
 	virtual void OnEventReceived(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData) override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<AActor> ProjectileTemplate;
+	TSubclassOf<AProjectileActor> ProjectileTemplate;
 };
 
