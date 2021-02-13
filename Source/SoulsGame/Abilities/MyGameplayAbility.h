@@ -53,5 +53,6 @@ protected:
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<UMyGameplayEffect>> AppliedGameplayEffects;
 
-	TArray<FGameplayEffectDataContainer> ActiveGameplayEffects;
+	FGameplayEffectDataContainer GameplayEffectsContainer;
+
 };

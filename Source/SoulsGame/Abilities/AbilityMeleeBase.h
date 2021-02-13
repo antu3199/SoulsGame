@@ -14,6 +14,4 @@ UCLASS()
 class SOULSGAME_API UAbilityMeleeBase : public UPlayMontageAbility
 {
 	GENERATED_BODY()
-
-
 };

@@ -2,10 +2,12 @@
 
 
 #include "MyGameplayEffect.h"
+#include "MyGameplayAbility.h"
 #include "SoulsGame/CharacterBase.h"
 
+// FGameplayEffectDataContainer ========================
 
-void FGameplayEffectDataContainer::AddTargets(const TArray<FHitResult>& HitResults, const TArray<AActor*>& TargetActors)
+void FGameplayEffectData::AddTargets(const TArray<FHitResult>& HitResults, const TArray<AActor*>& TargetActors)
 {
     for (const FHitResult& HitResult : HitResults)
     {
@@ -21,6 +23,12 @@ void FGameplayEffectDataContainer::AddTargets(const TArray<FHitResult>& HitResul
     }
 }
 
+bool FGameplayEffectDataContainer::DoesEffectContainerHaveEffects() const
+{
+    return ActiveGameplayEffects.Num() > 0;
+}
+
+// UMyGameplayEffect =======================
 void UMyGameplayEffect::GetTargets_UseEventData(ACharacterBase* TargetingCharacter, AActor* TargetingActor,
                                                 const FGameplayEventData EventData, TArray<FHitResult>& OutHitResults, TArray<AActor*>& OutActors)
 {

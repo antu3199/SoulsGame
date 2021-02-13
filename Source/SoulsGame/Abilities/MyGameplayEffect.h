@@ -12,13 +12,14 @@
 
 class UMyGameplayEffect;
 class ACharacterBase; 
+class UMyGameplayAbility;
 
 // Helper to organize gameplay abilities
 USTRUCT()
-struct FGameplayEffectDataContainer
+struct FGameplayEffectData
 {
 	GENERATED_BODY()
-	
+
 	FGameplayEffectSpec GameplayEffectSpec;
 	FGameplayEffectSpecHandle GameplayEffectSpecHandle;
 	
@@ -31,6 +32,17 @@ struct FGameplayEffectDataContainer
 
 	void AddTargets(const TArray<FHitResult>& HitResults, const TArray<AActor*> & TargetActors);
 	// Note: Would it be useful to also store the UMyAbilityAsset?
+};
+
+USTRUCT()
+struct FGameplayEffectDataContainer
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(EditAnywhere)
+	TArray<FGameplayEffectData> ActiveGameplayEffects;
+
+	bool DoesEffectContainerHaveEffects() const;
 };
 
 

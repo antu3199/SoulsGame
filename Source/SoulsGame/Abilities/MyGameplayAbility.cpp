@@ -25,3 +25,4 @@ void UMyGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, con
 {
     Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
 }
+

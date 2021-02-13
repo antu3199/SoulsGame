@@ -43,7 +43,7 @@ void UPlayMontageAbility::EndAbility(const FGameplayAbilitySpecHandle Handle,
 {
     Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
 
-    this->ActiveGameplayEffects.Reset();
+    this->GameplayEffectsContainer.ActiveGameplayEffects.Reset();
 }
 
 void UPlayMontageAbility::OnBlendOut(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
@@ -82,8 +82,8 @@ void UPlayMontageAbility::OnEventReceived(const FGameplayTag GameplayTag, FGamep
     for (TSubclassOf<UMyGameplayEffect> & Effect : this->AppliedGameplayEffects)
     {
         int level = 1;
-        this->ActiveGameplayEffects.Add(FGameplayEffectDataContainer());
-        FGameplayEffectDataContainer & Container = this->ActiveGameplayEffects.Last();
+        this->GameplayEffectsContainer.ActiveGameplayEffects.Add(FGameplayEffectData());
+        FGameplayEffectData & Container = this->GameplayEffectsContainer.ActiveGameplayEffects.Last();
         Container.GameplayEffect = Effect.GetDefaultObject();
         Container.GameplayEffectSpecHandle = MakeOutgoingGameplayEffectSpec(Effect, 1);
 
@@ -97,5 +97,7 @@ void UPlayMontageAbility::OnEventReceived(const FGameplayTag GameplayTag, FGamep
         
     }
 }
+
+
 
 

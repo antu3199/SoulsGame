@@ -34,6 +34,5 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	FPlayMontageAndWaitTaskData PlayMontageAndWaitTaskData;
-
 	
 };
