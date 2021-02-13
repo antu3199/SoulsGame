@@ -49303,6 +49303,8 @@
             <e p="MyGameplayAbility.h" t="Include" />
             <e p="MyGameplayEffect.cpp" t="Include" />
             <e p="MyGameplayEffect.h" t="Include" />
+            <e p="PlayMontageAbility.cpp" t="Include" />
+            <e p="PlayMontageAbility.h" t="Include" />
             <e p="PlayMontageAndWaitTask.cpp" t="Include" />
             <e p="PlayMontageAndWaitTask.h" t="Include" />
           </e>

@@ -4,40 +4,16 @@
 
 #include "CoreMinimal.h"
 
-
-#include "MyGameplayEffect.h"
-#include "PlayMontageAndWaitTask.h"
-#include "SoulsGame/Abilities/MyGameplayAbility.h"
+#include "PlayMontageAbility.h"
 #include "AbilityMeleeBase.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class SOULSGAME_API UAbilityMeleeBase : public UMyGameplayAbility
+class SOULSGAME_API UAbilityMeleeBase : public UPlayMontageAbility
 {
 	GENERATED_BODY()
 
-public:
-	UAbilityMeleeBase();
-
-protected:
-    virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
-    virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
-
-	// Callbacks (Must be a UPROPERTY() otherwise error)
-	UFUNCTION()
-	virtual void OnBlendOut(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
-	UFUNCTION()
-	virtual void OnInterrupted(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
-	UFUNCTION()
-	virtual void OnCancelled(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
-	UFUNCTION()
-	virtual void OnCompleted(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
-	UFUNCTION()
-	virtual void OnEventReceived(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData);
-
-	UPROPERTY(EditAnywhere)
-	FPlayMontageAndWaitTaskData PlayMontageAndWaitTaskData;
 
 };
