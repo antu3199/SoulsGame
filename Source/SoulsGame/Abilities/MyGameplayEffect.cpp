@@ -2,6 +2,8 @@
 
 
 #include "MyGameplayEffect.h"
+#include "SoulsGame/CharacterBase.h"
+
 
 void FGameplayEffectDataContainer::AddTargets(const TArray<FHitResult>& HitResults, const TArray<AActor*>& TargetActors)
 {

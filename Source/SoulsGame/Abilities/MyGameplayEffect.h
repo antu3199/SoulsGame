@@ -4,12 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbilityTargetTypes.h"
-#include "SoulsGame/CharacterBase.h"
+#include "GameplayEffect.h"
+#include "Abilities/GameplayAbilityTypes.h"
 
 
 #include "MyGameplayEffect.generated.h"
 
 class UMyGameplayEffect;
+class ACharacterBase; 
 
 // Helper to organize gameplay abilities
 USTRUCT()

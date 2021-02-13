@@ -3,7 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "Abilities/GameplayAbility.h"
+#include "MyGameplayEffect.h"
+
 #include "MyGameplayAbility.generated.h"
 
 // Helper to organize gameplay abilities
