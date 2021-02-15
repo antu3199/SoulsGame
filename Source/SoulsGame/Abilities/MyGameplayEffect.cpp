@@ -23,6 +23,14 @@ void FGameplayEffectData::AddTargets(const TArray<FHitResult>& HitResults, const
     }
 }
 
+FGameplayEffectData& FGameplayEffectDataContainer::CreateNewGameplayEffectData()
+{
+    this->ActiveGameplayEffects.Add(FGameplayEffectData());
+
+    FGameplayEffectData & Container = this->ActiveGameplayEffects.Last();
+    return Container;
+}
+
 bool FGameplayEffectDataContainer::DoesEffectContainerHaveEffects() const
 {
     return ActiveGameplayEffects.Num() > 0;

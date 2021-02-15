@@ -42,6 +42,8 @@ struct FGameplayEffectDataContainer
 	UPROPERTY(EditAnywhere)
 	TArray<FGameplayEffectData> ActiveGameplayEffects;
 
+	FGameplayEffectData & CreateNewGameplayEffectData();
+
 	bool DoesEffectContainerHaveEffects() const;
 };
 

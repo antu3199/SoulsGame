@@ -73,29 +73,7 @@ void UPlayMontageAbility::OnCompleted(const FGameplayTag GameplayTag, FGameplayE
 
 void UPlayMontageAbility::OnEventReceived(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    //this->CurrentActorInfo->AbilitySystemComponent->ApplyGameplayEffectSpecToTarget
-    AActor * OwningActor = GetOwningActorFromActorInfo();
-    ACharacterBase * OwningCharacter = Cast<ACharacterBase>(OwningActor);
-    AActor * AvatarActor = GetAvatarActorFromActorInfo();
-    
-    // TODO Make my own gamepaly effect class & a struct for handlers
-    for (TSubclassOf<UMyGameplayEffect> & Effect : this->AppliedGameplayEffects)
-    {
-        int level = 1;
-        this->GameplayEffectsContainer.ActiveGameplayEffects.Add(FGameplayEffectData());
-        FGameplayEffectData & Container = this->GameplayEffectsContainer.ActiveGameplayEffects.Last();
-        Container.GameplayEffect = Effect.GetDefaultObject();
-        Container.GameplayEffectSpecHandle = MakeOutgoingGameplayEffectSpec(Effect, 1);
 
-        // Get Target data
-        TArray<FHitResult> HitResults;
-        TArray<AActor *> TargetActors;
-        UMyGameplayEffect::GetTargets_UseEventData(OwningCharacter, AvatarActor, GameplayEventData, HitResults, TargetActors);
-        Container.AddTargets(HitResults, TargetActors);
-        
-        Container.ActiveGameplayEffectHandles = K2_ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
-        
-    }
 }
 
 

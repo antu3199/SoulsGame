@@ -54,5 +54,14 @@ void AProjectileActor::NotifyActorEndOverlap(AActor* OtherActor)
 	Super::NotifyActorEndOverlap(OtherActor);
 }
 
+void AProjectileActor::Initialize(FGameplayEffectDataContainer* DataContainer)
+{
+	this->GameplayEffectDataContainer = DataContainer;
+}
+
+
+
+
+
 
 

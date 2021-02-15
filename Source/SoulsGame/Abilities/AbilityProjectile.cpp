@@ -13,12 +13,14 @@ void UAbilityProjectile::OnEventReceived(FGameplayTag GameplayTag, FGameplayEven
 		return;
 	}
 
+	/*
 	const bool HasEffects = this->GameplayEffectsContainer.DoesEffectContainerHaveEffects();
 
 	if (!HasEffects)
 	{
 		return;
 	}
+	*/
 
 	AActor * AvatarActor = GetAvatarActorFromActorInfo();
 

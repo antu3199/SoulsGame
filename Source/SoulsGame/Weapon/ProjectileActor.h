@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "SoulsGame/Abilities/MyGameplayEffect.h"
+
 
 #include "ProjectileActor.generated.h"
 
@@ -21,7 +23,9 @@ public:
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 
 	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
-	
+
+	virtual void Initialize(FGameplayEffectDataContainer * DataContainer);
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USceneComponent * Root;
@@ -34,4 +38,6 @@ protected:
 
 	UPROPERTY()
 	TArray<AActor *> HitActors;
+
+	FGameplayEffectDataContainer * GameplayEffectDataContainer;
 };
