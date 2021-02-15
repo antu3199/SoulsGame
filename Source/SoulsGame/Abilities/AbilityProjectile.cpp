@@ -41,7 +41,10 @@ void UAbilityProjectile::OnEventReceived(FGameplayTag GameplayTag, FGameplayEven
 	AProjectileActor * SpawnedObject = GetWorld()->SpawnActor<AProjectileActor>(this->ProjectileTemplate, Transform, SpawnParameters);
 	if (SpawnedObject)
 	{
+		SpawnedObject->Initialize(this);
 		// Do something
 	}
+
+
 	
 }

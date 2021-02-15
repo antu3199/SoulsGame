@@ -5,6 +5,12 @@
 
 #include "GameplayTask.h"
 
+TArray<FActiveGameplayEffectHandle> UMyGameplayAbility::ApplyGameplayEffectSpecToTarget(
+    const FGameplayEffectSpecHandle EffectSpecHandle, FGameplayAbilityTargetDataHandle TargetData)
+{
+    return K2_ApplyGameplayEffectSpecToTarget(EffectSpecHandle, TargetData);
+}
+
 /*
 void UMyGameplayAbility::OnGameplayTaskActivated(UGameplayTask& Task)
 {

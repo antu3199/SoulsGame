@@ -2,7 +2,7 @@
 
 
 #include "ProjectileActor.h"
-
+#include "SoulsGame/Abilities/AbilityProjectile.h"
 
 #include "Components/ArrowComponent.h"
 #include "Components/SphereComponent.h"
@@ -39,13 +39,28 @@ void AProjectileActor::NotifyActorBeginOverlap(AActor* OtherActor)
 		return;
 	}
 
-	HitActors.Add(OtherActor);
-
 	if (OtherActor == GetInstigator())
 	{
 		return;
 	}
+	
+	HitActors.Add(OtherActor);
 
+	const TArray<FHitResult> HitResults;
+
+	for (TSubclassOf<UMyGameplayEffect> & Effect : this->Ability->AppliedGameplayEffects)
+	{
+		int level = 1;
+
+		// Bind Ability to effect
+		FGameplayEffectData & Container = this->Ability->GameplayEffectsContainer.CreateNewGameplayEffectData();
+		Container.GameplayEffect = Effect.GetDefaultObject();
+		Container.GameplayEffectSpecHandle = this->Ability->MakeOutgoingGameplayEffectSpec(Effect, 1);
+
+		Container.AddTargets(HitResults, HitActors);
+        
+		Container.ActiveGameplayEffectHandles = this->Ability->ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
+	}
 	
 }
 
@@ -54,9 +69,9 @@ void AProjectileActor::NotifyActorEndOverlap(AActor* OtherActor)
 	Super::NotifyActorEndOverlap(OtherActor);
 }
 
-void AProjectileActor::Initialize(FGameplayEffectDataContainer* DataContainer)
+void AProjectileActor::Initialize(UAbilityProjectile * DataContainer)
 {
-	this->GameplayEffectDataContainer = DataContainer;
+	this->Ability = DataContainer;
 }
 
 

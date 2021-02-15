@@ -10,6 +10,7 @@
 
 #include "ProjectileActor.generated.h"
 
+class UAbilityProjectile;
 class USphereComponent;
 UCLASS()
 class SOULSGAME_API AProjectileActor : public AActor
@@ -24,7 +25,7 @@ public:
 
 	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
 
-	virtual void Initialize(FGameplayEffectDataContainer * DataContainer);
+	virtual void Initialize(UAbilityProjectile * DataContainer);
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -39,5 +40,6 @@ protected:
 	UPROPERTY()
 	TArray<AActor *> HitActors;
 
-	FGameplayEffectDataContainer * GameplayEffectDataContainer;
+	UPROPERTY()
+	UAbilityProjectile * Ability;
 };
