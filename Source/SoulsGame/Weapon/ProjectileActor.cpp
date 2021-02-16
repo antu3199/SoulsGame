@@ -23,8 +23,6 @@ AProjectileActor::AProjectileActor()
 	Base->SetHiddenInGame(true);
 	SetRootComponent(Base);
 
-	Base->IgnoreActorWhenMoving(this, true);
-
 	UArrowComponent * ArrowComponent = CreateDefaultSubobject<UArrowComponent>(TEXT("Arrow"));
 	ArrowComponent->SetupAttachment(Base);
     ArrowComponent->SetHiddenInGame(true);
@@ -47,6 +45,8 @@ void AProjectileActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	{
 		return;
 	}
+
+	this->Base->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Block);
 	
 	HitActors.Add(OtherActor);
 
@@ -64,7 +64,7 @@ void AProjectileActor::NotifyActorBeginOverlap(AActor* OtherActor)
 
 		Container.AddTargets(HitResults, HitActors);
 
-		Container.ActiveGameplayEffectHandles = this->Ability->ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
+		//Container.ActiveGameplayEffectHandles = this->Ability->ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
 	}
 
 	for (FGameplayEffectData & Data : this->Ability->GameplayEffectsContainer.ActiveGameplayEffects)
@@ -89,22 +89,19 @@ void AProjectileActor::NotifyActorEndOverlap(AActor* OtherActor)
 void AProjectileActor::Initialize(UAbilityProjectile * DataContainer)
 {
 	this->Ability = DataContainer;
-	Base->IgnoreActorWhenMoving(GetInstigator(), true);
 }
 
-/*
 void AProjectileActor::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp,
 	bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
 {
 
 	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
-	//const FTransform SpawnTransform(HitLocation);
-	//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), CollisionEmitterTemplate, SpawnTransform, true, EPSCPoolMethod::None, true );
 	UE_LOG(LogTemp, Warning, TEXT("NOTIFY HIT LKJSDFJSKLFJSDKLFJKLSDKLFDSJKFKJLSDLFKJSDLJKFJKDS"));
 
-	//this->Destroy();
+	const FTransform SpawnTransform(HitLocation);
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), CollisionEmitterTemplate, SpawnTransform, true, EPSCPoolMethod::None, true );
+	this->Destroy();
 }
-*/
 
 
 
