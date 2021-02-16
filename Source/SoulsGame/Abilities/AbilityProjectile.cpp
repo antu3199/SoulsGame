@@ -12,7 +12,7 @@ void UAbilityProjectile::OnEventReceived(FGameplayTag GameplayTag, FGameplayEven
 		UE_LOG(LogTemp, Warning, TEXT("Projectile template missing!"));
 		return;
 	}
-	UE_LOG(LogTemp, Warning, TEXT("UAbilityProjectile::OnEventReceived!"));
+
 	/*
 	const bool HasEffects = this->GameplayEffectsContainer.DoesEffectContainerHaveEffects();
 
