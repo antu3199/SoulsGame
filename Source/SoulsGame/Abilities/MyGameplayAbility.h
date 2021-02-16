@@ -55,7 +55,7 @@ public:
 	// Wrapper around K2, because it's protected.
 	TArray<FActiveGameplayEffectHandle> ApplyGameplayEffectSpecToTarget(const FGameplayEffectSpecHandle EffectSpecHandle, FGameplayAbilityTargetDataHandle TargetData);
 
-	FGameplayEffectData & InitializeGameplayEffectData(FGameplayEffectDataContainer EffectsContainer, TSubclassOf<UMyGameplayEffect> & Effect) const;
+	FGameplayEffectData & InitializeGameplayEffectData(FGameplayEffectDataContainer& EffectsContainer, TSubclassOf<UMyGameplayEffect> & Effect) const;
 	
 protected:
     virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;

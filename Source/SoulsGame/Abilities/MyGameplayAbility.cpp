@@ -11,7 +11,7 @@ TArray<FActiveGameplayEffectHandle> UMyGameplayAbility::ApplyGameplayEffectSpecT
     return K2_ApplyGameplayEffectSpecToTarget(EffectSpecHandle, TargetData);
 }
 
-FGameplayEffectData& UMyGameplayAbility::InitializeGameplayEffectData(FGameplayEffectDataContainer EffectsContainer,
+FGameplayEffectData& UMyGameplayAbility::InitializeGameplayEffectData(FGameplayEffectDataContainer& EffectsContainer,
     TSubclassOf<UMyGameplayEffect>& Effect) const
 {
     FGameplayEffectData & Container = EffectsContainer.CreateNewGameplayEffectData();

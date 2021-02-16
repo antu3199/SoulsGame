@@ -73,8 +73,8 @@ void UPlayMontageAbility::OnCompleted(const FGameplayTag GameplayTag, FGameplayE
 
 void UPlayMontageAbility::OnEventReceived(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    ///UE_LOG(LogTemp, Warning, TEXT("UPlayMontageAbility::OnEventReceived"));
-    //this->InitializeEffectContainerHelper();
+    UE_LOG(LogTemp, Warning, TEXT("UPlayMontageAbility::OnEventReceived"));
+    this->InitializeEffectContainerHelper();
 }
 
 

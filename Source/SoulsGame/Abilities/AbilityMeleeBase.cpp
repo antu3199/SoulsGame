@@ -26,11 +26,31 @@ void UAbilityMeleeBase::OnEventReceived(FGameplayTag GameplayTag, FGameplayEvent
 	TArray<FHitResult> HitResults;
 	TArray<AActor *> TargetActors;
 	UMyGameplayEffect::GetTargets_UseEventData(OwningCharacter, AvatarActor, GameplayEventData, HitResults, TargetActors);
-	
+
 	for (FGameplayEffectData & Container : this->GameplayEffectsContainer.ActiveGameplayEffects)
 	{
+		
 		Container.AddTargets(HitResults, TargetActors);
 		//Container.ApplyEffect();
 		Container.ActiveGameplayEffectHandles = K2_ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
+		
 	}
+
+	/*
+	UE_LOG(LogTemp, Warning, TEXT("Num %d"), this->GameplayEffectsContainer.ActiveGameplayEffects.Num());
+	
+	for (TSubclassOf<UMyGameplayEffect> & Effect : this->AppliedGameplayEffects)
+	{
+		int level = 1;
+
+		// Bind Ability to effect
+		FGameplayEffectData & Container = this->GameplayEffectsContainer.CreateNewGameplayEffectData();
+		Container.GameplayEffect = Effect.GetDefaultObject();
+		Container.GameplayEffectSpecHandle = MakeOutgoingGameplayEffectSpec(Effect, 1);
+
+		Container.AddTargets(HitResults, TargetActors);
+        
+		Container.ActiveGameplayEffectHandles = K2_ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
+	}
+	*/
 }

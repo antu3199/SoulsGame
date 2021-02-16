@@ -23,7 +23,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="" />
+    <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAbility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAbility.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
