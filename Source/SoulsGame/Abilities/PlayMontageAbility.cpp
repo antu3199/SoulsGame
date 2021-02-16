@@ -25,13 +25,13 @@ void UPlayMontageAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handl
         }
 
         
-        UPlayMontageAndWaitTask *PlayMontageAndWaitTask = UPlayMontageAndWaitTask::CreatePlayMontageAndWaitEvent(this->PlayMontageAndWaitTaskData);
+        PlayMontageAndWaitTask = UPlayMontageAndWaitTask::CreatePlayMontageAndWaitEvent(this->PlayMontageAndWaitTaskData);
         
         PlayMontageAndWaitTask->OnCompleted.AddDynamic(this, &UPlayMontageAbility::OnCompleted);
         PlayMontageAndWaitTask->OnBlendOut.AddDynamic(this, &UPlayMontageAbility::OnBlendOut);
         PlayMontageAndWaitTask->OnInterrupted.AddDynamic(this, &UPlayMontageAbility::OnInterrupted);
         PlayMontageAndWaitTask->OnCancelled.AddDynamic(this, &UPlayMontageAbility::OnCancelled);
-        PlayMontageAndWaitTask->OnEventReceived.AddDynamic(this, &UPlayMontageAbility::OnEventReceived);
+        //->OnEventReceived.AddDynamic(this, &UPlayMontageAbility::OnEventReceived);
         
         PlayMontageAndWaitTask->ReadyForActivation();
     }
@@ -73,7 +73,8 @@ void UPlayMontageAbility::OnCompleted(const FGameplayTag GameplayTag, FGameplayE
 
 void UPlayMontageAbility::OnEventReceived(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-
+    ///UE_LOG(LogTemp, Warning, TEXT("UPlayMontageAbility::OnEventReceived"));
+    //this->InitializeEffectContainerHelper();
 }
 
 

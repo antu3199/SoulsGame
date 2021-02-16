@@ -50,33 +50,12 @@ void AProjectileActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	
 	HitActors.Add(OtherActor);
 
-
 	const TArray<FHitResult> HitResults;
-
-	for (TSubclassOf<UMyGameplayEffect> & Effect : this->Ability->AppliedGameplayEffects)
-	{
-		int level = 1;
-
-		// Bind Ability to effect
-		FGameplayEffectData & Container = this->Ability->GameplayEffectsContainer.CreateNewGameplayEffectData();
-		Container.GameplayEffect = Effect.GetDefaultObject();
-		Container.GameplayEffectSpecHandle = this->Ability->MakeOutgoingGameplayEffectSpec(Effect, 1);
-
-		Container.AddTargets(HitResults, HitActors);
-
-		//Container.ActiveGameplayEffectHandles = this->Ability->ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
-	}
 
 	for (FGameplayEffectData & Data : this->Ability->GameplayEffectsContainer.ActiveGameplayEffects)
 	{
-		FGameplayEffectSpecHandle & SpecHandle = Data.GameplayEffectSpecHandle;
-		if (SpecHandle.IsValid())
-		{
-			for (TSharedPtr<FGameplayAbilityTargetData> TData : Data.TargetData.Data )
-			{
-				TData->ApplyGameplayEffectSpec(*SpecHandle.Data.Get());
-			}
-		}
+		Data.AddTargets(HitResults, HitActors);
+		Data.ApplyEffect();
 	}
 	
 }

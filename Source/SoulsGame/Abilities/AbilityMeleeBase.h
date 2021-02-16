@@ -14,6 +14,7 @@ UCLASS()
 class SOULSGAME_API UAbilityMeleeBase : public UPlayMontageAbility
 {
 	GENERATED_BODY()
-
+	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
+	
 	virtual void OnEventReceived(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData) override;
 };

@@ -23,6 +23,28 @@ void FGameplayEffectData::AddTargets(const TArray<FHitResult>& HitResults, const
     }
 }
 
+void FGameplayEffectData::ApplyEffect()
+{
+    if (TargetData.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Warning: Effect has no targets!"));
+        return;
+    }
+    
+    FGameplayEffectSpecHandle & SpecHandle = GameplayEffectSpecHandle;
+    if (SpecHandle.IsValid())
+    {
+        // Activate for each target in target data
+        for (TSharedPtr<FGameplayAbilityTargetData> TData : TargetData.Data )
+        {
+            this->ActiveGameplayEffectHandles.Append(TData->ApplyGameplayEffectSpec(*SpecHandle.Data.Get()));
+        }
+    }
+
+    // Another way to apply effect
+    //Container.ActiveGameplayEffectHandles = K2_ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
+}
+
 FGameplayEffectData& FGameplayEffectDataContainer::CreateNewGameplayEffectData()
 {
     this->ActiveGameplayEffects.Add(FGameplayEffectData());
