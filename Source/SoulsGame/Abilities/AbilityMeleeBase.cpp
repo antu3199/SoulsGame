@@ -30,4 +30,6 @@ void UAbilityMeleeBase::OnEventReceived(FGameplayTag GameplayTag, FGameplayEvent
         
 		Container.ActiveGameplayEffectHandles = K2_ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
 	}
+
+
 }

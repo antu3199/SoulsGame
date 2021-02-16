@@ -6,6 +6,7 @@
 
 #include "Components/ArrowComponent.h"
 #include "Components/SphereComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AProjectileActor::AProjectileActor()
@@ -13,13 +14,14 @@ AProjectileActor::AProjectileActor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	
-	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-	SetRootComponent(Root);
+	//Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	//SetRootComponent(Root);
 
 
 	Base = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
     Base->SetupAttachment(Root);
 	Base->SetHiddenInGame(true);
+	SetRootComponent(Base);
 
 	UArrowComponent * ArrowComponent = CreateDefaultSubobject<UArrowComponent>(TEXT("Arrow"));
 	ArrowComponent->SetupAttachment(Base);
@@ -46,6 +48,7 @@ void AProjectileActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	
 	HitActors.Add(OtherActor);
 
+
 	const TArray<FHitResult> HitResults;
 
 	for (TSubclassOf<UMyGameplayEffect> & Effect : this->Ability->AppliedGameplayEffects)
@@ -58,8 +61,20 @@ void AProjectileActor::NotifyActorBeginOverlap(AActor* OtherActor)
 		Container.GameplayEffectSpecHandle = this->Ability->MakeOutgoingGameplayEffectSpec(Effect, 1);
 
 		Container.AddTargets(HitResults, HitActors);
-        
+
 		Container.ActiveGameplayEffectHandles = this->Ability->ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
+	}
+
+	for (FGameplayEffectData & Data : this->Ability->GameplayEffectsContainer.ActiveGameplayEffects)
+	{
+		FGameplayEffectSpecHandle & SpecHandle = Data.GameplayEffectSpecHandle;
+		if (SpecHandle.IsValid())
+		{
+			for (TSharedPtr<FGameplayAbilityTargetData> TData : Data.TargetData.Data )
+			{
+				TData->ApplyGameplayEffectSpec(*SpecHandle.Data.Get());
+			}
+		}
 	}
 	
 }
@@ -74,6 +89,19 @@ void AProjectileActor::Initialize(UAbilityProjectile * DataContainer)
 	this->Ability = DataContainer;
 }
 
+/*
+void AProjectileActor::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp,
+	bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
+{
+
+	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
+	//const FTransform SpawnTransform(HitLocation);
+	//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), CollisionEmitterTemplate, SpawnTransform, true, EPSCPoolMethod::None, true );
+	UE_LOG(LogTemp, Warning, TEXT("NOTIFY HIT LKJSDFJSKLFJSDKLFJKLSDKLFDSJKFKJLSDLFKJSDLJKFJKDS"));
+
+	//this->Destroy();
+}
+*/
 
 
 
