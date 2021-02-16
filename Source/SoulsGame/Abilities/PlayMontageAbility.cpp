@@ -31,7 +31,7 @@ void UPlayMontageAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handl
         PlayMontageAndWaitTask->OnBlendOut.AddDynamic(this, &UPlayMontageAbility::OnBlendOut);
         PlayMontageAndWaitTask->OnInterrupted.AddDynamic(this, &UPlayMontageAbility::OnInterrupted);
         PlayMontageAndWaitTask->OnCancelled.AddDynamic(this, &UPlayMontageAbility::OnCancelled);
-        //->OnEventReceived.AddDynamic(this, &UPlayMontageAbility::OnEventReceived);
+        PlayMontageAndWaitTask->OnEventReceived.AddDynamic(this, &UPlayMontageAbility::OnEventReceived);
         
         PlayMontageAndWaitTask->ReadyForActivation();
     }

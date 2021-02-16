@@ -9,8 +9,8 @@ void UAbilityMeleeBase::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
-	UE_LOG(LogTemp, Warning, TEXT("UAbilityMeleeBase::ActivateAbility"));
-	PlayMontageAndWaitTask->OnEventReceived.AddDynamic(this, &UAbilityMeleeBase::OnEventReceived);
+	//UE_LOG(LogTemp, Warning, TEXT("UAbilityMeleeBase::ActivateAbility"));
+	//PlayMontageAndWaitTask->OnEventReceived.AddDynamic(this, &UAbilityMeleeBase::OnEventReceived);
 }
 
 void UAbilityMeleeBase::OnEventReceived(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
