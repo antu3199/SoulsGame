@@ -23,6 +23,8 @@ AProjectileActor::AProjectileActor()
 	Base->SetHiddenInGame(true);
 	SetRootComponent(Base);
 
+	Base->IgnoreActorWhenMoving(this, true);
+
 	UArrowComponent * ArrowComponent = CreateDefaultSubobject<UArrowComponent>(TEXT("Arrow"));
 	ArrowComponent->SetupAttachment(Base);
     ArrowComponent->SetHiddenInGame(true);
@@ -87,6 +89,7 @@ void AProjectileActor::NotifyActorEndOverlap(AActor* OtherActor)
 void AProjectileActor::Initialize(UAbilityProjectile * DataContainer)
 {
 	this->Ability = DataContainer;
+	Base->IgnoreActorWhenMoving(GetInstigator(), true);
 }
 
 /*
