@@ -46,6 +46,11 @@ void AProjectileActor::NotifyActorBeginOverlap(AActor* OtherActor)
 		return;
 	}
 
+	if (OtherActor->GetOwner() == GetInstigator())
+	{
+		return;
+	}
+
 	this->Base->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Block);
 	
 	HitActors.Add(OtherActor);
@@ -57,7 +62,6 @@ void AProjectileActor::NotifyActorBeginOverlap(AActor* OtherActor)
 		Data.AddTargets(HitResults, HitActors);
 		Data.ApplyEffect();
 	}
-	
 }
 
 void AProjectileActor::NotifyActorEndOverlap(AActor* OtherActor)
