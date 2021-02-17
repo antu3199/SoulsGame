@@ -7,6 +7,7 @@
 #include "Components/ArrowComponent.h"
 #include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Serialization/JsonTypes.h"
 
 // Sets default values
 AProjectileActor::AProjectileActor()
@@ -74,6 +75,11 @@ void AProjectileActor::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPr
 {
 
 	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
+
+	if (this->Ability == nullptr)
+	{
+		return;
+	}
 
 	const TArray<FHitResult> HitResults;
 

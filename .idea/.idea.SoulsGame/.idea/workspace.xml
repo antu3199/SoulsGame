@@ -24,12 +24,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/CharacterAbilitySystemComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/CharacterAbilitySystemComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/CharacterAbilitySystemComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/CharacterAbilitySystemComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +98,6 @@
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAbility.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityProjectile.cpp" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/WeaponActor.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/DamageEffectExecutionCalculation.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" />
@@ -111,6 +105,7 @@
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/CharacterAbilitySystemComponent.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/CharacterAbilitySystemComponent.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mthZgxZ44M9oRjkJqVw1h9UFg6" />
@@ -393,7 +388,7 @@
       <workItem from="1613478367779" duration="338000" />
       <workItem from="1613519002673" duration="824000" />
       <workItem from="1613519859693" duration="1095000" />
-      <workItem from="1613524137302" duration="565000" />
+      <workItem from="1613524137302" duration="1331000" />
     </task>
     <servers />
   </component>
