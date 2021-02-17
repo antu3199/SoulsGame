@@ -79,6 +79,12 @@ void ACharacterBase::AddStartupGameplayAbilities()
 			UE_LOG(LogTemp, Warning, TEXT("Ability granted %s"), *DataContainer.GetMyGameplayAbilityName());
 		}
 	}
+
+	
+	for (TSubclassOf<UMyGameplayEffect> & Effect : PassiveGameplayEffects)
+	{
+		this->AbilitySystemComponent->ApplyGameplayEffect(Effect, this);
+	}
 }
 
 void ACharacterBase::InitializeItems()

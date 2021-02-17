@@ -97,6 +97,10 @@ protected:
 
 	UPROPERTY()
 	UMyAttributeSet* AttributeSet;
+	
+	
+	UPROPERTY(EditAnywhere)
+	TArray<TSubclassOf<UMyGameplayEffect>> PassiveGameplayEffects;
 
 
 	

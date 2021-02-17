@@ -28,6 +28,8 @@ public:
 	bool  IsUsingAbilityWithTag(const FName Tag) const;
 	bool ActivateAbilityWithTag(const FName TagName);
 
+	void ApplyGameplayEffect(TSubclassOf<UMyGameplayEffect> & Effect, const UObject* NewSourceObject);
+	
     FGameplayAbilityDataContainer & AddNewGameplayAbilityDataContainer()
     {
 	    this->GameplayAbilityDataContainer.Add(FGameplayAbilityDataContainer());

@@ -133,3 +133,17 @@ bool UCharacterAbilitySystemComponent::ActivateAbilityWithTag(const FName TagNam
     return false;
 }
 
+void UCharacterAbilitySystemComponent::ApplyGameplayEffect(
+    TSubclassOf<UMyGameplayEffect>& Effect, const UObject* NewSourceObject)
+{
+    const int level = 1;	
+    FGameplayEffectContextHandle EffectContext = this->MakeEffectContext();
+    EffectContext.AddSourceObject(NewSourceObject);
+    const FGameplayEffectSpecHandle NewHandle = this->MakeOutgoingSpec(Effect, level, EffectContext);
+    if (NewHandle.IsValid())
+    {
+        this->ApplyGameplayEffectSpecToTarget(*NewHandle.Data.Get(), this);
+    }
+}
+
+
