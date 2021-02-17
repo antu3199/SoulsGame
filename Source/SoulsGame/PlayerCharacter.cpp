@@ -97,15 +97,13 @@ void APlayerCharacter::MakeWeapon()
     }
 }
 
-void APlayerCharacter::UseAbility()
+void APlayerCharacter::UseAbility(const FName AbilityTag)
 {
     if (!this->AbilitySystemComponent)
     {
         return;
     }
 
-    const FName AbilityTag = "Ability.Ranged";
-    
     if (this->AbilitySystemComponent->ActivateAbilityWithTag(AbilityTag))
     {
         //UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoRangedAttack SUCCESSED!"));
@@ -114,6 +112,6 @@ void APlayerCharacter::UseAbility()
     {
         //UE_LOG(LogTemp, Warning, TEXT("Failed to activate ability"));
     }
-       
-    
 }
+
+

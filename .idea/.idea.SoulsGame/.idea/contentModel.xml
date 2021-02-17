@@ -49295,6 +49295,8 @@
             <e p="AbilityMeleeBase.h" t="Include" />
             <e p="AbilityProjectile.cpp" t="Include" />
             <e p="AbilityProjectile.h" t="Include" />
+            <e p="AbilitySelfCast.cpp" t="Include" />
+            <e p="AbilitySelfCast.h" t="Include" />
             <e p="CharacterAbilitySystemComponent.cpp" t="Include" />
             <e p="CharacterAbilitySystemComponent.h" t="Include" />
             <e p="DamageEffectExecutionCalculation.cpp" t="Include" />

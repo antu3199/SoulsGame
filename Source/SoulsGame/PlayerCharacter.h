@@ -23,7 +23,7 @@ public:
 
 	virtual void MakeWeapon();
 
-	virtual void UseAbility();
+	virtual void UseAbility(const FName AbilityTag);
 	
 protected:
 	// Called when the game starts or when spawned

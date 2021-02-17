@@ -48,11 +48,18 @@ void AMyPlayerController::SetupInputComponent()
 
     // Note: BindKey requires Slate/SlateCore
     this->InputComponent->BindKey(EKeys::F, IE_Pressed, this, &AMyPlayerController::UseAbility);
+
+    FInputKeyBinding TestAbilityBinding(EKeys::T, IE_Pressed);
+    TestAbilityBinding.KeyDelegate.GetDelegateForManualSet().BindLambda( [this] ()
+    {
+        this->GetPawnCharacter()->UseAbility("Ability.Test");
+    });
     
-    //FGameplayTagContainer newContainer;
-    //const FGameplayTag tag("TagName");
-    //newContainer.AddTag(tag);
-    
+    FInputKeyBinding HealAbilityBinding(EKeys::H, IE_Pressed);
+    HealAbilityBinding.KeyDelegate.GetDelegateForManualSet().BindLambda( [this] ()
+    {
+        this->GetPawnCharacter()->UseAbility("Ability.Heal");
+    });
 }
 
 
@@ -103,10 +110,10 @@ void AMyPlayerController::NormalAttack()
     this->GetPawnCharacter()->DoMeleeAttack();
 }
 
-
-
 // ReSharper disable once CppMemberFunctionMayBeConst
 void AMyPlayerController::UseAbility()
 {
-    this->GetPawnCharacter()->UseAbility();
+    this->GetPawnCharacter()->UseAbility("Ability.Ranged");
 }
+
+

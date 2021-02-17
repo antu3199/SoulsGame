@@ -41,6 +41,5 @@ protected:
 
 	void UseAbility();
 
-
 	APlayerCharacter * GetPawnCharacter() const;
 };
