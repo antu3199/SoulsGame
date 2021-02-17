@@ -35,6 +35,5 @@ void UWeaponAttackNS::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenc
 
     // TODO: Expose this
     const FGameplayTag EventTag = Data.GameplayTag;
-    UE_LOG(LogTemp, Warning, TEXT("EventTagNS: %s"), *EventTag.ToString());
     WeaponActor->BeginWeaponAttack(EventTag);
 }

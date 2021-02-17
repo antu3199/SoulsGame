@@ -57,11 +57,11 @@ void APlayerCharacter::DoMeleeAttack()
     
     if (this->AbilitySystemComponent->ActivateAbilityWithTag(MeleeAbilityTag))
     {
-        UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoMeleeAttack SUCCESSED!"));
+        //UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoMeleeAttack SUCCESSED!"));
     }
     else
     {
-        UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoMeleeAttack FAILED"));
+        //UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoMeleeAttack FAILED"));
     }
 }
 
@@ -104,17 +104,15 @@ void APlayerCharacter::UseAbility()
         return;
     }
 
-    UE_LOG(LogTemp, Warning, TEXT("Start ranged!"));
-    
     const FName AbilityTag = "Ability.Ranged";
     
     if (this->AbilitySystemComponent->ActivateAbilityWithTag(AbilityTag))
     {
-        UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoRangedAttack SUCCESSED!"));
+        //UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoRangedAttack SUCCESSED!"));
     }
     else
     {
-        UE_LOG(LogTemp, Warning, TEXT("Failed to activate ability"));
+        //UE_LOG(LogTemp, Warning, TEXT("Failed to activate ability"));
     }
        
     

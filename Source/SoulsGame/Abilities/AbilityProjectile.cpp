@@ -22,6 +22,7 @@ void UAbilityProjectile::OnEventReceived(FGameplayTag GameplayTag, FGameplayEven
 	}
 	*/
 
+	
 	AActor * AvatarActor = GetAvatarActorFromActorInfo();
 
 	if (AvatarActor == nullptr)

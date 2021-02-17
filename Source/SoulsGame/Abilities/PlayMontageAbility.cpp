@@ -48,25 +48,21 @@ void UPlayMontageAbility::EndAbility(const FGameplayAbilitySpecHandle Handle,
 
 void UPlayMontageAbility::OnBlendOut(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    UE_LOG(LogTemp, Warning, TEXT("OnBlendOut %s"), *GameplayTag.ToString());
     this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, false);
 }
 
 void UPlayMontageAbility::OnInterrupted(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    UE_LOG(LogTemp, Warning, TEXT("OnInterrupted %s"), *GameplayTag.ToString());
     this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, true);
 }
 
 void UPlayMontageAbility::OnCancelled(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    UE_LOG(LogTemp, Warning, TEXT("OnCancelled %s"), *GameplayTag.ToString());
     this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, true);
 }
 
 void UPlayMontageAbility::OnCompleted(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    UE_LOG(LogTemp, Warning, TEXT("OnCompleted %s"), *GameplayTag.ToString());
     // Don't want to do anything here
     //this->EndAbility(this->CurrentSpecHandle, this->CurrentActorInfo, this->CurrentActivationInfo, true, false);
 }

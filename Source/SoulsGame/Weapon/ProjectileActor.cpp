@@ -66,7 +66,6 @@ void AProjectileActor::NotifyActorEndOverlap(AActor* OtherActor)
 void AProjectileActor::Initialize(UAbilityProjectile * DataContainer)
 {
 	this->Ability = DataContainer;
-	UE_LOG(LogTemp, Warning, TEXT("Test1: %d"), this->Ability->GameplayEffectsContainer.ActiveGameplayEffects.Num());
 
 }
 
@@ -76,10 +75,7 @@ void AProjectileActor::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPr
 
 	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
 
-	UE_LOG(LogTemp, Warning, TEXT("Test2: %d"), this->Ability->GameplayEffectsContainer.ActiveGameplayEffects.Num());
-
 	const TArray<FHitResult> HitResults;
-
 
 	for (FGameplayEffectData & Data : this->Ability->GameplayEffectsContainer.ActiveGameplayEffects)
 	{

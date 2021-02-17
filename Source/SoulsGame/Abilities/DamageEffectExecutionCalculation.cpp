@@ -73,7 +73,6 @@ void UDamageEffectExecutionCalculation::Execute_Implementation(
     
     //float DamageDone = Damage * AttackPower / DefensePower;
     const float DamageDone = Damage * AttackPower;
-    UE_LOG(LogTemp, Warning, TEXT("Dealt Damage: %f"), DamageDone);
 
     if (DamageDone > 0.f)
     {
