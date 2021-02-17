@@ -6,6 +6,7 @@
 
 #include "Components/ArrowComponent.h"
 #include "Components/SphereComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AProjectileActor::AProjectileActor()
@@ -13,13 +14,14 @@ AProjectileActor::AProjectileActor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	
-	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-	SetRootComponent(Root);
+	//Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	//SetRootComponent(Root);
 
 
 	Base = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
     Base->SetupAttachment(Root);
 	Base->SetHiddenInGame(true);
+	SetRootComponent(Base);
 
 	UArrowComponent * ArrowComponent = CreateDefaultSubobject<UArrowComponent>(TEXT("Arrow"));
 	ArrowComponent->SetupAttachment(Base);
@@ -34,34 +36,26 @@ void AProjectileActor::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 
-	if (HitActors.Contains(OtherActor))
-	{
-		return;
-	}
-
 	if (OtherActor == GetInstigator())
 	{
 		return;
 	}
+
+	if (OtherActor->GetOwner() == GetInstigator())
+	{
+		return;
+	}
+	
+	if (HitActors.Contains(OtherActor))
+	{
+		return;
+	}
+	
+	this->Base->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Block);
 	
 	HitActors.Add(OtherActor);
 
-	const TArray<FHitResult> HitResults;
 
-	for (TSubclassOf<UMyGameplayEffect> & Effect : this->Ability->AppliedGameplayEffects)
-	{
-		int level = 1;
-
-		// Bind Ability to effect
-		FGameplayEffectData & Container = this->Ability->GameplayEffectsContainer.CreateNewGameplayEffectData();
-		Container.GameplayEffect = Effect.GetDefaultObject();
-		Container.GameplayEffectSpecHandle = this->Ability->MakeOutgoingGameplayEffectSpec(Effect, 1);
-
-		Container.AddTargets(HitResults, HitActors);
-        
-		Container.ActiveGameplayEffectHandles = this->Ability->ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
-	}
-	
 }
 
 void AProjectileActor::NotifyActorEndOverlap(AActor* OtherActor)
@@ -72,8 +66,29 @@ void AProjectileActor::NotifyActorEndOverlap(AActor* OtherActor)
 void AProjectileActor::Initialize(UAbilityProjectile * DataContainer)
 {
 	this->Ability = DataContainer;
+
 }
 
+void AProjectileActor::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp,
+	bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
+{
+
+	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
+
+	const TArray<FHitResult> HitResults;
+
+	for (FGameplayEffectData & Data : this->Ability->GameplayEffectsContainer.ActiveGameplayEffects)
+	{
+		Data.AddTargets(HitResults, HitActors);
+		Data.ApplyEffect();
+	}
+	
+	const FTransform SpawnTransform(HitLocation);
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), CollisionEmitterTemplate, SpawnTransform, true, EPSCPoolMethod::None, true );
+	this->Destroy();
+
+	
+}
 
 
 

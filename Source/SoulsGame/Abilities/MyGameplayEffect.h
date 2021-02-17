@@ -31,6 +31,8 @@ struct FGameplayEffectData
 	FGameplayAbilityTargetDataHandle TargetData;
 
 	void AddTargets(const TArray<FHitResult>& HitResults, const TArray<AActor*> & TargetActors);
+
+	void ApplyEffect();
 	// Note: Would it be useful to also store the UMyAbilityAsset?
 };
 

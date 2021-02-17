@@ -91,8 +91,6 @@ void AWeaponActor::NotifyActorBeginOverlap(AActor* OtherActor)
 
 	this->CanHit = false;
 
-	UE_LOG(LogTemp, Warning, TEXT("SEND EVENT TAGS: %s"), *this->AttackEventTag.ToString());
-
 	FGameplayEventData GameplayEventData;
 	GameplayEventData.Instigator = InstigatorActor;
 	GameplayEventData.Target = OtherActor;

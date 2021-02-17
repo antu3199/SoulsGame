@@ -24,12 +24,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityProjectile.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/MyGameplayAbility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/MyGameplayAbility.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/MyGameplayAbility.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/MyGameplayAbility.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/DamageEffectExecutionCalculation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/DamageEffectExecutionCalculation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAbility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAbility.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Weapon/WeaponActor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Weapon/WeaponActor.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,13 +47,20 @@
     <setting file="file://$PROJECT_DIR$/Source/SoulsGame/Abilities/DamageEffectExecutionCalculation.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Components/SphereComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Templates/PointerIsConvertibleFromTo.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Math/TransformVectorized.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Components/ActorComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Developer/DesktopPlatform/Private/TargetReceipt.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/Map.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/AVEncoder/Public/Microsoft/AVEncoderIMFSampleWrapper.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Private/GameplayStatics.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Private/Actor.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Private/LevelBounds.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/AVEncoder/Private/Microsoft/AVEncoderMicrosoftCommon.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Private/Containers/ContainersTest.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Animation/AnimNotifies/AnimNotifyState.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/GameFramework/Actor.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Public/ConvexVolume.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Private/Tests/Async/TaskGraphTest.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/SoulsGame/MyGameModeBase.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Editor/CurveAssetEditor/Private/CurveAssetEditor.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -65,6 +73,7 @@
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Editor/UnrealEd/Classes/Preferences/UnrealEdOptions.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Components/ShapeComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Online/HTTP/Private/Curl/CurlHttpManager.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/HeadMountedDisplay/Private/HeadMountedDisplayBase.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Components/InputComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Private/Animation/AnimCurveCompressionSettings.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -75,8 +84,6 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAndWaitTask.h" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.cpp" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/DamageEffectExecutionCalculation.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/SendGameplayTagEventNS.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/SendGameplayTagEventNS.h" />
@@ -85,21 +92,25 @@
       <option value="$PROJECT_DIR$/Source/SoulsGame/MyPlayerController.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/MyPlayerController.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/SoulsGame.Build.cs" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/CharacterAbilitySystemComponent.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityProjectile.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAbility.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/CharacterAbilitySystemComponent.cpp" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.h" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAbility.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/MyGameplayEffect.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/MyGameplayEffect.cpp" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.cpp" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.h" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityProjectile.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/MyGameplayAbility.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/MyGameplayAbility.h" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.h" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityMeleeBase.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.h" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAbility.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilityProjectile.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/WeaponActor.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/DamageEffectExecutionCalculation.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mthZgxZ44M9oRjkJqVw1h9UFg6" />
@@ -377,7 +388,11 @@
       <workItem from="1613423226598" duration="1153000" />
       <workItem from="1613424482955" duration="1039000" />
       <workItem from="1613425550607" duration="2304000" />
-      <workItem from="1613427885874" duration="737000" />
+      <workItem from="1613427885874" duration="10105000" />
+      <workItem from="1613451762853" duration="398000" />
+      <workItem from="1613478367779" duration="338000" />
+      <workItem from="1613519002673" duration="824000" />
+      <workItem from="1613519859693" duration="800000" />
     </task>
     <servers />
   </component>
@@ -408,11 +423,6 @@
           <url>file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_4.25/Engine/Source/Runtime/Engine/Private/Animation/AnimNotifyState.cpp</url>
           <line>17</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Source/SoulsGame/Abilities/DamageEffectExecutionCalculation.cpp</url>
-          <line>79</line>
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

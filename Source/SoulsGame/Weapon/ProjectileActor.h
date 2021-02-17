@@ -27,11 +27,13 @@ public:
 
 	virtual void Initialize(UAbilityProjectile * DataContainer);
 
+	virtual  void NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USceneComponent * Root;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USphereComponent* Base;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -42,4 +44,7 @@ protected:
 
 	UPROPERTY()
 	UAbilityProjectile * Ability;
+
+	UPROPERTY(EditAnywhere)
+	UParticleSystem* CollisionEmitterTemplate;
 };

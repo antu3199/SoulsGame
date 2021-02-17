@@ -11,6 +11,16 @@ TArray<FActiveGameplayEffectHandle> UMyGameplayAbility::ApplyGameplayEffectSpecT
     return K2_ApplyGameplayEffectSpecToTarget(EffectSpecHandle, TargetData);
 }
 
+FGameplayEffectData& UMyGameplayAbility::InitializeGameplayEffectData(FGameplayEffectDataContainer& EffectsContainer,
+    TSubclassOf<UMyGameplayEffect>& Effect) const
+{
+    FGameplayEffectData & Container = EffectsContainer.CreateNewGameplayEffectData();
+    Container.GameplayEffect = Effect.GetDefaultObject();
+    Container.GameplayEffectSpecHandle = MakeOutgoingGameplayEffectSpec(Effect, 1);
+    
+    return Container;
+}
+
 /*
 void UMyGameplayAbility::OnGameplayTaskActivated(UGameplayTask& Task)
 {
@@ -30,5 +40,13 @@ void UMyGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, con
     const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled)
 {
     Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
+}
+
+void UMyGameplayAbility::InitializeEffectContainerHelper()
+{
+    for (TSubclassOf<UMyGameplayEffect> & Effect : this->AppliedGameplayEffects)
+    {
+        InitializeGameplayEffectData(this->GameplayEffectsContainer, Effect);
+    }
 }
 
