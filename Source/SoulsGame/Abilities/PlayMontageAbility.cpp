@@ -15,6 +15,7 @@ void UPlayMontageAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handl
                                         const FGameplayEventData* TriggerEventData)
 {
     Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+    this->GameplayEffectsContainer.ActiveGameplayEffects.Reset();
 
     
     if (this->CommitAbility(Handle, ActorInfo, ActivationInfo))
@@ -43,7 +44,6 @@ void UPlayMontageAbility::EndAbility(const FGameplayAbilitySpecHandle Handle,
 {
     Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
 
-    this->GameplayEffectsContainer.ActiveGameplayEffects.Reset();
 }
 
 void UPlayMontageAbility::OnBlendOut(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
@@ -73,7 +73,6 @@ void UPlayMontageAbility::OnCompleted(const FGameplayTag GameplayTag, FGameplayE
 
 void UPlayMontageAbility::OnEventReceived(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
-    UE_LOG(LogTemp, Warning, TEXT("UPlayMontageAbility::OnEventReceived"));
     this->InitializeEffectContainerHelper();
 }
 

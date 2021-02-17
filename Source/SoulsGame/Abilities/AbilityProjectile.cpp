@@ -44,7 +44,5 @@ void UAbilityProjectile::OnEventReceived(FGameplayTag GameplayTag, FGameplayEven
 		SpawnedObject->Initialize(this);
 		// Do something
 	}
-
-
 	
 }

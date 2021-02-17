@@ -16,7 +16,6 @@ void UAbilityMeleeBase::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 void UAbilityMeleeBase::OnEventReceived(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
 	Super::OnEventReceived(GameplayTag, GameplayEventData);
-	UE_LOG(LogTemp, Warning, TEXT("UAbilityMeleeBase::OnEventReceived"));
 	
 	AActor * OwningActor = GetOwningActorFromActorInfo();
 	ACharacterBase * OwningCharacter = Cast<ACharacterBase>(OwningActor);
@@ -29,28 +28,8 @@ void UAbilityMeleeBase::OnEventReceived(FGameplayTag GameplayTag, FGameplayEvent
 
 	for (FGameplayEffectData & Container : this->GameplayEffectsContainer.ActiveGameplayEffects)
 	{
-		
 		Container.AddTargets(HitResults, TargetActors);
-		//Container.ApplyEffect();
-		Container.ActiveGameplayEffectHandles = K2_ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
-		
+		Container.ApplyEffect();
 	}
-
-	/*
-	UE_LOG(LogTemp, Warning, TEXT("Num %d"), this->GameplayEffectsContainer.ActiveGameplayEffects.Num());
-	
-	for (TSubclassOf<UMyGameplayEffect> & Effect : this->AppliedGameplayEffects)
-	{
-		int level = 1;
-
-		// Bind Ability to effect
-		FGameplayEffectData & Container = this->GameplayEffectsContainer.CreateNewGameplayEffectData();
-		Container.GameplayEffect = Effect.GetDefaultObject();
-		Container.GameplayEffectSpecHandle = MakeOutgoingGameplayEffectSpec(Effect, 1);
-
-		Container.AddTargets(HitResults, TargetActors);
-        
-		Container.ActiveGameplayEffectHandles = K2_ApplyGameplayEffectSpecToTarget(Container.GameplayEffectSpecHandle, Container.TargetData);
-	}
-	*/
 }
+
