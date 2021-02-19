@@ -110,7 +110,7 @@ void APlayerCharacter::UseAbility(const FName AbilityTag)
     }
     else
     {
-        //UE_LOG(LogTemp, Warning, TEXT("Failed to activate ability"));
+        UE_LOG(LogTemp, Warning, TEXT("Failed to activate ability %s"), *AbilityTag.ToString());
     }
 }
 
