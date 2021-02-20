@@ -2,6 +2,8 @@
 
 
 #include "TimeStopAbilityActor.h"
+#include "SoulsGame/CharacterBase.h"
+#include "SoulsGame/Abilities/Tasks/AsyncTaskEffectStackChanged.h"
 
 ATimeStopAbilityActor::ATimeStopAbilityActor()
 {
@@ -19,9 +21,28 @@ void ATimeStopAbilityActor::Tick(float DeltaSeconds)
 	TArray<AActor *> OverlappingActors;
 	this->GetOverlappingActors(OverlappingActors);
 
+
+
+	for (AActor * Actor : OverlappingActors)
+	{
+		ACharacterBase *CharacterBase = Cast<ACharacterBase>(Actor);
+		if (!CharacterBase)
+		{
+			continue;
+		}
+		
+		//FAsyncTaskEffectStackChangedData TaskData;
+		///TaskData.AbilitySystemComponent = CharacterBase->GetAbilitySystemComponent();
+		//TaskData.EffectGameplayTag = UGameplayTagsManager::Get().RequestGameplayTag(TEXT("State."));
+
+		
+		//UAsyncTaskEffectStackChanged StackChangedTask = UAsyncTaskEffectStackChanged::CreateGameplayEffectStackChanged();
+		
+
+	}
 	this->Ability->ApplyEffectsToActors(OverlappingActors);
 
-
+	
 	
 	
 }

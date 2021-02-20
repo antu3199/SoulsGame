@@ -49311,6 +49311,10 @@
             <e p="PlayMontageAbility.h" t="Include" />
             <e p="PlayMontageAndWaitTask.cpp" t="Include" />
             <e p="PlayMontageAndWaitTask.h" t="Include" />
+            <e p="Tasks" t="Include">
+              <e p="AsyncTaskEffectStackChanged.cpp" t="Include" />
+              <e p="AsyncTaskEffectStackChanged.h" t="Include" />
+            </e>
           </e>
           <e p="Animation" t="Include">
             <e p="MyAnimNotifyState.cpp" t="Include" />
