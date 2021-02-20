@@ -23,6 +23,11 @@ FGameplayEffectData& UMyGameplayAbility::InitializeGameplayEffectData(FGameplayE
 
 void UMyGameplayAbility::ApplyEffectsToActors(TArray<AActor*> &Actors)
 {
+    if (this->GameplayEffectsContainer.ActiveGameplayEffects.Num() == 0)
+    {
+        return;
+    }
+    
     const TArray<FHitResult> HitResults;
 
     for (FGameplayEffectData & Data : this->GameplayEffectsContainer.ActiveGameplayEffects)

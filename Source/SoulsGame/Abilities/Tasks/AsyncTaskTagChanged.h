@@ -40,14 +40,13 @@ public:
 	void EndTask();
 
 	UPROPERTY(BlueprintAssignable)
-	FOnTagChanged OnGameplayEffectStackChange;
+	FOnTagChanged OnTagAdded;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnTagChanged OnTagRemoved;
 
 protected:
 	FAsyncTaskTagChangedData TaskData;
 
-
-	virtual void OnActiveGameplayEffectAddedCallback(UAbilitySystemComponent * Target, const FGameplayEffectSpec& SpecApplied, FActiveGameplayEffectHandle ActiveHandle);
-	virtual void OnRemoveGameplayEffectCallback(const FActiveGameplayEffect& EffectRemoved);
-
-	virtual void GameplayEffectStackChanged(FActiveGameplayEffectHandle EffectHandle, int32 NewStackCount, int32 PreviousStackCount);
+	virtual void TagChanged(const FGameplayTag CooldownTag, int32 NewCount);
 };

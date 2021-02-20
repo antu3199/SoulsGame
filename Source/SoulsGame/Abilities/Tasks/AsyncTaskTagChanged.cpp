@@ -5,23 +5,46 @@
 
 UAsyncTaskTagChanged* UAsyncTaskTagChanged::CreateTagChangedTask(FAsyncTaskTagChangedData& TaskData)
 {
-	return nullptr;
+	UAsyncTaskTagChanged * MyObj = NewObject<UAsyncTaskTagChanged>();
+	MyObj->TaskData = TaskData; // Copy data by value for ownership
+
+	if (!IsValid(MyObj->TaskData.AbilitySystemComponent) || !MyObj->TaskData.EffectGameplayTag.IsValid())
+	{
+		MyObj->EndTask();
+		return nullptr;
+	}
+
+	MyObj->TaskData.AbilitySystemComponent->RegisterGameplayTagEvent(MyObj->TaskData.EffectGameplayTag, EGameplayTagEventType::NewOrRemoved).AddUObject(MyObj, &UAsyncTaskTagChanged::TagChanged);
+    
+	return MyObj;
 }
 
 void UAsyncTaskTagChanged::EndTask()
 {
+	if (IsValid(TaskData.AbilitySystemComponent))
+	{
+		TaskData.AbilitySystemComponent->OnActiveGameplayEffectAddedDelegateToSelf.RemoveAll(this);
+		TaskData.AbilitySystemComponent->OnAnyGameplayEffectRemovedDelegate().RemoveAll(this);
+		TaskData.AbilitySystemComponent->RegisterGameplayTagEvent(TaskData.EffectGameplayTag, EGameplayTagEventType::NewOrRemoved).RemoveAll(this);
+	}
+
+	SetReadyToDestroy();
+	MarkPendingKill();
 }
 
-void UAsyncTaskTagChanged::OnActiveGameplayEffectAddedCallback(UAbilitySystemComponent* Target,
-	const FGameplayEffectSpec& SpecApplied, FActiveGameplayEffectHandle ActiveHandle)
+void UAsyncTaskTagChanged::TagChanged(const FGameplayTag CooldownTag, int32 NewCount)
 {
+	if (NewCount > 0)
+	{
+		OnTagAdded.Broadcast(CooldownTag, NewCount);
+	}
+	else
+	{
+		OnTagRemoved.Broadcast(CooldownTag, NewCount);
+		if (TaskData.DestroyOnZero)
+		{
+			this->EndTask();
+		}
+	}
 }
 
-void UAsyncTaskTagChanged::OnRemoveGameplayEffectCallback(const FActiveGameplayEffect& EffectRemoved)
-{
-}
-
-void UAsyncTaskTagChanged::GameplayEffectStackChanged(FActiveGameplayEffectHandle EffectHandle, int32 NewStackCount,
-	int32 PreviousStackCount)
-{
-}

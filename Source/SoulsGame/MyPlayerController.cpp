@@ -54,7 +54,6 @@ void AMyPlayerController::SetupInputComponent()
     {
         this->GetPawnCharacter()->UseAbility("Ability.Test");
     });
-
     this->InputComponent->KeyBindings.Add(TestAbilityBinding);
     
     FInputKeyBinding HealAbilityBinding(EKeys::H, IE_Pressed);
@@ -62,8 +61,15 @@ void AMyPlayerController::SetupInputComponent()
     {
         this->GetPawnCharacter()->UseAbility("Ability.Heal");
     });
-
     this->InputComponent->KeyBindings.Add(HealAbilityBinding);
+
+    FInputKeyBinding TimeAbilityBinding(EKeys::G, IE_Pressed);
+    TimeAbilityBinding.KeyDelegate.GetDelegateForManualSet().BindLambda( [this] ()
+    {
+        this->GetPawnCharacter()->UseAbility("Ability.Timestop");
+    });
+    this->InputComponent->KeyBindings.Add(TimeAbilityBinding);
+    
 }
 
 

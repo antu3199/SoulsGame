@@ -19,11 +19,17 @@ public:
 	ATimeStopAbilityActor();
 
 
-	virtual void Tick(float DeltaSeconds) override;
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 
 protected:
 	UPROPERTY()
 	TArray<AActor *> HitActors;
 
 	bool IsOverlapping;
+
+	UFUNCTION()
+	void OnTagAdded(const FGameplayTag CooldownTag, int32 NewCount);
+
+	UFUNCTION()
+	void OnTagRemoved(const FGameplayTag CooldownTag, int32 NewCount);
 };

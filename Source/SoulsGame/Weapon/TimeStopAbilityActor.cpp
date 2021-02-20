@@ -2,47 +2,52 @@
 
 
 #include "TimeStopAbilityActor.h"
+
+#include "GameplayTagsManager.h"
 #include "SoulsGame/CharacterBase.h"
-#include "SoulsGame/Abilities/Tasks/AsyncTaskEffectStackChanged.h"
+#include "SoulsGame/Abilities/Tasks/AsyncTaskTagChanged.h"
 
 ATimeStopAbilityActor::ATimeStopAbilityActor()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
+
+}
+
+void ATimeStopAbilityActor::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	ACharacterBase *CharacterBase = Cast<ACharacterBase>(OtherActor);
+	if (CharacterBase == nullptr || this->Ability == nullptr)
+	{
+		return;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Apply timestop to: %s"), *OtherActor->GetName());
+
+	TArray<AActor *> OverlappingActors {OtherActor};
+
+	FAsyncTaskTagChangedData TaskData;
+	TaskData.AbilitySystemComponent = CharacterBase->GetAbilitySystemComponent();
+	TaskData.EffectGameplayTag = UGameplayTagsManager::Get().RequestGameplayTag(TEXT("State.Timestopped"));
+	TaskData.DestroyOnZero = true;
+
+	UAsyncTaskTagChanged * TagChangedTask = UAsyncTaskTagChanged::CreateTagChangedTask(TaskData);
+	TagChangedTask->OnTagAdded.AddDynamic(this, &ATimeStopAbilityActor::OnTagAdded);
+	TagChangedTask->OnTagRemoved.AddDynamic(this, &ATimeStopAbilityActor::OnTagRemoved);
+
+	TagChangedTask->Activate();
+
+	this->Ability->ApplyEffectsToActors(OverlappingActors);
 
 }
 
 
 
-void ATimeStopAbilityActor::Tick(float DeltaSeconds)
+void ATimeStopAbilityActor::OnTagAdded(const FGameplayTag CooldownTag, int32 NewCount)
 {
-	Super::Tick(DeltaSeconds);
-	// TODO: Change size
+	UE_LOG(LogTemp, Warning, TEXT("STUNNNNN"));
+}
 
-	TArray<AActor *> OverlappingActors;
-	this->GetOverlappingActors(OverlappingActors);
-
-
-
-	for (AActor * Actor : OverlappingActors)
-	{
-		ACharacterBase *CharacterBase = Cast<ACharacterBase>(Actor);
-		if (!CharacterBase)
-		{
-			continue;
-		}
-		
-		//FAsyncTaskEffectStackChangedData TaskData;
-		///TaskData.AbilitySystemComponent = CharacterBase->GetAbilitySystemComponent();
-		//TaskData.EffectGameplayTag = UGameplayTagsManager::Get().RequestGameplayTag(TEXT("State."));
-
-		
-		//UAsyncTaskEffectStackChanged StackChangedTask = UAsyncTaskEffectStackChanged::CreateGameplayEffectStackChanged();
-		
-
-	}
-	this->Ability->ApplyEffectsToActors(OverlappingActors);
-
-	
-	
-	
+void ATimeStopAbilityActor::OnTagRemoved(const FGameplayTag CooldownTag, int32 NewCount)
+{
+	UE_LOG(LogTemp, Warning, TEXT("END STUN"));
 }

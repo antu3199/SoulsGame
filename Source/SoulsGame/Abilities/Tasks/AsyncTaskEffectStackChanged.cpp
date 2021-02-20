@@ -8,7 +8,16 @@ UAsyncTaskEffectStackChanged* UAsyncTaskEffectStackChanged::CreateGameplayEffect
 {
 	UAsyncTaskEffectStackChanged * MyObj = NewObject<UAsyncTaskEffectStackChanged>();
 	MyObj->TaskData = TaskData; // Copy data by value for ownership
-    
+
+	if (!IsValid(MyObj->TaskData.AbilitySystemComponent) || !MyObj->TaskData.EffectGameplayTag.IsValid())
+	{
+		MyObj->EndTask();
+		return nullptr;
+	}
+
+	MyObj->TaskData.AbilitySystemComponent->OnActiveGameplayEffectAddedDelegateToSelf.AddUObject(MyObj, &UAsyncTaskEffectStackChanged::OnActiveGameplayEffectAddedCallback);
+	MyObj->TaskData.AbilitySystemComponent->OnAnyGameplayEffectRemovedDelegate().AddUObject(MyObj, &UAsyncTaskEffectStackChanged::OnRemoveGameplayEffectCallback);
+
 	return MyObj;
 }
 
