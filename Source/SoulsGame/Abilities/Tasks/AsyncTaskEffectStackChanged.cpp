@@ -3,7 +3,7 @@
 
 #include "AsyncTaskEffectStackChanged.h"
 
-UAsyncTaskEffectStackChanged* UAsyncTaskEffectStackChanged::CreateGameplayEffectStackChanged(
+UAsyncTaskEffectStackChanged* UAsyncTaskEffectStackChanged::CreateGameplayEffectStackChangedTask(
 	FAsyncTaskEffectStackChangedData& TaskData)
 {
 	UAsyncTaskEffectStackChanged * MyObj = NewObject<UAsyncTaskEffectStackChanged>();

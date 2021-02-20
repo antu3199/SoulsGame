@@ -6,11 +6,10 @@
 
 #include "AbilitySystemComponent.h"
 #include "Kismet/BlueprintAsyncActionBase.h"
-#include "AsyncTaskEffectStackChanged.generated.h"
-
+#include "AsyncTaskTagChanged.generated.h"
 
 USTRUCT(BlueprintType)
-struct FAsyncTaskEffectStackChangedData
+struct FAsyncTaskTagChangedData
 {
 	GENERATED_BODY()
 
@@ -23,28 +22,28 @@ struct FAsyncTaskEffectStackChangedData
 	bool DestroyOnZero = true;
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnGameplayEffectStackChanged, FGameplayTag, EffectGameplayTag, FActiveGameplayEffectHandle, Handle, int32, NewStackCount, int32, OldStackCount);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTagChanged, FGameplayTag, Tag,  int32, NewCount );
+
 
 /**
  * 
  */
 UCLASS()
-class SOULSGAME_API UAsyncTaskEffectStackChanged : public UBlueprintAsyncActionBase
+class SOULSGAME_API UAsyncTaskTagChanged : public UBlueprintAsyncActionBase
 {
 	GENERATED_BODY()
-
 public:
-
+	
 	UFUNCTION(BlueprintCallable)
-	static UAsyncTaskEffectStackChanged * CreateGameplayEffectStackChangedTask(FAsyncTaskEffectStackChangedData & TaskData);
+	static UAsyncTaskTagChanged * CreateTagChangedTask(FAsyncTaskTagChangedData & TaskData);
 
 	void EndTask();
 
 	UPROPERTY(BlueprintAssignable)
-	FOnGameplayEffectStackChanged OnGameplayEffectStackChange;
+	FOnTagChanged OnGameplayEffectStackChange;
 
 protected:
-	FAsyncTaskEffectStackChangedData TaskData;
+	FAsyncTaskTagChangedData TaskData;
 
 
 	virtual void OnActiveGameplayEffectAddedCallback(UAbilitySystemComponent * Target, const FGameplayEffectSpec& SpecApplied, FActiveGameplayEffectHandle ActiveHandle);

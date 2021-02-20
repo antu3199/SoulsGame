@@ -49314,6 +49314,8 @@
             <e p="Tasks" t="Include">
               <e p="AsyncTaskEffectStackChanged.cpp" t="Include" />
               <e p="AsyncTaskEffectStackChanged.h" t="Include" />
+              <e p="AsyncTaskTagChanged.cpp" t="Include" />
+              <e p="AsyncTaskTagChanged.h" t="Include" />
             </e>
           </e>
           <e p="Animation" t="Include">
