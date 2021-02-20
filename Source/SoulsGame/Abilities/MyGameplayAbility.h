@@ -56,6 +56,9 @@ public:
 	TArray<FActiveGameplayEffectHandle> ApplyGameplayEffectSpecToTarget(const FGameplayEffectSpecHandle EffectSpecHandle, FGameplayAbilityTargetDataHandle TargetData);
 
 	FGameplayEffectData & InitializeGameplayEffectData(FGameplayEffectDataContainer& EffectsContainer, TSubclassOf<UMyGameplayEffect> & Effect) const;
+
+	void ApplyEffectsToActors(TArray<AActor *> &Actors);
+
 	
 protected:
     virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;

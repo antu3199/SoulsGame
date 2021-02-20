@@ -3,6 +3,8 @@
 
 #include "AbilityProjectile.h"
 
+
+// TODO: rename to AbilitySpawnActor
 void UAbilityProjectile::OnEventReceived(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
 	Super::OnEventReceived(GameplayTag, GameplayEventData);
@@ -39,7 +41,7 @@ void UAbilityProjectile::OnEventReceived(FGameplayTag GameplayTag, FGameplayEven
 	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn; //Default
 	SpawnParameters.Instigator = Cast<APawn>(AvatarActor);
 
-	AProjectileActor * SpawnedObject = GetWorld()->SpawnActor<AProjectileActor>(this->ProjectileTemplate, Transform, SpawnParameters);
+	AAbilityActor * SpawnedObject = GetWorld()->SpawnActor<AAbilityActor>(this->ProjectileTemplate, Transform, SpawnParameters);
 	if (SpawnedObject)
 	{
 		SpawnedObject->Initialize(this);

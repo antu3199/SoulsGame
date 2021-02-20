@@ -21,6 +21,17 @@ FGameplayEffectData& UMyGameplayAbility::InitializeGameplayEffectData(FGameplayE
     return Container;
 }
 
+void UMyGameplayAbility::ApplyEffectsToActors(TArray<AActor*> &Actors)
+{
+    const TArray<FHitResult> HitResults;
+
+    for (FGameplayEffectData & Data : this->GameplayEffectsContainer.ActiveGameplayEffects)
+    {
+        Data.AddTargets(HitResults, Actors);
+        Data.ApplyEffect();
+    }
+}
+
 /*
 void UMyGameplayAbility::OnGameplayTaskActivated(UGameplayTask& Task)
 {

@@ -13,16 +13,11 @@
 AProjectileActor::AProjectileActor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 	
 	//Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	//SetRootComponent(Root);
 
-
-	Base = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
-    Base->SetupAttachment(Root);
-	Base->SetHiddenInGame(true);
-	SetRootComponent(Base);
 
 	UArrowComponent * ArrowComponent = CreateDefaultSubobject<UArrowComponent>(TEXT("Arrow"));
 	ArrowComponent->SetupAttachment(Base);
@@ -64,12 +59,6 @@ void AProjectileActor::NotifyActorEndOverlap(AActor* OtherActor)
 	Super::NotifyActorEndOverlap(OtherActor);
 }
 
-void AProjectileActor::Initialize(UAbilityProjectile * DataContainer)
-{
-	this->Ability = DataContainer;
-
-}
-
 void AProjectileActor::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp,
 	bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
 {
@@ -81,13 +70,7 @@ void AProjectileActor::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPr
 		return;
 	}
 
-	const TArray<FHitResult> HitResults;
-
-	for (FGameplayEffectData & Data : this->Ability->GameplayEffectsContainer.ActiveGameplayEffects)
-	{
-		Data.AddTargets(HitResults, HitActors);
-		Data.ApplyEffect();
-	}
+	this->Ability->ApplyEffectsToActors(HitActors);
 	
 	const FTransform SpawnTransform(HitLocation);
 	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), CollisionEmitterTemplate, SpawnTransform, true, EPSCPoolMethod::None, true );

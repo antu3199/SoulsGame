@@ -3,9 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
+#include "AbilityActor.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "SoulsGame/Abilities/MyGameplayEffect.h"
 
 
 #include "ProjectileActor.generated.h"
@@ -13,7 +14,7 @@
 class UAbilityProjectile;
 class USphereComponent;
 UCLASS()
-class SOULSGAME_API AProjectileActor : public AActor
+class SOULSGAME_API AProjectileActor : public AAbilityActor
 {
 	GENERATED_BODY()
 	
@@ -25,25 +26,16 @@ public:
 
 	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
 
-	virtual void Initialize(UAbilityProjectile * DataContainer);
-
 	virtual  void NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;
 
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	USceneComponent * Root;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	USphereComponent* Base;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UProjectileMovementComponent * ProjectileMovement;
 
 	UPROPERTY()
 	TArray<AActor *> HitActors;
-
-	UPROPERTY()
-	UAbilityProjectile * Ability;
 
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* CollisionEmitterTemplate;
