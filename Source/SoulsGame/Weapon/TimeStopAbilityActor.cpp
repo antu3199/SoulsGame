@@ -104,20 +104,7 @@ void ATimeStopAbilityActor::NotifyActorEndOverlap(AActor* OtherActor)
 		}
 	}
 
-	/*
-	UCameraComponent * CameraComponent = OtherActor->FindComponentByClass<UCameraComponent>();
-	if (CameraComponent)
-	{
-		for (int i = CameraComponent->PostProcessSettings.WeightedBlendables.Array.Num()-1; i >= 0; i--)
-		{
-			FWeightedBlendable & BlendableWeight = CameraComponent->PostProcessSettings.WeightedBlendables.Array[i];
-			if (BlendableWeight.Object->GetName() == this->OutsideMaterial->GetName() || BlendableWeight.Object->GetName() == this->InsideMaterial->GetName())
-			{
-				CameraComponent->PostProcessSettings.WeightedBlendables.Array.RemoveAt(i);
-			}
-		}
-	}
-	*/
+
 	
 }
 

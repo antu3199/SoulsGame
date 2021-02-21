@@ -24,14 +24,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_TimestoppedActor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_TimestoppedActor.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Test_Mat.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Test_Mat.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/M_TimestopAll.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/M_TimestopAll.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/M_TimestopDepthOnly.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/M_TimestopDepthOnly.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -457,7 +451,7 @@
       <workItem from="1613858391311" duration="2655000" />
       <workItem from="1613922756639" duration="82000" />
       <workItem from="1613922850616" duration="12970000" />
-      <workItem from="1613943625186" duration="4894000" />
+      <workItem from="1613943625186" duration="5299000" />
     </task>
     <servers />
   </component>
