@@ -3,13 +3,17 @@
 
 #include "TimeStopAbilityActor.h"
 
+
+#include "DrawDebugHelpers.h"
 #include "GameplayTagsManager.h"
+#include "Camera/CameraComponent.h"
 #include "SoulsGame/CharacterBase.h"
 #include "SoulsGame/Abilities/Tasks/AsyncTaskTagChanged.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 ATimeStopAbilityActor::ATimeStopAbilityActor()
 {
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
 
 }
 
@@ -99,6 +103,107 @@ void ATimeStopAbilityActor::NotifyActorEndOverlap(AActor* OtherActor)
 			AbilitySystemComponent->RemoveActiveGameplayEffect(ActiveHandle);
 		}
 	}
+
+	/*
+	UCameraComponent * CameraComponent = OtherActor->FindComponentByClass<UCameraComponent>();
+	if (CameraComponent)
+	{
+		for (int i = CameraComponent->PostProcessSettings.WeightedBlendables.Array.Num()-1; i >= 0; i--)
+		{
+			FWeightedBlendable & BlendableWeight = CameraComponent->PostProcessSettings.WeightedBlendables.Array[i];
+			if (BlendableWeight.Object->GetName() == this->OutsideMaterial->GetName() || BlendableWeight.Object->GetName() == this->InsideMaterial->GetName())
+			{
+				CameraComponent->PostProcessSettings.WeightedBlendables.Array.RemoveAt(i);
+			}
+		}
+	}
+	*/
+	
+}
+
+void ATimeStopAbilityActor::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	if (this->Ability == nullptr)
+	{
+		return;
+	}
+
+	
+	const FVector CurrentScale = this->GetActorScale();
+	const FVector NewScale = CurrentScale + FVector(0.1f, 0.1f, 0.1f);
+
+	if (NewScale.X < 10)
+	{
+		this->SetActorScale3D(NewScale);
+	}
+	bool isInside = false;
+
+	this->Base->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldDynamic, ECollisionResponse::ECR_Block);
+
+
+	for (AActor * HitActor : HitActors)
+	{
+		UCameraComponent * CameraComponent = HitActor->FindComponentByClass<UCameraComponent>();
+		if (CameraComponent)
+		{
+			FVector Start = CameraComponent->GetComponentLocation(); //CameraLoc;
+
+			FVector End = Start; //CamManager->GetCameraLocation();
+			const float Radius = 10;
+
+			const FCollisionQueryParams CollisionParms;
+			TArray<FHitResult> Hits;
+
+			const bool DidTrace = GetWorld()->SweepMultiByChannel(Hits, Start, End, FQuat::Identity, ECC_WorldDynamic, FCollisionShape::MakeSphere(Radius), CollisionParms);
+
+			if (DidTrace)
+			{
+				isInside = true;
+
+				for (FHitResult & Result : Hits)
+				{
+					if (Result.Actor.Get() == this)
+					{
+						UE_LOG(LogTemp, Warning, TEXT("Did trace"));
+						break;
+					}
+				}
+			}
+			FWeightedBlendables & CurWeightedBlendables = CameraComponent->PostProcessSettings.WeightedBlendables;
+
+			// Remove current applied materials (Note: Probably inefficient. Change later...)
+			for (int i = CameraComponent->PostProcessSettings.WeightedBlendables.Array.Num()-1; i >= 0; i--)
+			{
+				FWeightedBlendable & BlendableWeight = CameraComponent->PostProcessSettings.WeightedBlendables.Array[i];
+				if (BlendableWeight.Object->GetName() == this->OutsideMaterial->GetName() || BlendableWeight.Object->GetName() == this->InsideMaterial->GetName())
+				{
+					CameraComponent->PostProcessSettings.WeightedBlendables.Array.RemoveAt(i);
+				}
+			}
+			
+			FWeightedBlendable NewBlendable;
+			NewBlendable.Weight = 1;
+			
+			if (isInside)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("INSIDE"));
+
+				NewBlendable.Object = InsideMaterial;
+			}
+			else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("NOT INSIDE"));
+				NewBlendable.Object = OutsideMaterial;
+			}
+
+			CameraComponent->PostProcessSettings.WeightedBlendables.Array.Add(NewBlendable);
+		}
+	}
+
+	this->Base->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldDynamic, ECollisionResponse::ECR_Overlap);
+
 }
 
 

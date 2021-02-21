@@ -25,6 +25,8 @@ public:
 
 	virtual  void NotifyActorEndOverlap(AActor* OtherActor) override;
 
+	virtual  void Tick(float DeltaSeconds) override;
+
 protected:
 	UPROPERTY()
 	TArray<AActor *> HitActors;
@@ -36,4 +38,11 @@ protected:
 
 	UFUNCTION()
 	void OnTagRemoved(const FGameplayTag CooldownTag, int32 NewCount);
+
+
+	UPROPERTY(EditAnywhere)
+	UMaterial * OutsideMaterial;
+
+	UPROPERTY(EditAnywhere)
+	UMaterial * InsideMaterial;
 };
