@@ -16,7 +16,13 @@ FGameplayEffectData& UMyGameplayAbility::InitializeGameplayEffectData(FGameplayE
 {
     FGameplayEffectData & Container = EffectsContainer.CreateNewGameplayEffectData();
     Container.GameplayEffect = Effect.GetDefaultObject();
+
+
     Container.GameplayEffectSpecHandle = MakeOutgoingGameplayEffectSpec(Effect, 1);
+    if (OverrideDuration != 0)
+    {
+        Container.GameplayEffectSpecHandle.Data.Get()->SetDuration(OverrideDuration, true);
+    }
     
     return Container;
 }

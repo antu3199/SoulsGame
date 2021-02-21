@@ -23,6 +23,7 @@ void ATimeStopAbilityActor::NotifyActorBeginOverlap(AActor* OtherActor)
 
 	UE_LOG(LogTemp, Warning, TEXT("Apply timestop to: %s"), *OtherActor->GetName());
 
+
 	TArray<AActor *> OverlappingActors {OtherActor};
 
 	FAsyncTaskTagChangedData TaskData;
@@ -36,10 +37,32 @@ void ATimeStopAbilityActor::NotifyActorBeginOverlap(AActor* OtherActor)
 
 	TagChangedTask->Activate();
 
+
 	this->Ability->ApplyEffectsToActors(OverlappingActors);
+
+
+
 
 }
 
+void ATimeStopAbilityActor::NotifyActorEndOverlap(AActor* OtherActor)
+{
+	ACharacterBase *CharacterBase = Cast<ACharacterBase>(OtherActor);
+	if (CharacterBase == nullptr || this->Ability == nullptr)
+	{
+		return;
+	}
+
+	UAbilitySystemComponent * AbilitySystemComponent = CharacterBase->GetAbilitySystemComponent();
+	TArray<AActor *> OverlappingActors {OtherActor};
+	for (auto EffectSpec : this->Ability->GameplayEffectsContainer.ActiveGameplayEffects)
+	{
+		for (auto &ActiveHandle : EffectSpec.ActiveGameplayEffectHandles)
+		{
+			AbilitySystemComponent->RemoveActiveGameplayEffect(ActiveHandle);
+		}
+	}
+}
 
 
 void ATimeStopAbilityActor::OnTagAdded(const FGameplayTag CooldownTag, int32 NewCount)

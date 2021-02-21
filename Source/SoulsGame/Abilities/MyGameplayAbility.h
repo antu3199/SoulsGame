@@ -59,7 +59,10 @@ public:
 
 	void ApplyEffectsToActors(TArray<AActor *> &Actors);
 
-	
+
+	// 0 for GE default, -1 for infinite
+	UPROPERTY(EditAnywhere)
+	float OverrideDuration = 0;
 protected:
     virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
     virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
