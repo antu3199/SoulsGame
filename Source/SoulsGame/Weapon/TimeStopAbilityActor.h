@@ -18,6 +18,8 @@ public:
 	// Sets default values for this actor's properties
 	ATimeStopAbilityActor();
 
+	virtual  void Initialize(UMyGameplayAbility* DataContainer) override;
+
 
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 
