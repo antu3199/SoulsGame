@@ -104,7 +104,15 @@ void ATimeStopAbilityActor::NotifyActorEndOverlap(AActor* OtherActor)
 		}
 	}
 
-
+	UCameraComponent * CameraComponent = OtherActor->FindComponentByClass<UCameraComponent>();
+	for (int i = CameraComponent->PostProcessSettings.WeightedBlendables.Array.Num()-1; i >= 0; i--)
+	{
+		FWeightedBlendable & BlendableWeight = CameraComponent->PostProcessSettings.WeightedBlendables.Array[i];
+		if (BlendableWeight.Object->GetName() == this->InsideMaterial->GetName())
+		{
+			CameraComponent->PostProcessSettings.WeightedBlendables.Array.RemoveAt(i);
+		}
+	}
 	
 }
 
@@ -160,32 +168,32 @@ void ATimeStopAbilityActor::Tick(float DeltaSeconds)
 			}
 			FWeightedBlendables & CurWeightedBlendables = CameraComponent->PostProcessSettings.WeightedBlendables;
 
-			// Remove current applied materials (Note: Probably inefficient. Change later...)
-			for (int i = CameraComponent->PostProcessSettings.WeightedBlendables.Array.Num()-1; i >= 0; i--)
-			{
-				FWeightedBlendable & BlendableWeight = CameraComponent->PostProcessSettings.WeightedBlendables.Array[i];
-				if (BlendableWeight.Object->GetName() == this->OutsideMaterial->GetName() || BlendableWeight.Object->GetName() == this->InsideMaterial->GetName())
-				{
-					CameraComponent->PostProcessSettings.WeightedBlendables.Array.RemoveAt(i);
-				}
-			}
-			
-			FWeightedBlendable NewBlendable;
-			NewBlendable.Weight = 1;
-			
+
 			if (isInside)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("INSIDE"));
-
+			
+				FWeightedBlendable NewBlendable;
+				NewBlendable.Weight = 1;
 				NewBlendable.Object = InsideMaterial;
+				CameraComponent->PostProcessSettings.WeightedBlendables.Array.Add(NewBlendable);
+
 			}
 			else
 			{
 				UE_LOG(LogTemp, Warning, TEXT("NOT INSIDE"));
-				NewBlendable.Object = OutsideMaterial;
+				// Remove current applied materials (Note: Probably inefficient. Change later...)
+				for (int i = CameraComponent->PostProcessSettings.WeightedBlendables.Array.Num()-1; i >= 0; i--)
+				{
+					FWeightedBlendable & BlendableWeight = CameraComponent->PostProcessSettings.WeightedBlendables.Array[i];
+					if (BlendableWeight.Object->GetName() == this->InsideMaterial->GetName())
+					{
+						CameraComponent->PostProcessSettings.WeightedBlendables.Array.RemoveAt(i);
+					}
+				}
+					
 			}
 
-			CameraComponent->PostProcessSettings.WeightedBlendables.Array.Add(NewBlendable);
 		}
 	}
 
