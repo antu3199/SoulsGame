@@ -5,10 +5,10 @@
 
 #include "AbilitySystemBlueprintLibrary.h"
 
-void USendGameplayTagEventNS::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation,
+void USendGameplayTagEventNS::DoNotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation,
                                           float TotalDuration)
 {
-	Super::NotifyBegin(MeshComp, Animation, TotalDuration);
+	Super::DoNotifyBegin(MeshComp, Animation, TotalDuration);
 
 	if (MeshComp == nullptr)
 	{

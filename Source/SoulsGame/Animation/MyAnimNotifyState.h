@@ -25,10 +25,19 @@ class SOULSGAME_API UMyAnimNotifyState : public UAnimNotifyState
 {
 	GENERATED_BODY()
 	
-protected:
-	virtual void NotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
+
 
 public:
 	UPROPERTY(EditAnywhere)
 	FAnimNotifyData Data;
+
+protected:
+	virtual void NotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
+
+	virtual void NotifyEnd(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation) override;
+
+
+	virtual void DoNotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration);
+
+	bool HasTriggered = false;
 };

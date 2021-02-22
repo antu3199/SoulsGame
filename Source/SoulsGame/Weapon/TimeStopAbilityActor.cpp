@@ -166,8 +166,6 @@ void ATimeStopAbilityActor::Tick(float DeltaSeconds)
 
 			if (isInside)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("INSIDE"));
-			
 				FWeightedBlendable NewBlendable;
 				NewBlendable.Weight = 1;
 				NewBlendable.Object = InsideMaterial;
@@ -176,7 +174,6 @@ void ATimeStopAbilityActor::Tick(float DeltaSeconds)
 			}
 			else
 			{
-				UE_LOG(LogTemp, Warning, TEXT("NOT INSIDE"));
 				/*
 				// Remove current applied materials (Note: Probably inefficient. Change later...)
 				for (int i = CameraComponent->PostProcessSettings.WeightedBlendables.Array.Num()-1; i >= 0; i--)
@@ -203,9 +200,41 @@ void ATimeStopAbilityActor::OnTagAdded(const FGameplayTag CooldownTag, int32 New
 {
 	UE_LOG(LogTemp, Warning, TEXT("STUNNNNN"));
 
+	UAnimInstance* AnimInstance = Actor->GetMesh()->GetAnimInstance();
+	if (!AnimInstance)
+	{
+		return;
+	}
+	
+
+	FAnimMontageInstance* RootMotion = AnimInstance->GetActiveMontageInstance();
+	if (!RootMotion)
+	{
+		return;
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Pause"));
+	//RootMotion->Pause();
+	RootMotion->SetPlayRate(0.001f);
+	UE_LOG(LogTemp, Warning, TEXT("STUN SUCESSED!"));
 }
 
 void ATimeStopAbilityActor::OnTagRemoved(const FGameplayTag CooldownTag, int32 NewCount, ACharacterBase * Actor)
 {
-	UE_LOG(LogTemp, Warning, TEXT("END STUN"));
+	UAnimInstance* AnimInstance = Actor->GetMesh()->GetAnimInstance();
+	if (!AnimInstance)
+	{
+		return;
+	}
+	
+
+	FAnimMontageInstance* RootMotion = AnimInstance->GetActiveMontageInstance();
+	if (!RootMotion)
+	{
+		return;
+	}
+	
+	//RootMotion->Play();
+	RootMotion->SetPlayRate(1.0f);
+	UE_LOG(LogTemp, Warning, TEXT("STUN End!"));
+	
 }

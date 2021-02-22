@@ -15,5 +15,5 @@ class SOULSGAME_API USendGameplayTagEventNS : public UMyAnimNotifyState
 	GENERATED_BODY()
 	
 protected:
-	virtual void NotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
+	virtual void DoNotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
 };
