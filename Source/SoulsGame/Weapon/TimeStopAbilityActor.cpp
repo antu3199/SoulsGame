@@ -138,7 +138,13 @@ void ATimeStopAbilityActor::Tick(float DeltaSeconds)
 	this->Base->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldDynamic, ECollisionResponse::ECR_Block);
 
 
-	for (AActor * HitActor : HitActors)
+
+
+
+	TArray<AActor *> AllOverlappingActors;
+	this->GetOverlappingActors(AllOverlappingActors);
+
+	for (AActor * HitActor : AllOverlappingActors)
 	{
 		UCameraComponent * CameraComponent = HitActor->FindComponentByClass<UCameraComponent>();
 		if (CameraComponent)
@@ -155,19 +161,17 @@ void ATimeStopAbilityActor::Tick(float DeltaSeconds)
 
 			if (DidTrace)
 			{
-				isInside = true;
-
 				for (FHitResult & Result : Hits)
 				{
 					if (Result.Actor.Get() == this)
 					{
 						UE_LOG(LogTemp, Warning, TEXT("Did trace"));
+						isInside = true;
 						break;
 					}
 				}
 			}
 			FWeightedBlendables & CurWeightedBlendables = CameraComponent->PostProcessSettings.WeightedBlendables;
-
 
 			if (isInside)
 			{

@@ -24,10 +24,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_TimestoppedActor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_TimestoppedActor.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Materials/M_TimestopDepthOnly.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Materials/M_TimestopDepthOnly.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Game.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
