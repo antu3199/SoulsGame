@@ -15,7 +15,7 @@ UAsyncTaskTagChanged* UAsyncTaskTagChanged::CreateTagChangedTask(FAsyncTaskTagCh
 	}
 
 	MyObj->TaskData.AbilitySystemComponent->RegisterGameplayTagEvent(MyObj->TaskData.EffectGameplayTag, EGameplayTagEventType::NewOrRemoved).AddUObject(MyObj, &UAsyncTaskTagChanged::TagChanged);
-    
+
 	return MyObj;
 }
 
@@ -34,13 +34,14 @@ void UAsyncTaskTagChanged::EndTask()
 
 void UAsyncTaskTagChanged::TagChanged(const FGameplayTag CooldownTag, int32 NewCount)
 {
+	ACharacterBase * Actor = Cast<ACharacterBase>(TaskData.AbilitySystemComponent->GetAvatarActor());
 	if (NewCount > 0)
 	{
-		OnTagAdded.Broadcast(CooldownTag, NewCount);
+		OnTagAdded.Broadcast(CooldownTag, NewCount, Actor);
 	}
 	else
 	{
-		OnTagRemoved.Broadcast(CooldownTag, NewCount);
+		OnTagRemoved.Broadcast(CooldownTag, NewCount, Actor);
 		if (TaskData.DestroyOnZero)
 		{
 			this->EndTask();

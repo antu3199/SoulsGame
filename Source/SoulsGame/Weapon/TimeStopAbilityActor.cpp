@@ -104,16 +104,7 @@ void ATimeStopAbilityActor::NotifyActorEndOverlap(AActor* OtherActor)
 		}
 	}
 
-	UCameraComponent * CameraComponent = OtherActor->FindComponentByClass<UCameraComponent>();
-	for (int i = CameraComponent->PostProcessSettings.WeightedBlendables.Array.Num()-1; i >= 0; i--)
-	{
-		FWeightedBlendable & BlendableWeight = CameraComponent->PostProcessSettings.WeightedBlendables.Array[i];
-		if (BlendableWeight.Object->GetName() == this->InsideMaterial->GetName())
-		{
-			CameraComponent->PostProcessSettings.WeightedBlendables.Array.RemoveAt(i);
-		}
-	}
-	
+
 }
 
 void ATimeStopAbilityActor::Tick(float DeltaSeconds)
@@ -152,7 +143,8 @@ void ATimeStopAbilityActor::Tick(float DeltaSeconds)
 			FVector Start = CameraComponent->GetComponentLocation(); //CameraLoc;
 
 			FVector End = Start; //CamManager->GetCameraLocation();
-			const float Radius = 10;
+			const float Radius = 500;
+			//DrawDebugSphere(GetWorld(), Start, Radius, 32, FColor(182, 1, 1));
 
 			const FCollisionQueryParams CollisionParms;
 			TArray<FHitResult> Hits;
@@ -165,7 +157,6 @@ void ATimeStopAbilityActor::Tick(float DeltaSeconds)
 				{
 					if (Result.Actor.Get() == this)
 					{
-						UE_LOG(LogTemp, Warning, TEXT("Did trace"));
 						isInside = true;
 						break;
 					}
@@ -186,6 +177,7 @@ void ATimeStopAbilityActor::Tick(float DeltaSeconds)
 			else
 			{
 				UE_LOG(LogTemp, Warning, TEXT("NOT INSIDE"));
+				/*
 				// Remove current applied materials (Note: Probably inefficient. Change later...)
 				for (int i = CameraComponent->PostProcessSettings.WeightedBlendables.Array.Num()-1; i >= 0; i--)
 				{
@@ -195,6 +187,7 @@ void ATimeStopAbilityActor::Tick(float DeltaSeconds)
 						CameraComponent->PostProcessSettings.WeightedBlendables.Array.RemoveAt(i);
 					}
 				}
+				*/
 					
 			}
 
@@ -206,12 +199,13 @@ void ATimeStopAbilityActor::Tick(float DeltaSeconds)
 }
 
 
-void ATimeStopAbilityActor::OnTagAdded(const FGameplayTag CooldownTag, int32 NewCount)
+void ATimeStopAbilityActor::OnTagAdded(const FGameplayTag CooldownTag, int32 NewCount, ACharacterBase * Actor)
 {
 	UE_LOG(LogTemp, Warning, TEXT("STUNNNNN"));
+
 }
 
-void ATimeStopAbilityActor::OnTagRemoved(const FGameplayTag CooldownTag, int32 NewCount)
+void ATimeStopAbilityActor::OnTagRemoved(const FGameplayTag CooldownTag, int32 NewCount, ACharacterBase * Actor)
 {
 	UE_LOG(LogTemp, Warning, TEXT("END STUN"));
 }

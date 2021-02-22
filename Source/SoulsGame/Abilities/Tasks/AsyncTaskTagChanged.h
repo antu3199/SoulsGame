@@ -6,6 +6,8 @@
 
 #include "AbilitySystemComponent.h"
 #include "Kismet/BlueprintAsyncActionBase.h"
+#include "SoulsGame/CharacterBase.h"
+
 #include "AsyncTaskTagChanged.generated.h"
 
 USTRUCT(BlueprintType)
@@ -22,7 +24,7 @@ struct FAsyncTaskTagChangedData
 	bool DestroyOnZero = true;
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTagChanged, FGameplayTag, Tag,  int32, NewCount );
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnTagChanged, FGameplayTag, Tag,  int32, NewCount, ACharacterBase *, Actor );
 
 
 /**

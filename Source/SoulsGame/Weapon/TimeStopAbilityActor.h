@@ -34,10 +34,10 @@ protected:
 	bool IsOverlapping;
 
 	UFUNCTION()
-	void OnTagAdded(const FGameplayTag CooldownTag, int32 NewCount);
+	void OnTagAdded(const FGameplayTag CooldownTag, int32 NewCount, ACharacterBase * Actor);
 
 	UFUNCTION()
-	void OnTagRemoved(const FGameplayTag CooldownTag, int32 NewCount);
+	void OnTagRemoved(const FGameplayTag CooldownTag, int32 NewCount, ACharacterBase * Actor);
 
 
 	UPROPERTY(EditAnywhere)
