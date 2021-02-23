@@ -31,13 +31,27 @@ public:
 	UPROPERTY(EditAnywhere)
 	FAnimNotifyData Data;
 
+	UMyAnimNotifyState();
+	
 protected:
+
+	
 	virtual void NotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
+
 
 	virtual void NotifyEnd(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation) override;
 
 
 	virtual void DoNotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration);
 
+
+	virtual bool ShouldDoNotify(USkeletalMeshComponent * MeshComp);
+
+	float CachedTime = 0;
+
 	bool HasTriggered = false;
+
+
+	UPROPERTY(EditAnywhere)
+	float MultiNotifyThresh = 0.01f;
 };

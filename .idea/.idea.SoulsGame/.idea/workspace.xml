@@ -25,12 +25,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter/Montages/AM_Spell.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter/Montages/AM_Spell.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/SendGameplayTagEventNS.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/SendGameplayTagEventNS.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/SendGameplayTagEventNS.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/SendGameplayTagEventNS.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,6 +47,8 @@
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Animation/AnimInstance.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Private/Components/SkeletalMeshComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Private/Character.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Animation/AnimationAsset.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Public/Animation/AnimTypes.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Materials/MaterialInterface.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Materials/Material.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h" root0="FORCE_HIGHLIGHTING" />
@@ -55,6 +56,7 @@
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Components/SceneComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Private/KismetSystemLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Core/Public/Containers/Array.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/CoreUObject/Private/UObject/Obj.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Private/DrawDebugHelpers.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Public/CollisionQueryParams.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Developer/Localization/Private/PortableObjectFormatDOM.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -103,8 +105,10 @@
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Developer/DesktopPlatform/Private/TargetReceipt.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Private/LevelBounds.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/SoulsGame/Abilities/DamageEffectExecutionCalculation.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Private/Animation/AnimNotifyQueue.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/GameplayTasks/Private/Tasks/GameplayTask_SpawnActor.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Renderer/Private/GPUBenchmark.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Animation/AnimNotifies/AnimNotify.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Animation/AnimNotifies/AnimNotifyState.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/GameFramework/Actor.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Engine/World.h" root0="FORCE_HIGHLIGHTING" />
@@ -113,6 +117,7 @@
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/CoreUObject/Public/UObject/Object.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Components/ShapeComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Online/HTTP/Private/Curl/CurlHttpManager.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Editor/Persona/Private/SAnimNotifyPanel.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Private/Kismet/BlueprintAsyncActionBase.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/Engine/Classes/Camera/CameraComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Program Files (x86)/Epic Games/UE_4.26/Engine/Source/Runtime/HeadMountedDisplay/Private/HeadMountedDisplayBase.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -145,7 +150,6 @@
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilitySelfCast.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/AbilitySelfCast.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/MyAttributeSet.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/ProjectileActor.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/AbilityActor.h" />
@@ -164,8 +168,9 @@
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/Tasks/AsyncTaskTagChanged.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/Tasks/AsyncTaskTagChanged.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.h" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.h" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" />
     </changedPaths>
   </component>
@@ -176,12 +181,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.6744312" />
-    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30010834" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.67475194" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="XThreadsFramesViewSplitterKey" value="0.2596463" />
+    <property name="XThreadsFramesViewSplitterKey" value="0.114379086" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Less" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -469,6 +474,7 @@
       <workItem from="1613952195576" duration="685000" />
       <workItem from="1613971429936" duration="2240000" />
       <workItem from="1613973890963" duration="649000" />
+      <workItem from="1614044079369" duration="9727000" />
     </task>
     <servers />
   </component>

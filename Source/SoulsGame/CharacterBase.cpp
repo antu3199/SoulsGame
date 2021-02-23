@@ -105,7 +105,6 @@ void ACharacterBase::InitializeItems()
 void ACharacterBase::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
