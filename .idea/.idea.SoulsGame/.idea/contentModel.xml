@@ -49321,6 +49321,8 @@
           <e p="AI" t="Include">
             <e p="BTService_PlayerLocation.cpp" t="Include" />
             <e p="BTService_PlayerLocation.h" t="Include" />
+            <e p="BTService_SetPlayerObject.cpp" t="Include" />
+            <e p="BTService_SetPlayerObject.h" t="Include" />
             <e p="BTTask_Attack.cpp" t="Include" />
             <e p="BTTask_Attack.h" t="Include" />
             <e p="MyAIController.cpp" t="Include" />
