@@ -24,12 +24,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/AI/BT_EnemyAI.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/AI/BT_EnemyAI.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/TestActor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/TestActor.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/AI/BTService_PlayerLocation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/AI/BTService_PlayerLocation.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -484,7 +479,7 @@
       <workItem from="1614044079369" duration="9727000" />
       <workItem from="1614128415287" duration="896000" />
       <workItem from="1614145498884" duration="309000" />
-      <workItem from="1614202701689" duration="2807000" />
+      <workItem from="1614202701689" duration="3116000" />
     </task>
     <servers />
   </component>
