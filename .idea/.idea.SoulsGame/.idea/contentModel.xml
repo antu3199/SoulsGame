@@ -49318,6 +49318,10 @@
               <e p="AsyncTaskTagChanged.h" t="Include" />
             </e>
           </e>
+          <e p="AI" t="Include">
+            <e p="MyAIController.cpp" t="Include" />
+            <e p="MyAIController.h" t="Include" />
+          </e>
           <e p="Animation" t="Include">
             <e p="MyAnimNotifyState.cpp" t="Include" />
             <e p="MyAnimNotifyState.h" t="Include" />
@@ -49355,6 +49359,7 @@
             <e p="ProjectileActor.cpp" t="Include" />
             <e p="ProjectileActor.h" t="Include" />
             <e p="TimeStopAbilityActor.cpp" t="Include" />
+            <e p="TimeStopAbilityActor.cpp~" t="Include" />
             <e p="TimeStopAbilityActor.h" t="Include" />
             <e p="WeaponActor.cpp" t="Include" />
             <e p="WeaponActor.h" t="Include" />

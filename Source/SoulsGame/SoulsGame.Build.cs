@@ -13,7 +13,10 @@ public class SoulsGame : ModuleRules
 		PublicDependencyModuleNames.AddRange(new string[] { "GameplayAbilities", "GameplayTags", "GameplayTasks" });
 		// Needed for BindKey
 		PublicDependencyModuleNames.AddRange(new string[] { "SlateCore", "Slate" });
-
+		
+		// Needed for AI?
+		//PublicDependencyModuleNames.AddRange(new string[] { "UMG" });
+		
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
 		// Uncomment if you are using Slate UI

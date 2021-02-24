@@ -24,13 +24,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter/Montages/AM_Spell.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter/Montages/AM_Spell.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SoulsGame.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/SoulsGame.uproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/SoulsGame.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/SoulsGame.Build.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +128,6 @@
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/SendGameplayTagEventNS.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/WeaponAttackNS.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/SendGameplayTagEventNS.h" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/SoulsGame.Build.cs" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/PlayMontageAbility.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/MyGameplayEffect.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/MyGameplayEffect.cpp" />
@@ -172,6 +167,9 @@
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/AI/MyAIController.h" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/AI/MyAIController.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/SoulsGame.Build.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mthZgxZ44M9oRjkJqVw1h9UFg6" />
@@ -187,6 +185,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="XThreadsFramesViewSplitterKey" value="0.114379086" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Less" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -475,6 +474,7 @@
       <workItem from="1613971429936" duration="2240000" />
       <workItem from="1613973890963" duration="649000" />
       <workItem from="1614044079369" duration="9727000" />
+      <workItem from="1614128415287" duration="301000" />
     </task>
     <servers />
   </component>
