@@ -160,6 +160,22 @@ void ACharacterBase::HandleHealthChanged(float DeltaValue, const FGameplayTagCon
 	}
 }
 
+void ACharacterBase::UseAbility(const FName AbilityTag)
+{
+	if (!this->AbilitySystemComponent)
+	{
+		return;
+	}
+
+	if (this->AbilitySystemComponent->ActivateAbilityWithTag(AbilityTag))
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoRangedAttack SUCCESSED!"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failed to activate ability %s"), *AbilityTag.ToString());
+	}
+}
 
 
 

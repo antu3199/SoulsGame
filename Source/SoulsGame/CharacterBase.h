@@ -69,6 +69,8 @@ public:
 
 	UPROPERTY()
 	AWeaponActor * WeaponActor = nullptr;
+
+	virtual void UseAbility(const FName AbilityTag);
 	
 protected:
 	// Called when the game starts or when spawned
