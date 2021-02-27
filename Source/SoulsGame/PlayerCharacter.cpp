@@ -15,7 +15,6 @@ void APlayerCharacter::BeginPlay()
 {
     Super::BeginPlay();
 
-    this->MakeWeapon();
 
     
 }
@@ -65,37 +64,7 @@ void APlayerCharacter::DoMeleeAttack()
     }
 }
 
-void APlayerCharacter::MakeWeapon()
-{
-    if (this->WeaponAsset == nullptr)
-    {
-        UE_LOG(LogTemp, Error, TEXT("No weapon found!"));
-        return;
-    }
-    const FRotator Rotation = FRotator::ZeroRotator;
-    const FVector Location(0, 0, -1000);
-    const FVector Scale = FVector::OneVector;
-    const FTransform Transform(Rotation,Location, Scale);
-    FActorSpawnParameters SpawnParameters;
-    SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::Undefined; //Default
-    SpawnParameters.Instigator = this; // Needed for WeaponActor.cpp
-    SpawnParameters.Owner = this;
 
-    AActor * SpawnedObject = GetWorld()->SpawnActor<AActor>(this->WeaponAsset->WeaponActorTemplate, Location, Rotation, SpawnParameters);
-    if (SpawnedObject)
-    {
-        //this->AttachToComponent(this->GetMesh(), SpawnedObject,
-        const FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, true );
-        const FName SocketName = "l_handSocket";
-        SpawnedObject->AttachToComponent(this->GetMesh(), AttachmentRules, SocketName);
-
-        this->WeaponActor = Cast<AWeaponActor>(SpawnedObject);
-        if (this->WeaponActor == nullptr)
-        {
-            UE_LOG(LogTemp, Error, TEXT("Weapon was null!"));
-        }
-    }
-}
 
 
 

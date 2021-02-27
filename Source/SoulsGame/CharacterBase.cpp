@@ -39,6 +39,8 @@ void ACharacterBase::BeginPlay()
     this->InitializeAbilitySystem();
 
 	this->InitializeItems();
+
+	this->MakeWeapon(WeaponOffset);
 }
 
 void ACharacterBase::InitializeAbilitySystem()
@@ -169,6 +171,7 @@ void ACharacterBase::UseAbility(const FName AbilityTag)
 
 	if (this->AbilitySystemComponent->ActivateAbilityWithTag(AbilityTag))
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Activate ability %s"), *AbilityTag.ToString());
 		//UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoRangedAttack SUCCESSED!"));
 	}
 	else
@@ -177,5 +180,35 @@ void ACharacterBase::UseAbility(const FName AbilityTag)
 	}
 }
 
+void ACharacterBase::MakeWeapon(FVector Offset)
+{
+	if (this->WeaponAsset == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("No weapon found!"));
+		return;
+	}
+	const FRotator Rotation = FRotator::ZeroRotator;
+	const FVector Location(Offset);
+	const FVector Scale = FVector::OneVector;
+	const FTransform Transform(Rotation,Location, Scale);
+	FActorSpawnParameters SpawnParameters;
+	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::Undefined; //Default
+	SpawnParameters.Instigator = this; // Needed for WeaponActor.cpp
+	SpawnParameters.Owner = this;
 
+	AActor * SpawnedObject = GetWorld()->SpawnActor<AActor>(this->WeaponAsset->WeaponActorTemplate, Location, Rotation, SpawnParameters);
+	if (SpawnedObject)
+	{
+		//this->AttachToComponent(this->GetMesh(), SpawnedObject,
+		const FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, true );
+		const FName SocketName = "l_handSocket";
+		SpawnedObject->AttachToComponent(this->GetMesh(), AttachmentRules, SocketName);
+
+		this->WeaponActor = Cast<AWeaponActor>(SpawnedObject);
+		if (this->WeaponActor == nullptr)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Weapon was null!"));
+		}
+	}
+}
 

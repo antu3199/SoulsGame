@@ -71,6 +71,8 @@ public:
 	AWeaponActor * WeaponActor = nullptr;
 
 	virtual void UseAbility(const FName AbilityTag);
+
+	virtual void MakeWeapon(const FVector Offset);
 	
 protected:
 	// Called when the game starts or when spawned
@@ -104,6 +106,8 @@ protected:
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<UMyGameplayEffect>> PassiveGameplayEffects;
 
+	UPROPERTY(EditAnywhere)
+	FVector WeaponOffset;
 
 	
 };

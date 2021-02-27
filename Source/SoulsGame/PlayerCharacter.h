@@ -21,7 +21,6 @@ public:
 
 	virtual void DoMeleeAttack();
 
-	virtual void MakeWeapon();
 
 
 	
