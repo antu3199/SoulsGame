@@ -7,6 +7,7 @@
 
 #include "AbilitySystemBlueprintLibrary.h"
 #include "Abilities/GameplayAbilityTypes.h"
+#include "Chaos/GeometryParticlesfwd.h"
 #include "Components/CapsuleComponent.h"
 
 // Sets default values
@@ -89,12 +90,14 @@ void AWeaponActor::NotifyActorBeginOverlap(AActor* OtherActor)
 		return;
 	}
 
+
 	this->CanHit = false;
 
 	FGameplayEventData GameplayEventData;
 	GameplayEventData.Instigator = InstigatorActor;
 	GameplayEventData.Target = OtherActor;
 
+	UE_LOG(LogTemp, Warning, TEXT("Send gameplay event to actor %s Target: %s"), *InstigatorActor->GetName(), *OtherActor->GetName());
 	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(InstigatorActor, this->AttackEventTag, GameplayEventData);
 }
 

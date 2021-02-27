@@ -16,7 +16,7 @@ void UAbilityMeleeBase::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 void UAbilityMeleeBase::OnEventReceived(FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
 	Super::OnEventReceived(GameplayTag, GameplayEventData);
-	
+
 	AActor * OwningActor = GetOwningActorFromActorInfo();
 	ACharacterBase * OwningCharacter = Cast<ACharacterBase>(OwningActor);
 	AActor * AvatarActor = GetAvatarActorFromActorInfo();

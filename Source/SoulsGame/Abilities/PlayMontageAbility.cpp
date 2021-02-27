@@ -43,6 +43,7 @@ void UPlayMontageAbility::EndAbility(const FGameplayAbilitySpecHandle Handle,
     bool bReplicateEndAbility, bool bWasCancelled)
 {
     Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
+    UE_LOG(LogTemp, Warning, TEXT("EndAbility"));
 
 }
 
@@ -69,6 +70,7 @@ void UPlayMontageAbility::OnCompleted(const FGameplayTag GameplayTag, FGameplayE
 
 void UPlayMontageAbility::OnEventReceived(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)
 {
+    UE_LOG(LogTemp, Warning, TEXT("Super Event received"));
     this->InitializeEffectContainerHelper();
 }
 
