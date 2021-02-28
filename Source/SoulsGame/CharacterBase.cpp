@@ -7,6 +7,7 @@
 #include "MyAssetManager.h"
 #include "DataAssets/AbilityAsset.h"
 #include "DataAssets/WeaponAsset.h"
+#include "Animation/JumpSectionNS.h"
 
 // Sets default values
 ACharacterBase::ACharacterBase()
@@ -103,6 +104,41 @@ void ACharacterBase::InitializeItems()
 	}
 }
 
+void ACharacterBase::TriggerJumpSectionForCombo()
+{
+	if (!this->JumpSectionNS)
+	{
+		return;
+	}
+
+	if (!GetMesh())
+	{
+		return;
+	}
+
+	UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
+	if (!AnimInstance)
+	{
+	    return;
+	}
+
+	UAnimMontage * CurrentActiveMontage = AnimInstance->GetCurrentActiveMontage();
+    if (!CurrentActiveMontage)
+    {
+	    return;
+    }
+
+	const FName CurrentSectionName = AnimInstance->Montage_GetCurrentSection(CurrentActiveMontage);
+
+	const int RandInt = FMath::RandRange(0, this->JumpSectionNS->NextMontageNames.Num() - 1);
+	const FName NextSectionName = this->JumpSectionNS->NextMontageNames[RandInt];
+	
+	AnimInstance->Montage_SetNextSection(CurrentSectionName, NextSectionName, CurrentActiveMontage);
+
+	this->JumpSectionNS = nullptr;
+
+}
+
 // Called every frame
 void ACharacterBase::Tick(const float DeltaTime)
 {
@@ -180,7 +216,7 @@ void ACharacterBase::UseAbility(const FName AbilityTag)
 	}
 }
 
-void ACharacterBase::MakeWeapon(FVector Offset)
+void ACharacterBase::MakeWeapon(const FVector Offset)
 {
 	if (this->WeaponAsset == nullptr)
 	{
@@ -212,3 +248,7 @@ void ACharacterBase::MakeWeapon(FVector Offset)
 	}
 }
 
+void ACharacterBase::SetComboJumpSection(UJumpSectionNS* JumpSection)
+{
+	this->JumpSectionNS = JumpSectionNS;
+}

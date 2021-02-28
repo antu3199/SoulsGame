@@ -6,6 +6,8 @@
 
 #include "GameplayTagContainer.h"
 #include "Animation/AnimNotifies/AnimNotifyState.h"
+#include "SoulsGame/CharacterBase.h"
+
 #include "MyAnimNotifyState.generated.h"
 
 USTRUCT(BlueprintType)
@@ -44,6 +46,8 @@ protected:
 
 	virtual void DoNotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration);
 
+	virtual void DoNotifyEnd(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation);
+
 
 	virtual bool ShouldDoNotify(USkeletalMeshComponent * MeshComp);
 
@@ -54,4 +58,6 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	float MultiNotifyThresh = 0.01f;
+
+	virtual ACharacterBase* GetCharacter(USkeletalMeshComponent* MeshComp);
 };

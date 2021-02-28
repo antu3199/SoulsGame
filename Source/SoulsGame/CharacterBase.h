@@ -14,6 +14,8 @@
 
 #include "CharacterBase.generated.h"
 
+
+class UJumpSectionNS;
 // Note: IAbilitySystemInterface needed otherwise it won't listen to gameplay events
 UCLASS()
 class SOULSGAME_API ACharacterBase : public ACharacter, public IAbilitySystemInterface
@@ -73,6 +75,10 @@ public:
 	virtual void UseAbility(const FName AbilityTag);
 
 	virtual void MakeWeapon(const FVector Offset);
+
+
+	//  Set combo, or nullptr if want to disable combo.
+	void SetComboJumpSection(UJumpSectionNS * JumpSection);
 	
 protected:
 	// Called when the game starts or when spawned
@@ -109,5 +115,9 @@ protected:
 	UPROPERTY(EditAnywhere)
 	FVector WeaponOffset;
 
+	UPROPERTY()
+	UJumpSectionNS * JumpSectionNS;
+
 	
+	virtual void TriggerJumpSectionForCombo();
 };

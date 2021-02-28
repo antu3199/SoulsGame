@@ -49,18 +49,14 @@ void APlayerCharacter::DoMeleeAttack()
 
     const FName MeleeAbilityTag = "Ability.Melee";
 
-    if (this->AbilitySystemComponent->IsUsingAbilityWithTag(MeleeAbilityTag))
+    if (!this->AbilitySystemComponent->IsUsingAbilityWithTag(MeleeAbilityTag))
     {
-        return;
-    }
-    
-    if (this->AbilitySystemComponent->ActivateAbilityWithTag(MeleeAbilityTag))
-    {
-        //UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoMeleeAttack SUCCESSED!"));
+        // Start melee ability
+        this->AbilitySystemComponent->ActivateAbilityWithTag(MeleeAbilityTag);
     }
     else
     {
-        //UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoMeleeAttack FAILED"));
+        
     }
 }
 

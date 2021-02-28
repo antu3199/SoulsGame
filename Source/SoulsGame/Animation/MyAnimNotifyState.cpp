@@ -50,7 +50,10 @@ void UMyAnimNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequen
 	{
 		this->CachedTime = RootMotion->GetPosition();
 		this->HasTriggered = true;
-
+	}
+	else
+	{
+		this->DoNotifyEnd(MeshComp, Animation);
 	}
 
 }
@@ -62,6 +65,11 @@ void UMyAnimNotifyState::DoNotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSe
 
 	// Override me!
 
+}
+
+void UMyAnimNotifyState::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
+{
+	// OVerride me!
 }
 
 bool UMyAnimNotifyState::ShouldDoNotify(USkeletalMeshComponent* MeshComp)
@@ -88,3 +96,9 @@ bool UMyAnimNotifyState::ShouldDoNotify(USkeletalMeshComponent* MeshComp)
 	return !this->HasTriggered;
 
 }
+
+ACharacterBase * UMyAnimNotifyState::GetCharacter(USkeletalMeshComponent* MeshComp)
+{
+	return Cast<ACharacterBase>(MeshComp->GetOwner());
+}
+

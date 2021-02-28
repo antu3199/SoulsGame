@@ -49329,6 +49329,8 @@
             <e p="MyAIController.h" t="Include" />
           </e>
           <e p="Animation" t="Include">
+            <e p="JumpSectionNS.cpp" t="Include" />
+            <e p="JumpSectionNS.h" t="Include" />
             <e p="MyAnimNotifyState.cpp" t="Include" />
             <e p="MyAnimNotifyState.h" t="Include" />
             <e p="SendGameplayTagEventNS.cpp" t="Include" />
