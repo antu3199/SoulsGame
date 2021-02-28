@@ -23,16 +23,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.h" afterDir="false" />
-    </list>
+    <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -492,6 +483,7 @@
       <workItem from="1614202701689" duration="3116000" />
       <workItem from="1614461982397" duration="2782000" />
       <workItem from="1614471679243" duration="3592000" />
+      <workItem from="1614475499454" duration="127000" />
     </task>
     <servers />
   </component>
