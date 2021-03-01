@@ -106,7 +106,7 @@ void ACharacterBase::InitializeItems()
 
 void ACharacterBase::TriggerJumpSectionForCombo()
 {
-	if (!this->JumpSectionNS)
+	if (this->JumpSectionNS == nullptr)
 	{
 		return;
 	}
@@ -250,5 +250,5 @@ void ACharacterBase::MakeWeapon(const FVector Offset)
 
 void ACharacterBase::SetComboJumpSection(UJumpSectionNS* JumpSection)
 {
-	this->JumpSectionNS = JumpSectionNS;
+	this->JumpSectionNS = JumpSection;
 }

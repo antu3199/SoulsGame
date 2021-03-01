@@ -43,8 +43,6 @@ void UPlayMontageAbility::EndAbility(const FGameplayAbilitySpecHandle Handle,
     bool bReplicateEndAbility, bool bWasCancelled)
 {
     Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
-    UE_LOG(LogTemp, Warning, TEXT("EndAbility"));
-
 }
 
 void UPlayMontageAbility::OnBlendOut(const FGameplayTag GameplayTag, FGameplayEventData GameplayEventData)

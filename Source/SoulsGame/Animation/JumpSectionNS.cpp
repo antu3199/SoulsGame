@@ -9,7 +9,13 @@ void UJumpSectionNS::DoNotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequen
 	Super::DoNotifyBegin(MeshComp, Animation, TotalDuration);
 
 	ACharacterBase * Character = GetCharacter(MeshComp);
+	if (Character == nullptr)
+	{
+		return;
+	}
+	
 	Character->SetComboJumpSection(this);
+
 }
 
 void UJumpSectionNS::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
@@ -17,5 +23,10 @@ void UJumpSectionNS::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequence
 	Super::DoNotifyEnd(MeshComp, Animation);
 	
 	ACharacterBase * Character = GetCharacter(MeshComp);
+	if (Character == nullptr)
+	{
+		return;
+	}
+	
 	Character->SetComboJumpSection(nullptr);
 }

@@ -35,6 +35,7 @@ void UMyAnimNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequen
 	if (!AnimInstance)
 	{
 		HasTriggered = false;
+		this->DoNotifyEnd(MeshComp, Animation);
 		return;
 	}
 	
@@ -43,6 +44,7 @@ void UMyAnimNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequen
 	if (!RootMotion)
 	{
 		HasTriggered = false;
+		this->DoNotifyEnd(MeshComp, Animation);
 		return;
 	}
 

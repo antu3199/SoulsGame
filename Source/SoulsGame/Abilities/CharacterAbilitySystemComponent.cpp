@@ -78,11 +78,11 @@ bool FGameplayAbilityDataContainer::HasTag(const FName TagName) const
 // UCharacterAbilitySystemComponent =====================================
 
 // Gets activatableAbilities with tags
-void UCharacterAbilitySystemComponent::GetActiveAbilitiesWithTags(const FGameplayTagContainer & GameplayTagContainer, OUT TArray<UMyGameplayAbility *> ActiveAbilities) const
+void UCharacterAbilitySystemComponent::GetActiveAbilitiesWithTags(const FGameplayTagContainer & GameplayTagContainer, OUT TArray<UMyGameplayAbility *>& ActiveAbilities)
 {
     // Get all abilities matching the gameplay tag container
     TArray<FGameplayAbilitySpec *> AbilitiesToActivate;
-    GetActivatableGameplayAbilitySpecsByAllMatchingTags(GameplayTagContainer, AbilitiesToActivate, true);
+    GetActivatableGameplayAbilitySpecsByAllMatchingTags(GameplayTagContainer, AbilitiesToActivate, false);
 
     for (FGameplayAbilitySpec * Spec : AbilitiesToActivate)
     {
@@ -99,7 +99,7 @@ void UCharacterAbilitySystemComponent::GetActiveAbilitiesWithTags(const FGamepla
 }
 
 void UCharacterAbilitySystemComponent::GetActiveAbilitiesWithTag(const FName TagName,
-    OUT const TArray<UMyGameplayAbility*> ActiveAbilities) const
+    TArray<UMyGameplayAbility*>& ActiveAbilities)
 {
     FGameplayTagContainer TagContainer;
     const FGameplayTag Tag = UGameplayTagsManager::Get().RequestGameplayTag(TagName, true);
@@ -108,10 +108,10 @@ void UCharacterAbilitySystemComponent::GetActiveAbilitiesWithTag(const FName Tag
     this->GetActiveAbilitiesWithTags(TagContainer, ActiveAbilities);
 }
 
-bool  UCharacterAbilitySystemComponent::IsUsingAbilityWithTag(const FName Tag) const
+bool  UCharacterAbilitySystemComponent::IsUsingAbilityWithTag(const FName Tag)
 {
     // ReSharper disable once IdentifierTypo
-    const TArray<UMyGameplayAbility*> MyAbilities;
+    TArray<UMyGameplayAbility*> MyAbilities;
     this->GetActiveAbilitiesWithTag(Tag, MyAbilities);
     return MyAbilities.Num() > 0;
 }

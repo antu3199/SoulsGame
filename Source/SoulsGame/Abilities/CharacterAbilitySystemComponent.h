@@ -23,9 +23,9 @@ class SOULSGAME_API UCharacterAbilitySystemComponent : public UAbilitySystemComp
 	GENERATED_BODY()
 
 public:
-	void GetActiveAbilitiesWithTags(const ::FGameplayTagContainer& GameplayTagContainer, OUT TArray<UMyGameplayAbility*> ActiveAbilities) const;
-	void GetActiveAbilitiesWithTag(const FName TagName, OUT TArray<UMyGameplayAbility*> ActiveAbilities) const;
-	bool  IsUsingAbilityWithTag(const FName Tag) const;
+	void GetActiveAbilitiesWithTags(const ::FGameplayTagContainer& GameplayTagContainer, OUT TArray<UMyGameplayAbility*>& ActiveAbilities);
+	void GetActiveAbilitiesWithTag(const FName TagName, OUT TArray<UMyGameplayAbility*>& ActiveAbilities);
+	bool  IsUsingAbilityWithTag(const FName Tag);
 	bool ActivateAbilityWithTag(const FName TagName);
 
 	void ApplyGameplayEffect(TSubclassOf<UMyGameplayEffect> & Effect, const UObject* NewSourceObject);
