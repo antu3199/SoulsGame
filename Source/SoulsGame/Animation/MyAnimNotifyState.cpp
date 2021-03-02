@@ -22,6 +22,10 @@ void UMyAnimNotifyState::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequ
 	{
 		this->DoNotifyBegin(MeshComp, Animation, TotalDuration);
 	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Notify ignored!"));
+	}
 	
 	//}
 }
@@ -76,6 +80,11 @@ void UMyAnimNotifyState::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequ
 
 bool UMyAnimNotifyState::ShouldDoNotify(USkeletalMeshComponent* MeshComp)
 {
+	if (this->CachedTime == 0)
+	{
+		return true;
+	}
+	
 	UAnimInstance* AnimInstance = MeshComp->GetAnimInstance();
 	if (!AnimInstance)
 	{
@@ -89,6 +98,8 @@ bool UMyAnimNotifyState::ShouldDoNotify(USkeletalMeshComponent* MeshComp)
 	}
 
 	const float Abs = FMath::Abs(RootMotion->GetPosition() - this->CachedTime);
+
+	UE_LOG(LogTemp, Warning, TEXT("Abs: %f"), Abs);
 
 	if (Abs > this->MultiNotifyThresh)
 	{

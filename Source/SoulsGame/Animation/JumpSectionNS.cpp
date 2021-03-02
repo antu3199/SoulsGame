@@ -25,6 +25,7 @@ void UJumpSectionNS::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequence
 	ACharacterBase * Character = GetCharacter(MeshComp);
 	if (Character == nullptr)
 	{
+		
 		return;
 	}
 	

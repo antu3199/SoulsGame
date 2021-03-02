@@ -25,6 +25,8 @@ public:
 
 	virtual  void NotifyActorEndOverlap(AActor* OtherActor) override;
 
+	virtual  void BeginPlay() override;
+
 	virtual  void Tick(float DeltaSeconds) override;
 
 protected:

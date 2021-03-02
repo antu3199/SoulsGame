@@ -49319,6 +49319,8 @@
             </e>
           </e>
           <e p="AI" t="Include">
+            <e p="BTService_IsStunned.cpp" t="Include" />
+            <e p="BTService_IsStunned.h" t="Include" />
             <e p="BTService_PlayerLocation.cpp" t="Include" />
             <e p="BTService_PlayerLocation.h" t="Include" />
             <e p="BTService_SetPlayerObject.cpp" t="Include" />
@@ -49367,7 +49369,6 @@
             <e p="ProjectileActor.cpp" t="Include" />
             <e p="ProjectileActor.h" t="Include" />
             <e p="TimeStopAbilityActor.cpp" t="Include" />
-            <e p="TimeStopAbilityActor.cpp~" t="Include" />
             <e p="TimeStopAbilityActor.h" t="Include" />
             <e p="WeaponActor.cpp" t="Include" />
             <e p="WeaponActor.h" t="Include" />
