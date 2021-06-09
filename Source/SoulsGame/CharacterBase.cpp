@@ -139,6 +139,19 @@ void ACharacterBase::TriggerJumpSectionForCombo()
 	// Jumps directly to animation
 	//AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
 
+	// Hack to blend two montages. Works out of the box, but need to fix callback logic...
+	FName NewMontageGroupName = CurrentActiveMontage->GetGroupName();
+
+	for (int32 InstanceIndex = AnimInstance->MontageInstances.Num() - 1; InstanceIndex >= 0; InstanceIndex--)
+	{
+		FAnimMontageInstance* MontageInstance = AnimInstance->MontageInstances[InstanceIndex];
+		if (MontageInstance && MontageInstance->Montage && (MontageInstance->Montage->GetGroupName() == NewMontageGroupName))
+		{
+			MontageInstance->OnMontageEnded = nullptr;
+			MontageInstance->OnMontageBlendingOutStarted = nullptr;
+		}
+	}
+	
 	AnimInstance->Montage_Play(CurrentActiveMontage);
 	AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
 
