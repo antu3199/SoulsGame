@@ -133,7 +133,8 @@ void ACharacterBase::TriggerJumpSectionForCombo()
 	const int RandInt = FMath::RandRange(0, this->JumpSectionNS->NextMontageNames.Num() - 1);
 	const FName NextSectionName = this->JumpSectionNS->NextMontageNames[RandInt];
 	
-	AnimInstance->Montage_SetNextSection(CurrentSectionName, NextSectionName, CurrentActiveMontage);
+	//AnimInstance->Montage_SetNextSection(CurrentSectionName, NextSectionName, CurrentActiveMontage);
+	AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
 
 	this->JumpSectionNS = nullptr;
 
@@ -236,8 +237,8 @@ void ACharacterBase::MakeWeapon(const FVector Offset)
 	if (SpawnedObject)
 	{
 		//this->AttachToComponent(this->GetMesh(), SpawnedObject,
-		const FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, true );
-		const FName SocketName = "l_handSocket";
+		const FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, true );
+		const FName SocketName = "r_handSocket";
 		SpawnedObject->AttachToComponent(this->GetMesh(), AttachmentRules, SocketName);
 
 		this->WeaponActor = Cast<AWeaponActor>(SpawnedObject);

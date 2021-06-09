@@ -24,7 +24,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/riderModule.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Abilities/GA_PlayerMelee.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Abilities/GA_PlayerMelee.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/ABP_CharacterPractice.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/ABP_CharacterPractice.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_PlayerCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/TestActor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/TestActor.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Game.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter/Montages/AM_Attack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter/Montages/AM_Attack.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/Redo_TextureMap.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/Redo_TextureMap.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/_obj_AfterTextuing2_matnet1_principledshader1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/_obj_AfterTextuing2_matnet1_principledshader1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/_obj_hair2_set_material_matnet1_principledshader1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/_obj_hair2_set_material_matnet1_principledshader1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/_obj_vellum_clothes3_matnet2_principledshader1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/clothes.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/run.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/run.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/run_Anim.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/run_PhysicsAsset.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/run_Skeleton.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/testhair3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/MyCharacter2/Assets/testhair3.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,13 +199,13 @@
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/CharacterAbilitySystemComponent.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Abilities/CharacterAbilitySystemComponent.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.cpp" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/JumpSectionNS.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/AI/BTService_IsStunned.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/AI/BTService_IsStunned.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Weapon/TimeStopAbilityActor.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mthZgxZ44M9oRjkJqVw1h9UFg6" />
@@ -502,6 +521,10 @@
       <workItem from="1614559822009" duration="1774000" />
       <workItem from="1614646149682" duration="3569000" />
       <workItem from="1614896194180" duration="1429000" />
+      <workItem from="1623114238368" duration="889000" />
+      <workItem from="1623115150107" duration="188000" />
+      <workItem from="1623115956792" duration="39000" />
+      <workItem from="1623196936607" duration="1086000" />
     </task>
     <servers />
   </component>
