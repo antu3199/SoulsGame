@@ -132,9 +132,17 @@ void ACharacterBase::TriggerJumpSectionForCombo()
 
 	const int RandInt = FMath::RandRange(0, this->JumpSectionNS->NextMontageNames.Num() - 1);
 	const FName NextSectionName = this->JumpSectionNS->NextMontageNames[RandInt];
-	
+
+	// Wait till animation finishes
 	//AnimInstance->Montage_SetNextSection(CurrentSectionName, NextSectionName, CurrentActiveMontage);
+
+	// Jumps directly to animation
+	//AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
+
+	AnimInstance->Montage_Play(CurrentActiveMontage);
 	AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
+
+	UE_LOG(LogTemp, Warning, TEXT("Trigger section %s"), *NextSectionName.ToString());
 
 	this->JumpSectionNS = nullptr;
 
@@ -252,4 +260,10 @@ void ACharacterBase::MakeWeapon(const FVector Offset)
 void ACharacterBase::SetComboJumpSection(UJumpSectionNS* JumpSection)
 {
 	this->JumpSectionNS = JumpSection;
+
+	if (JumpSection != nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Set jump section %s"), *JumpSection->NextMontageNames[0].ToString() );
+	}
+
 }

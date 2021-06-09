@@ -28,7 +28,7 @@ void UBTService_IsStunned::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* No
 	const FGameplayTag StunTag = UGameplayTagsManager::Get().RequestGameplayTag(TEXT("State.Stun"));
 	
 	const bool IsStunned = Character->GetAbilitySystemComponent()->HasMatchingGameplayTag(StunTag);
-	UE_LOG(LogTemp, Warning, TEXT("Is stunned? %d"), IsStunned);
+	// UE_LOG(LogTemp, Warning, TEXT("Is stunned? %d"), IsStunned);
 
 	OwnerComp.GetBlackboardComponent()->SetValueAsBool(GetSelectedBlackboardKey(), IsStunned);
 

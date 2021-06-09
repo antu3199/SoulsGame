@@ -99,8 +99,6 @@ bool UMyAnimNotifyState::ShouldDoNotify(USkeletalMeshComponent* MeshComp)
 
 	const float Abs = FMath::Abs(RootMotion->GetPosition() - this->CachedTime);
 
-	UE_LOG(LogTemp, Warning, TEXT("Abs: %f"), Abs);
-
 	if (Abs > this->MultiNotifyThresh)
 	{
 		this->HasTriggered = false;
