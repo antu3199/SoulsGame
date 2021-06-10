@@ -135,6 +135,8 @@ bool UPlayMontageAndWaitTask::StopPlayingMontage()
         return false;
     }
 
+    UE_LOG(LogTemp, Warning, TEXT("Stop playing montage"));
+
     FAnimMontageInstance * MontageInstance = AnimInstance->GetActiveInstanceForMontage(TaskData.MontageToPlay);
     if (MontageInstance)
     {
@@ -177,6 +179,36 @@ void UPlayMontageAndWaitTask::OnMontageEnded(UAnimMontage* Montage, bool bInterr
 
 void UPlayMontageAndWaitTask::OnMontageBlendingOut(UAnimMontage* Montage, bool bInterrupted)
 {
+    UE_LOG(LogTemp, Warning, TEXT("OnMontageBlendingOut"));
+
+    // Hack to ignore Blending ot if null meta data
+    bool HackyMetaData = false;
+    for (auto MetaData : Montage->GetMetaData())
+    {
+        if (MetaData == nullptr)
+        {
+            HackyMetaData = true;
+        }
+    }
+
+    if (HackyMetaData)
+    {
+        Montage->RemoveMetaData(nullptr);
+        return;
+    }
+
+    /*
+    if (bInterrupted)
+    {
+        return;
+    }
+    Montage->GetMetaData();
+    Montage->RemoveMetaData(nullptr);
+
+    Montage->AddMetaData(nullptr);
+    */
+    
+   
     // Clear Animating aiblity, and set root motion state
     if (this->Ability && this->Ability->GetCurrentMontage() == this->TaskData.MontageToPlay)
     {

@@ -142,17 +142,36 @@ void ACharacterBase::TriggerJumpSectionForCombo()
 	// Hack to blend two montages. Works out of the box, but need to fix callback logic...
 	FName NewMontageGroupName = CurrentActiveMontage->GetGroupName();
 
-	for (int32 InstanceIndex = AnimInstance->MontageInstances.Num() - 1; InstanceIndex >= 0; InstanceIndex--)
+	TPair<FOnMontageEnded, FOnMontageBlendingOutStarted> CallbackPair;
+	
+	for (int32 InstanceIndex = 0; InstanceIndex < AnimInstance->MontageInstances.Num(); InstanceIndex++)
 	{
 		FAnimMontageInstance* MontageInstance = AnimInstance->MontageInstances[InstanceIndex];
 		if (MontageInstance && MontageInstance->Montage && (MontageInstance->Montage->GetGroupName() == NewMontageGroupName))
 		{
-			MontageInstance->OnMontageEnded = nullptr;
-			MontageInstance->OnMontageBlendingOutStarted = nullptr;
+			CallbackPair = TPairInitializer<FOnMontageEnded, FOnMontageBlendingOutStarted>(MontageInstance->OnMontageEnded, MontageInstance->OnMontageBlendingOutStarted);
+			MontageInstance->OnMontageEnded.Unbind();
+			MontageInstance->OnMontageBlendingOutStarted.Unbind();
+		
 		}
 	}
+
+	CurrentActiveMontage->AddMetaData(nullptr);
 	
 	AnimInstance->Montage_Play(CurrentActiveMontage);
+
+
+	
+	for (int32 InstanceIndex = 0; InstanceIndex < AnimInstance->MontageInstances.Num(); InstanceIndex++)
+	{
+		FAnimMontageInstance* MontageInstance = AnimInstance->MontageInstances[InstanceIndex];
+		if (MontageInstance && MontageInstance->Montage && (MontageInstance->Montage->GetGroupName() == NewMontageGroupName))
+		{
+			MontageInstance->OnMontageEnded = CallbackPair.Key;
+			MontageInstance->OnMontageBlendingOutStarted = CallbackPair.Value;
+		}
+	}
+
 	AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
 
 	UE_LOG(LogTemp, Warning, TEXT("Trigger section %s"), *NextSectionName.ToString());
