@@ -8,6 +8,7 @@
 #include "DataAssets/AbilityAsset.h"
 #include "DataAssets/WeaponAsset.h"
 #include "Animation/JumpSectionNS.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 ACharacterBase::ACharacterBase()
@@ -26,6 +27,8 @@ ACharacterBase::ACharacterBase()
 	}
 
 	AttributeSet = CreateDefaultSubobject<UMyAttributeSet>(TEXT("AttributeSet"));
+
+	CharacterMovementComponent = Cast<UCharacterMovementComponent>(GetComponentByClass(UCharacterMovementComponent::StaticClass()));
 }
 
 UWeaponAsset* ACharacterBase::GetWeaponAsset() const
@@ -152,15 +155,12 @@ void ACharacterBase::TriggerJumpSectionForCombo()
 			CallbackPair = TPairInitializer<FOnMontageEnded, FOnMontageBlendingOutStarted>(MontageInstance->OnMontageEnded, MontageInstance->OnMontageBlendingOutStarted);
 			MontageInstance->OnMontageEnded.Unbind();
 			MontageInstance->OnMontageBlendingOutStarted.Unbind();
-		
 		}
 	}
 
 	CurrentActiveMontage->AddMetaData(nullptr);
 	
 	AnimInstance->Montage_Play(CurrentActiveMontage);
-
-
 	
 	for (int32 InstanceIndex = 0; InstanceIndex < AnimInstance->MontageInstances.Num(); InstanceIndex++)
 	{

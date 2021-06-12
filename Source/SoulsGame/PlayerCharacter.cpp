@@ -4,6 +4,7 @@
 #include "PlayerCharacter.h"
 
 #include "MyAssetManager.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 
 APlayerCharacter::APlayerCharacter()
@@ -14,7 +15,6 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::BeginPlay()
 {
     Super::BeginPlay();
-    
 }
 
 void APlayerCharacter::Tick(float DeltaTime)

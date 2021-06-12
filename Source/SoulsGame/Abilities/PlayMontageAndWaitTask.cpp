@@ -179,8 +179,6 @@ void UPlayMontageAndWaitTask::OnMontageEnded(UAnimMontage* Montage, bool bInterr
 
 void UPlayMontageAndWaitTask::OnMontageBlendingOut(UAnimMontage* Montage, bool bInterrupted)
 {
-    UE_LOG(LogTemp, Warning, TEXT("OnMontageBlendingOut"));
-
     // Hack to ignore Blending ot if null meta data
     bool HackyMetaData = false;
     for (auto MetaData : Montage->GetMetaData())

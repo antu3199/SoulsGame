@@ -16,6 +16,8 @@ AMyPlayerController::AMyPlayerController()
 void AMyPlayerController::BeginPlay()
 {
     Super::BeginPlay();
+
+    
 }
 
 void AMyPlayerController::Tick(float DeltaTime)

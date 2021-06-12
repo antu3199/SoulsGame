@@ -118,6 +118,9 @@ protected:
 	UPROPERTY()
 	UJumpSectionNS * JumpSectionNS;
 
+	UPROPERTY()
+	UCharacterMovementComponent * CharacterMovementComponent;
+
 	
 	virtual void TriggerJumpSectionForCombo();
 };
