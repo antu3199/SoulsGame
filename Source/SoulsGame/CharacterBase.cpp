@@ -143,6 +143,7 @@ void ACharacterBase::TriggerJumpSectionForCombo()
 	//AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
 
 	// Hack to blend two montages. Works out of the box, but need to fix callback logic...
+	
 	FName NewMontageGroupName = CurrentActiveMontage->GetGroupName();
 
 	TPair<FOnMontageEnded, FOnMontageBlendingOutStarted> CallbackPair;
