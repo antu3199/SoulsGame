@@ -34,7 +34,30 @@ void UWeaponAttackNS::DoNotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSeque
     }
 
     // TODO: Expose this
-    UE_LOG(LogTemp, Warning, TEXT("BEGIN WEAPON ATTACK AAAAAAAAAAAAAAAAA"));
     const FGameplayTag EventTag = Data.GameplayTag;
     WeaponActor->BeginWeaponAttack(EventTag);
+}
+
+void UWeaponAttackNS::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
+{
+    Super::DoNotifyEnd(MeshComp, Animation);
+
+    if (MeshComp == nullptr)
+    {
+        return;
+    }
+
+    ACharacterBase * Character = Cast<ACharacterBase>(MeshComp->GetOwner());
+    if (Character == nullptr)
+    {
+        return;
+    }
+    
+    AWeaponActor * WeaponActor = Character->WeaponActor;
+    if (!WeaponActor)
+    {
+        return;
+    }
+
+    WeaponActor->EndWeaponAttack();
 }

@@ -13411,7 +13411,7 @@
               </e>
               <e p="InfoLog.h" t="Include" />
               <e p="OptionalValue.h" t="Include" />
-              <e p="platforms" t="Include">
+              <e p="Platforms" t="Include">
                 <e p="Android" t="Include">
                   <e p="PlayerRuntime_Android.cpp" t="Include" />
                 </e>
@@ -20521,7 +20521,7 @@
               <e p="AUTHORS" t="Include" />
               <e p="CODEOWNERS" t="Include" />
               <e p="LICENSE" t="Include" />
-              <e p="platforms" t="Include">
+              <e p="Platforms" t="Include">
                 <e p="Common" t="Include">
                   <e p="room_effects_utils.cc" t="Include" />
                   <e p="room_effects_utils.h" t="Include" />
@@ -49161,27 +49161,6 @@
             <e p="AMD_AGS.Build.cs" t="Include" />
           </e>
         </e>
-        <e p="Android" t="Include">
-          <e p="cxa_demangle" t="Include">
-            <e p="AndroidOpenSourceProject.tps" t="Include" />
-            <e p="cxademangle.Build.cs" t="Include" />
-            <e p="cxademangle.tps" t="Include" />
-          </e>
-          <e p="detex" t="Include">
-            <e p="AndroidETC.cpp" t="Include" />
-            <e p="AndroidETC.h" t="Include" />
-            <e p="AndroidETCConvert.cpp" t="Include" />
-            <e p="AndroidETCHalfFloat.cpp" t="Include" />
-            <e p="AndroidETCInternal.h" t="Include" />
-            <e p="detex.Build.cs" t="Include" />
-            <e p="detex.tps" t="Include" />
-          </e>
-          <e p="libunwind" t="Include">
-            <e p="libunwind.Build.cs" t="Include" />
-            <e p="libunwind.tps" t="Include" />
-            <e p="ReadMe.txt" t="Include" />
-          </e>
-        </e>
         <e p="Asio" t="Include">
           <e p="Asio.Build.cs" t="Include" />
           <e p="Asio.tps" t="Include" />
@@ -49318,12 +49297,6 @@
           <e p="VTune" t="Include">
             <e p="IntelVTune.Build.cs" t="Include" />
             <e p="ITTAPI.tps" t="Include" />
-          </e>
-        </e>
-        <e p="IOS" t="Include">
-          <e p="SoundSwitch" t="Include">
-            <e p="SoundSwitch.Build.cs" t="Include" />
-            <e p="SoundSwitch.tps" t="Include" />
           </e>
         </e>
         <e p="jemalloc" t="Include">

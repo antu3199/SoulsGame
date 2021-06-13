@@ -51,13 +51,10 @@ void APlayerCharacter::DoMeleeAttack()
     if (!this->AbilitySystemComponent->IsUsingAbilityWithTag(MeleeAbilityTag))
     {
         // Start melee ability
-        UE_LOG(LogTemp, Warning, TEXT("STart combo"));
         this->AbilitySystemComponent->ActivateAbilityWithTag(MeleeAbilityTag);
     }
     else
     {
-        UE_LOG(LogTemp, Warning, TEXT("Continue combo")); // TODO: Fix this.
-        
         this->TriggerJumpSectionForCombo();
     }
 }

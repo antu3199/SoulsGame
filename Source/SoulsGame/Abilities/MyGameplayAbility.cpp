@@ -66,6 +66,8 @@ void UMyGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, con
 
 void UMyGameplayAbility::InitializeEffectContainerHelper()
 {
+    this->GameplayEffectsContainer.Reset();
+    
     for (TSubclassOf<UMyGameplayEffect> & Effect : this->AppliedGameplayEffects)
     {
         InitializeGameplayEffectData(this->GameplayEffectsContainer, Effect);

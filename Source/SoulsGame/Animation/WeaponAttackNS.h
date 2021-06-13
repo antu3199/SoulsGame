@@ -17,4 +17,6 @@ class SOULSGAME_API UWeaponAttackNS : public UMyAnimNotifyState
 
 protected:
     virtual void DoNotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
+
+	virtual void DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation) override;
 };

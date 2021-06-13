@@ -8,6 +8,7 @@
 #include "Abilities/GameplayAbilityTypes.h"
 
 
+
 #include "MyGameplayEffect.generated.h"
 
 class UMyGameplayEffect;
@@ -47,6 +48,11 @@ struct FGameplayEffectDataContainer
 	FGameplayEffectData & CreateNewGameplayEffectData();
 
 	bool DoesEffectContainerHaveEffects() const;
+
+	void Reset()
+	{
+		ActiveGameplayEffects.Reset();
+	}
 };
 
 

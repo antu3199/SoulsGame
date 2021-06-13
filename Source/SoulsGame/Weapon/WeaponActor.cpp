@@ -97,7 +97,6 @@ void AWeaponActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	GameplayEventData.Instigator = InstigatorActor;
 	GameplayEventData.Target = OtherActor;
 
-	UE_LOG(LogTemp, Warning, TEXT("Send gameplay event to actor %s Target: %s"), *InstigatorActor->GetName(), *OtherActor->GetName());
 	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(InstigatorActor, this->AttackEventTag, GameplayEventData);
 }
 

@@ -137,14 +137,13 @@ void ACharacterBase::TriggerJumpSectionForCombo()
 	const FName NextSectionName = this->JumpSectionNS->NextMontageNames[RandInt];
 
 	// Wait till animation finishes
-	AnimInstance->Montage_SetNextSection(CurrentSectionName, NextSectionName, CurrentActiveMontage);
+	//AnimInstance->Montage_SetNextSection(CurrentSectionName, NextSectionName, CurrentActiveMontage);
 
 	// Jumps directly to animation
-	//AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
+	// AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
 
 	// Hack to blend two montages. Works out of the box, but need to fix callback logic...
-	/*
-	
+
 	FName NewMontageGroupName = CurrentActiveMontage->GetGroupName();
 
 	TPair<FOnMontageEnded, FOnMontageBlendingOutStarted> CallbackPair;
@@ -177,7 +176,6 @@ void ACharacterBase::TriggerJumpSectionForCombo()
 	AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
 
 	UE_LOG(LogTemp, Warning, TEXT("Trigger section %s"), *NextSectionName.ToString());
-*/
 	this->JumpSectionNS = nullptr;
 
 }
@@ -250,7 +248,7 @@ void ACharacterBase::UseAbility(const FName AbilityTag)
 
 	if (this->AbilitySystemComponent->ActivateAbilityWithTag(AbilityTag))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Activate ability %s"), *AbilityTag.ToString());
+		// UE_LOG(LogTemp, Warning, TEXT("Activate ability %s"), *AbilityTag.ToString());
 		//UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter::DoRangedAttack SUCCESSED!"));
 	}
 	else
