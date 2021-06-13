@@ -34,6 +34,7 @@ void UWeaponAttackNS::DoNotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSeque
     }
 
     // TODO: Expose this
+    UE_LOG(LogTemp, Warning, TEXT("BEGIN WEAPON ATTACK AAAAAAAAAAAAAAAAA"));
     const FGameplayTag EventTag = Data.GameplayTag;
     WeaponActor->BeginWeaponAttack(EventTag);
 }
