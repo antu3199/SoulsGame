@@ -79,6 +79,10 @@ public:
 
 	//  Set combo, or nullptr if want to disable combo.
 	void SetComboJumpSection(UJumpSectionNS * JumpSection);
+
+
+	UPROPERTY(EditAnywhere, Category="Animation")
+	UAnimMontage * OnHitMontage;
 	
 protected:
 	// Called when the game starts or when spawned

@@ -9,6 +9,7 @@
 #include "DataAssets/WeaponAsset.h"
 #include "Animation/JumpSectionNS.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 ACharacterBase::ACharacterBase()
@@ -225,6 +226,35 @@ void ACharacterBase::HandleDamage(float DamageAmount, const FHitResult& HitInfo,
 	const FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser)
 {
 	UE_LOG(LogTemp, Warning, TEXT("I Got hit: %s"), *this->GetName());
+	if (this->OnHitMontage != nullptr)
+	{
+		UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
+		if (!AnimInstance)
+		{
+			return;
+		}
+
+
+		const FName CurrentSectionName = AnimInstance->Montage_GetCurrentSection(OnHitMontage);
+
+		const int RandInt = FMath::RandRange(0, OnHitMontage->CompositeSections.Num() - 1);
+		const FName NextSectionName = OnHitMontage->GetSectionName(RandInt);
+
+		AnimInstance->Montage_Play(OnHitMontage);
+		AnimInstance->Montage_JumpToSection(NextSectionName, OnHitMontage);
+	}
+
+	bool FaceAttacker = true;
+	if (FaceAttacker)
+	{
+		FVector MyLocation = GetActorLocation();
+
+		FVector InstigatorLocation = InstigatorCharacter->GetActorLocation();
+		FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(MyLocation, InstigatorLocation);
+
+		SetActorRotation(Rotation);
+	}
+	
 	
 	//this->OnDamaged(DamageAmount, HitInfo, DamageTags, InstigatorCharacter, DamageCauser);
 }
