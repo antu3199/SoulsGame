@@ -83,6 +83,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category="Animation")
 	UAnimMontage * OnHitMontage;
+
+	UPROPERTY(EditAnywhere, Category="Socket")
+	FName WeaponSocketName = TEXT("r_handSocket");
 	
 protected:
 	// Called when the game starts or when spawned

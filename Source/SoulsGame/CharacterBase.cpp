@@ -251,6 +251,13 @@ void ACharacterBase::HandleDamage(float DamageAmount, const FHitResult& HitInfo,
 
 		FVector InstigatorLocation = InstigatorCharacter->GetActorLocation();
 		FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(MyLocation, InstigatorLocation);
+		FRotator ThisRotation = this->GetActorRotation();
+
+		Rotation.Pitch = ThisRotation.Pitch;
+
+		//FVector RotationEuler = Rotation.Euler();
+		//RotationEuler.Y = ThisRotation.Euler().Y;
+		//FRotator FinalRotation = FRotator::MakeFromEuler(RotationEuler);
 
 		SetActorRotation(Rotation);
 	}
@@ -308,7 +315,7 @@ void ACharacterBase::MakeWeapon(const FVector Offset)
 	{
 		//this->AttachToComponent(this->GetMesh(), SpawnedObject,
 		const FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, true );
-		const FName SocketName = "r_handSocket";
+		const FName SocketName = this->WeaponSocketName;
 		SpawnedObject->AttachToComponent(this->GetMesh(), AttachmentRules, SocketName);
 
 		this->WeaponActor = Cast<AWeaponActor>(SpawnedObject);
