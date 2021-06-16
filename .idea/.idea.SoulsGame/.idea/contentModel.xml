@@ -49670,6 +49670,8 @@
             <e p="MyAnimNotifyState.h" t="Include" />
             <e p="SendGameplayTagEventNS.cpp" t="Include" />
             <e p="SendGameplayTagEventNS.h" t="Include" />
+            <e p="StopAndStartAINS.cpp" t="Include" />
+            <e p="StopAndStartAINS.h" t="Include" />
             <e p="WeaponAttackNS.cpp" t="Include" />
             <e p="WeaponAttackNS.h" t="Include" />
           </e>

@@ -310,6 +310,7 @@ void ACharacterBase::MakeWeapon(const FVector Offset)
 	SpawnParameters.Instigator = this; // Needed for WeaponActor.cpp
 	SpawnParameters.Owner = this;
 
+
 	AActor * SpawnedObject = GetWorld()->SpawnActor<AActor>(this->WeaponAsset->WeaponActorTemplate, Location, Rotation, SpawnParameters);
 	if (SpawnedObject)
 	{
