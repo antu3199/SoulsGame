@@ -28,4 +28,7 @@ void USendGameplayTagEventNS::DoNotifyBegin(USkeletalMeshComponent* MeshComp, UA
 
 	AActor * Actor = MeshComp->GetOwner();
 	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(Actor, Data.GameplayTag, FGameplayEventData());
+
+
+
 }

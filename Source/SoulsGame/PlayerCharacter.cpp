@@ -5,6 +5,7 @@
 
 #include "MyAssetManager.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 
 
 APlayerCharacter::APlayerCharacter()
@@ -57,6 +58,65 @@ void APlayerCharacter::DoMeleeAttack()
     {
         this->TriggerJumpSectionForCombo();
     }
+}
+
+void APlayerCharacter::DoOnRoll()
+{
+    if (!this->AbilitySystemComponent)
+    {
+        return;
+    }
+    
+    if (!this->CanUseAnyAbility())
+    {
+        return;
+    }
+
+    if (this->OnRollMontage == nullptr)
+    {
+        return;
+    }
+
+    //FRotator ControlRotation = GetControlRotation(); // Control rotation is the camera, but I don't want this.
+    //SetActorRotation(ControlRotation);
+    
+
+    //FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, Right);
+    //    PawnCharacter->SetActorRotation(Rotation);
+
+    
+    UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
+    if (!AnimInstance)
+    {
+        return;
+    }
+
+
+    AnimInstance->Montage_Play(OnRollMontage);
+
+
+}
+
+bool APlayerCharacter::IsRootMotionDisabled() const
+{
+    UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
+    if (!AnimInstance)
+    {
+        return false;
+    }
+
+    FAnimMontageInstance* MontageInstance = AnimInstance->GetActiveMontageInstance();
+    if (!MontageInstance)
+    {
+        return false;
+    }
+
+    if (MontageInstance->IsRootMotionDisabled())
+    {
+        return true;
+    }
+
+    return false;
 }
 
 

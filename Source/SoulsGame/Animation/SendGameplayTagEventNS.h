@@ -9,6 +9,8 @@
 /**
  * 
  */
+
+
 UCLASS()
 class SOULSGAME_API USendGameplayTagEventNS : public UMyAnimNotifyState
 {

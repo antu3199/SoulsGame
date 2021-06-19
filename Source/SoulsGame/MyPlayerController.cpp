@@ -13,18 +13,46 @@ AMyPlayerController::AMyPlayerController()
     
 }
 
+void AMyPlayerController::RotateTowardsDirection()
+{
+    APlayerCharacter* PlayerCharacter = this->GetPawnCharacter();
+    const FVector Dir = GetDirectionVector();
+
+    FRotator ThisRotation = PlayerCharacter->GetActorRotation();
+
+    FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, Dir);
+    Rotation.Pitch = ThisRotation.Pitch;
+
+    PlayerCharacter->SetActorRotation(Rotation);
+
+
+
+}
+
 void AMyPlayerController::BeginPlay()
 {
     Super::BeginPlay();
-
     
 }
 
 void AMyPlayerController::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
+    APlayerCharacter* PlayerCharacter = this->GetPawnCharacter();
 
+    const FVector Dir = GetDirectionVector();
+
+    if (!PlayerCharacter->GetCanMove() && PlayerCharacter->CanStillRotate && Dir != FVector::ZeroVector && PlayerCharacter->IsRootMotionDisabled())
+    {
+        FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, Dir);
+        FRotator ThisRotation = PlayerCharacter->GetActorRotation();
+    
+        PlayerCharacter->SetActorRotation(FMath::Lerp(ThisRotation, Rotation, CharacterRotationRate));
+    }
+
+    
     this->UpdateRotation(DeltaTime);
+
 }
 
 // Tick() cannot be used to set a rotation without SetRotation()....
@@ -71,6 +99,18 @@ void AMyPlayerController::SetupInputComponent()
         this->GetPawnCharacter()->UseAbility("Ability.Timestop");
     });
     this->InputComponent->KeyBindings.Add(TimeAbilityBinding);
+
+    FInputKeyBinding RollAbilityBinding(EKeys::SpaceBar, IE_Pressed);
+    RollAbilityBinding.KeyDelegate.GetDelegateForManualSet().BindLambda( [this] ()
+    {
+        //this->GetPawnCharacter()->UseAbility("Ability.Roll");
+        APlayerCharacter* Character = this->GetPawnCharacter();
+        RotateTowardsDirection();
+        
+        Character->DoOnRoll();
+        
+    });
+    this->InputComponent->KeyBindings.Add(RollAbilityBinding);
     
 }
 
@@ -99,7 +139,25 @@ void AMyPlayerController::MoveForward(const float InputAxis)
     const FRotator Rotator = PlayerCameraManager->GetCameraRotation();
     const FVector Forward = UKismetMathLibrary::GetForwardVector(Rotator);
     APlayerCharacter* PawnCharacter = this->GetPawnCharacter();
-    PawnCharacter->AddMovementInput(Forward, InputAxis);
+
+    if (PawnCharacter->GetCanMove())
+    {
+        PawnCharacter->AddMovementInput(Forward, InputAxis);
+    }
+
+    if (InputAxis > 0)
+    {
+        ForwardBackDirectionVector = Forward;
+    }
+    else if (InputAxis < 0)
+    {
+        ForwardBackDirectionVector = -Forward;
+    }
+    else
+    {
+        ForwardBackDirectionVector = FVector::ZeroVector;
+    }
+   
 }
 
 // ReSharper disable once CppMemberFunctionMayBeConst
@@ -107,8 +165,38 @@ void AMyPlayerController::MoveRight(const float InputAxis)
 {
     const FRotator Rotator = PlayerCameraManager->GetCameraRotation();
     const FVector Right = UKismetMathLibrary::GetRightVector(Rotator);
+
     APlayerCharacter* PawnCharacter = this->GetPawnCharacter();
-    PawnCharacter->AddMovementInput(Right, InputAxis);
+    if (PawnCharacter->GetCanMove())
+    {
+        PawnCharacter->AddMovementInput(Right, InputAxis);
+    }
+    else
+    {
+    }
+
+    
+    if (InputAxis > 0)
+    {
+        RightLeftDirectionVector = Right;
+    }
+    else if (InputAxis < 0)
+    {
+        RightLeftDirectionVector = -Right;
+    }
+    else
+    {
+        RightLeftDirectionVector = FVector::ZeroVector;
+    }
+}
+
+FVector AMyPlayerController::GetDirectionVector() const
+{
+    FVector Result = (ForwardBackDirectionVector + RightLeftDirectionVector);
+    Result.Z = 0;
+    Result.Normalize();
+        
+    return Result;
 }
 
 APlayerCharacter* AMyPlayerController::GetPawnCharacter() const
@@ -119,6 +207,8 @@ APlayerCharacter* AMyPlayerController::GetPawnCharacter() const
 // ReSharper disable once CppMemberFunctionMayBeConst
 void AMyPlayerController::NormalAttack()
 {
+
+    //RotateTowardsDirection();
     this->GetPawnCharacter()->DoMeleeAttack();
 }
 

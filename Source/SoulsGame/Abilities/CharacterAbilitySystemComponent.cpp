@@ -96,6 +96,7 @@ void UCharacterAbilitySystemComponent::GetActiveAbilitiesWithTags(const FGamepla
             ActiveAbilities.Add(Cast<UMyGameplayAbility>(ActiveAbility));
         }
     }
+
 }
 
 void UCharacterAbilitySystemComponent::GetActiveAbilitiesWithTag(const FName TagName,
@@ -144,6 +145,7 @@ void UCharacterAbilitySystemComponent::ApplyGameplayEffect(
     {
         this->ApplyGameplayEffectSpecToTarget(*NewHandle.Data.Get(), this);
     }
+
 }
 
 

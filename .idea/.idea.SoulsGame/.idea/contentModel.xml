@@ -49664,12 +49664,16 @@
             <e p="MyAIController.h" t="Include" />
           </e>
           <e p="Animation" t="Include">
+            <e p="GrantLooseGameplayTagNS.cpp" t="Include" />
+            <e p="GrantLooseGameplayTagNS.h" t="Include" />
             <e p="JumpSectionNS.cpp" t="Include" />
             <e p="JumpSectionNS.h" t="Include" />
             <e p="MyAnimNotifyState.cpp" t="Include" />
             <e p="MyAnimNotifyState.h" t="Include" />
             <e p="SendGameplayTagEventNS.cpp" t="Include" />
             <e p="SendGameplayTagEventNS.h" t="Include" />
+            <e p="SetCanMoveNS.cpp" t="Include" />
+            <e p="SetCanMoveNS.h" t="Include" />
             <e p="StopAndStartAINS.cpp" t="Include" />
             <e p="StopAndStartAINS.h" t="Include" />
             <e p="WeaponAttackNS.cpp" t="Include" />

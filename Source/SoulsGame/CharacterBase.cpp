@@ -37,6 +37,17 @@ UWeaponAsset* ACharacterBase::GetWeaponAsset() const
 	return this->WeaponAsset;
 }
 
+void ACharacterBase::SetCanMove(bool Set, bool StillRotate)
+{
+	CanMove = Set;
+	CanStillRotate = StillRotate;
+}
+
+bool ACharacterBase::GetCanMove() const
+{
+	return CanMove;
+}
+
 // Called when the game starts or when spawned
 void ACharacterBase::BeginPlay()
 {
