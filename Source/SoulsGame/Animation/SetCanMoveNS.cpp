@@ -14,7 +14,7 @@ void USetCanMoveNS::DoNotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenc
 		return;
 	}
 
-	Character->SetCanMove(CanMoveNotifyStart, CanStillRotate);
+	Character->SetCanMove(CanMoveNotifyStart);
 }
 
 void USetCanMoveNS::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
@@ -28,5 +28,5 @@ void USetCanMoveNS::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceB
 		return;
 	}
 
-	Character->SetCanMove(CanMoveNotifyEnd, CanStillRotate);
+	Character->SetCanMove(CanMoveNotifyEnd);
 }

@@ -37,15 +37,92 @@ UWeaponAsset* ACharacterBase::GetWeaponAsset() const
 	return this->WeaponAsset;
 }
 
-void ACharacterBase::SetCanMove(bool Set, bool StillRotate)
+void ACharacterBase::SetCanMove(bool Set)
 {
 	CanMove = Set;
-	CanStillRotate = StillRotate;
 }
 
 bool ACharacterBase::GetCanMove() const
 {
 	return CanMove;
+}
+
+void ACharacterBase::TriggerJumpSectionCombo()
+{
+	if (this->JumpSectionNS == nullptr)
+	{
+		return;
+	}
+
+	if (!GetMesh())
+	{
+		return;
+	}
+
+	UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
+	if (!AnimInstance)
+	{
+		return;
+	}
+
+	UAnimMontage * CurrentActiveMontage = AnimInstance->GetCurrentActiveMontage();
+	if (!CurrentActiveMontage)
+	{
+		return;
+	}
+
+	if (!BufferedJumpSectionCombo)
+	{
+		return;
+	}
+
+	const FName CurrentSectionName = AnimInstance->Montage_GetCurrentSection(CurrentActiveMontage);
+
+	const int RandInt = FMath::RandRange(0, this->JumpSectionNS->NextMontageNames.Num() - 1);
+	const FName NextSectionName = this->JumpSectionNS->NextMontageNames[RandInt];
+
+	// Wait till animation finishes
+	//AnimInstance->Montage_SetNextSection(CurrentSectionName, NextSectionName, CurrentActiveMontage);
+
+	// Jumps directly to animation
+	// AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
+
+	// Hack to blend two montages. Works out of the box, but need to fix callback logic...
+
+	FName NewMontageGroupName = CurrentActiveMontage->GetGroupName();
+
+	TPair<FOnMontageEnded, FOnMontageBlendingOutStarted> CallbackPair;
+	
+	for (int32 InstanceIndex = 0; InstanceIndex < AnimInstance->MontageInstances.Num(); InstanceIndex++)
+	{
+		FAnimMontageInstance* MontageInstance = AnimInstance->MontageInstances[InstanceIndex];
+		if (MontageInstance && MontageInstance->Montage && (MontageInstance->Montage->GetGroupName() == NewMontageGroupName))
+		{
+			CallbackPair = TPairInitializer<FOnMontageEnded, FOnMontageBlendingOutStarted>(MontageInstance->OnMontageEnded, MontageInstance->OnMontageBlendingOutStarted);
+			MontageInstance->OnMontageEnded.Unbind();
+			MontageInstance->OnMontageBlendingOutStarted.Unbind();
+		}
+	}
+
+	CurrentActiveMontage->AddMetaData(nullptr);
+	
+	AnimInstance->Montage_Play(CurrentActiveMontage);
+	
+	for (int32 InstanceIndex = 0; InstanceIndex < AnimInstance->MontageInstances.Num(); InstanceIndex++)
+	{
+		FAnimMontageInstance* MontageInstance = AnimInstance->MontageInstances[InstanceIndex];
+		if (MontageInstance && MontageInstance->Montage && (MontageInstance->Montage->GetGroupName() == NewMontageGroupName))
+		{
+			MontageInstance->OnMontageEnded = CallbackPair.Key;
+			MontageInstance->OnMontageBlendingOutStarted = CallbackPair.Value;
+		}
+	}
+
+	AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
+
+	UE_LOG(LogTemp, Warning, TEXT("Trigger section %s"), *NextSectionName.ToString());
+	this->JumpSectionNS = nullptr;
+	BufferedJumpSectionCombo = false;
 }
 
 // Called when the game starts or when spawned
@@ -119,7 +196,7 @@ void ACharacterBase::InitializeItems()
 	}
 }
 
-void ACharacterBase::TriggerJumpSectionForCombo()
+void ACharacterBase::BufferJumpSectionForCombo()
 {
 	if (this->JumpSectionNS == nullptr)
 	{
@@ -143,52 +220,7 @@ void ACharacterBase::TriggerJumpSectionForCombo()
 	    return;
     }
 
-	const FName CurrentSectionName = AnimInstance->Montage_GetCurrentSection(CurrentActiveMontage);
-
-	const int RandInt = FMath::RandRange(0, this->JumpSectionNS->NextMontageNames.Num() - 1);
-	const FName NextSectionName = this->JumpSectionNS->NextMontageNames[RandInt];
-
-	// Wait till animation finishes
-	//AnimInstance->Montage_SetNextSection(CurrentSectionName, NextSectionName, CurrentActiveMontage);
-
-	// Jumps directly to animation
-	// AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
-
-	// Hack to blend two montages. Works out of the box, but need to fix callback logic...
-
-	FName NewMontageGroupName = CurrentActiveMontage->GetGroupName();
-
-	TPair<FOnMontageEnded, FOnMontageBlendingOutStarted> CallbackPair;
-	
-	for (int32 InstanceIndex = 0; InstanceIndex < AnimInstance->MontageInstances.Num(); InstanceIndex++)
-	{
-		FAnimMontageInstance* MontageInstance = AnimInstance->MontageInstances[InstanceIndex];
-		if (MontageInstance && MontageInstance->Montage && (MontageInstance->Montage->GetGroupName() == NewMontageGroupName))
-		{
-			CallbackPair = TPairInitializer<FOnMontageEnded, FOnMontageBlendingOutStarted>(MontageInstance->OnMontageEnded, MontageInstance->OnMontageBlendingOutStarted);
-			MontageInstance->OnMontageEnded.Unbind();
-			MontageInstance->OnMontageBlendingOutStarted.Unbind();
-		}
-	}
-
-	CurrentActiveMontage->AddMetaData(nullptr);
-	
-	AnimInstance->Montage_Play(CurrentActiveMontage);
-	
-	for (int32 InstanceIndex = 0; InstanceIndex < AnimInstance->MontageInstances.Num(); InstanceIndex++)
-	{
-		FAnimMontageInstance* MontageInstance = AnimInstance->MontageInstances[InstanceIndex];
-		if (MontageInstance && MontageInstance->Montage && (MontageInstance->Montage->GetGroupName() == NewMontageGroupName))
-		{
-			MontageInstance->OnMontageEnded = CallbackPair.Key;
-			MontageInstance->OnMontageBlendingOutStarted = CallbackPair.Value;
-		}
-	}
-
-	AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
-
-	UE_LOG(LogTemp, Warning, TEXT("Trigger section %s"), *NextSectionName.ToString());
-	this->JumpSectionNS = nullptr;
+	this->BufferedJumpSectionCombo = true;
 
 }
 
@@ -346,5 +378,6 @@ void ACharacterBase::SetComboJumpSection(UJumpSectionNS* JumpSection)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Set jump section %s"), *JumpSection->NextMontageNames[0].ToString() );
 	}
+	this->BufferedJumpSectionCombo = false; // Not necessary, but just in case
 
 }

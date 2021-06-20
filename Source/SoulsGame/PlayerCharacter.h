@@ -26,6 +26,7 @@ public:
 
 	bool IsRootMotionDisabled() const;
 
+
 	
 protected:
 	// Called when the game starts or when spawned

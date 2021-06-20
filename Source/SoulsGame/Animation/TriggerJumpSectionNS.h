@@ -4,23 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "MyAnimNotifyState.h"
-#include "SetCanMoveNS.generated.h"
+#include "TriggerJumpSectionNS.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class SOULSGAME_API USetCanMoveNS : public UMyAnimNotifyState
+class SOULSGAME_API UTriggerJumpSectionNS : public UMyAnimNotifyState
 {
 	GENERATED_BODY()
-public:
-	UPROPERTY(EditAnywhere)
-	bool CanMoveNotifyStart = false;
-
-	UPROPERTY(EditAnywhere)
-	bool CanMoveNotifyEnd = true;
-
-
 protected:
 	virtual void DoNotifyBegin(USkeletalMeshComponent * MeshComp, UAnimSequenceBase * Animation, float TotalDuration) override;
 

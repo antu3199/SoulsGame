@@ -56,7 +56,7 @@ void APlayerCharacter::DoMeleeAttack()
     }
     else
     {
-        this->TriggerJumpSectionForCombo();
+        this->BufferJumpSectionForCombo();
     }
 }
 

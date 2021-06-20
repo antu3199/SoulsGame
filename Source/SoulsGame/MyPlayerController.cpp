@@ -42,7 +42,7 @@ void AMyPlayerController::Tick(float DeltaTime)
 
     const FVector Dir = GetDirectionVector();
 
-    if (!PlayerCharacter->GetCanMove() && PlayerCharacter->CanStillRotate && Dir != FVector::ZeroVector && PlayerCharacter->IsRootMotionDisabled())
+    if (!PlayerCharacter->GetCanMove() && PlayerCharacter->OverrideRotation && Dir != FVector::ZeroVector && PlayerCharacter->IsRootMotionDisabled())
     {
         FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, Dir);
         FRotator ThisRotation = PlayerCharacter->GetActorRotation();

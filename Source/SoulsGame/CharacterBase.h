@@ -87,10 +87,15 @@ public:
 	UPROPERTY(EditAnywhere, Category="Socket")
 	FName WeaponSocketName = TEXT("r_handSocket");
 
-	void SetCanMove(bool Set, bool StillRotate = false);
+	void SetCanMove(bool Set);
 	bool GetCanMove() const;
 
-	bool CanStillRotate = true;
+	bool OverrideRotation = true;
+
+	bool BufferedJumpSectionCombo;
+
+	void TriggerJumpSectionCombo();
+
 	
 protected:
 	// Called when the game starts or when spawned
@@ -135,6 +140,7 @@ protected:
 
 	bool CanMove = true;
 
+
 	
-	virtual void TriggerJumpSectionForCombo();
+	virtual void BufferJumpSectionForCombo();
 };
