@@ -53,4 +53,6 @@ protected:
 	UPROPERTY(EditAnywhere)
 	float CharacterRotationRate = 0.05f;
 
+	void OnPreInput();
+
 };

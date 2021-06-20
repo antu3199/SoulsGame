@@ -123,6 +123,24 @@ void ACharacterBase::TriggerJumpSectionCombo()
 	UE_LOG(LogTemp, Warning, TEXT("Trigger section %s"), *NextSectionName.ToString());
 	this->JumpSectionNS = nullptr;
 	BufferedJumpSectionCombo = false;
+	JumpSectionCancellable = false;
+}
+
+void ACharacterBase::StopPlayingMontage()
+{
+	UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
+	if (!AnimInstance)
+	{
+		return;
+	}
+
+	UAnimMontage * CurrentActiveMontage = AnimInstance->GetCurrentActiveMontage();
+	if (!CurrentActiveMontage)
+	{
+		return;
+	}
+	
+	AnimInstance->Montage_Stop(0.1f, CurrentActiveMontage);
 }
 
 // Called when the game starts or when spawned

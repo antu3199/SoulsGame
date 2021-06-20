@@ -24,9 +24,6 @@ void AMyPlayerController::RotateTowardsDirection()
     Rotation.Pitch = ThisRotation.Pitch;
 
     PlayerCharacter->SetActorRotation(Rotation);
-
-
-
 }
 
 void AMyPlayerController::BeginPlay()
@@ -42,7 +39,7 @@ void AMyPlayerController::Tick(float DeltaTime)
 
     const FVector Dir = GetDirectionVector();
 
-    if (!PlayerCharacter->GetCanMove() && PlayerCharacter->OverrideRotation && Dir != FVector::ZeroVector && PlayerCharacter->IsRootMotionDisabled())
+    if (PlayerCharacter && PlayerCharacter->OverrideRotation && Dir != FVector::ZeroVector)
     {
         FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, Dir);
         FRotator ThisRotation = PlayerCharacter->GetActorRotation();
@@ -82,6 +79,7 @@ void AMyPlayerController::SetupInputComponent()
     FInputKeyBinding TestAbilityBinding(EKeys::T, IE_Pressed);
     TestAbilityBinding.KeyDelegate.GetDelegateForManualSet().BindLambda( [this] ()
     {
+        this->OnPreInput();
         this->GetPawnCharacter()->UseAbility("Ability.Test");
     });
     this->InputComponent->KeyBindings.Add(TestAbilityBinding);
@@ -89,6 +87,7 @@ void AMyPlayerController::SetupInputComponent()
     FInputKeyBinding HealAbilityBinding(EKeys::H, IE_Pressed);
     HealAbilityBinding.KeyDelegate.GetDelegateForManualSet().BindLambda( [this] ()
     {
+        this->OnPreInput();
         this->GetPawnCharacter()->UseAbility("Ability.Heal");
     });
     this->InputComponent->KeyBindings.Add(HealAbilityBinding);
@@ -96,6 +95,7 @@ void AMyPlayerController::SetupInputComponent()
     FInputKeyBinding TimeAbilityBinding(EKeys::G, IE_Pressed);
     TimeAbilityBinding.KeyDelegate.GetDelegateForManualSet().BindLambda( [this] ()
     {
+        this->OnPreInput();
         this->GetPawnCharacter()->UseAbility("Ability.Timestop");
     });
     this->InputComponent->KeyBindings.Add(TimeAbilityBinding);
@@ -142,6 +142,11 @@ void AMyPlayerController::MoveForward(const float InputAxis)
 
     if (PawnCharacter->GetCanMove())
     {
+        if (InputAxis != 0)
+        {
+            OnPreInput();
+        }
+        
         PawnCharacter->AddMovementInput(Forward, InputAxis);
     }
 
@@ -169,12 +174,13 @@ void AMyPlayerController::MoveRight(const float InputAxis)
     APlayerCharacter* PawnCharacter = this->GetPawnCharacter();
     if (PawnCharacter->GetCanMove())
     {
+        if (InputAxis != 0)
+        {
+            OnPreInput();
+        }
+        
         PawnCharacter->AddMovementInput(Right, InputAxis);
     }
-    else
-    {
-    }
-
     
     if (InputAxis > 0)
     {
@@ -204,6 +210,21 @@ APlayerCharacter* AMyPlayerController::GetPawnCharacter() const
     return Cast<APlayerCharacter>(GetPawn());
 }
 
+void AMyPlayerController::OnPreInput()
+{
+    APlayerCharacter* PawnCharacter = this->GetPawnCharacter();
+    if (PawnCharacter == nullptr)
+    {
+        return;
+    }
+
+    if (PawnCharacter->JumpSectionCancellable)
+    {
+        PawnCharacter->StopPlayingMontage();
+    }
+
+}
+
 // ReSharper disable once CppMemberFunctionMayBeConst
 void AMyPlayerController::NormalAttack()
 {
@@ -215,6 +236,7 @@ void AMyPlayerController::NormalAttack()
 // ReSharper disable once CppMemberFunctionMayBeConst
 void AMyPlayerController::UseAbility()
 {
+    this->OnPreInput();
     this->GetPawnCharacter()->UseAbility("Ability.Ranged");
 }
 

@@ -15,10 +15,20 @@ void UTriggerJumpSectionNS::DoNotifyBegin(USkeletalMeshComponent* MeshComp, UAni
 		return;
 	}
 
+	Character->JumpSectionCancellable = true;
 	Character->TriggerJumpSectionCombo();
 }
 
 void UTriggerJumpSectionNS::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {
 	Super::DoNotifyEnd(MeshComp, Animation);
+
+	ACharacterBase * Character = GetCharacter(MeshComp);
+
+	if (Character == nullptr)
+	{
+		return;
+	}
+
+	Character->JumpSectionCancellable = false;
 }

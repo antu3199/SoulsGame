@@ -94,7 +94,11 @@ public:
 
 	bool BufferedJumpSectionCombo;
 
+	bool JumpSectionCancellable = false;
+
 	void TriggerJumpSectionCombo();
+
+	void StopPlayingMontage();
 
 	
 protected:
