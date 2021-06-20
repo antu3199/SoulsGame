@@ -100,6 +100,9 @@ public:
 
 	void StopPlayingMontage();
 
+	UPROPERTY(EditAnywhere)
+	float CharacterOverrideRotationRate = 0.05f;
+
 	
 protected:
 	// Called when the game starts or when spawned

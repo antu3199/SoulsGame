@@ -44,7 +44,7 @@ void AMyPlayerController::Tick(float DeltaTime)
         FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, Dir);
         FRotator ThisRotation = PlayerCharacter->GetActorRotation();
     
-        PlayerCharacter->SetActorRotation(FMath::Lerp(ThisRotation, Rotation, CharacterRotationRate));
+        PlayerCharacter->SetActorRotation(FMath::Lerp(ThisRotation, Rotation, PlayerCharacter->CharacterOverrideRotationRate));
     }
 
     
