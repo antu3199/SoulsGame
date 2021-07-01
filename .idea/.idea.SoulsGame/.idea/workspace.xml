@@ -253,11 +253,11 @@
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/SetCanMoveNS.cpp" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/SetCanMoveNS.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/TriggerJumpSectionNS.h" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/Animation/TriggerJumpSectionNS.cpp" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/MyPlayerController.h" />
-      <option value="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/MyPlayerController.h" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/PlayerCharacter.h" />
+      <option value="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.h" />
       <option value="$PROJECT_DIR$/Source/SoulsGame/MyPlayerController.cpp" />
     </changedPaths>
   </component>
@@ -592,7 +592,7 @@
       <workItem from="1624115865766" duration="11113000" />
       <workItem from="1624202997831" duration="1411000" />
       <workItem from="1624204441092" duration="803000" />
-      <workItem from="1624205997856" duration="2374000" />
+      <workItem from="1624205997856" duration="2862000" />
     </task>
     <servers />
   </component>
