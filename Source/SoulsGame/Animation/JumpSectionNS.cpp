@@ -15,6 +15,8 @@ void UJumpSectionNS::DoNotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequen
 	}
 	
 	Character->SetComboJumpSection(this);
+	Character->JumpSectionCancellable = false;
+	UE_LOG(LogTemp, Display, TEXT("TriggerJumpSectionStart!"));
 
 }
 
@@ -23,11 +25,27 @@ void UJumpSectionNS::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequence
 	Super::DoNotifyEnd(MeshComp, Animation);
 	
 	ACharacterBase * Character = GetCharacter(MeshComp);
-	if (Character == nullptr)
+	if (Character == nullptr || Character->JumpSectionCancellable)
 	{
 		
 		return;
 	}
+
+	UE_LOG(LogTemp, Display, TEXT("TriggerJumpSectionEnd!"));
+
+	if (Character->TriggerJumpSectionCombo())
+	{
+		UE_LOG(LogTemp, Display, TEXT("TriggerJumpSection success!"));
+	}
+	else
+	{
+		Character->JumpSectionCancellable = true;
+		UE_LOG(LogTemp, Display, TEXT("TriggerJumpSection failed!"));
+	}
+	
 	
 	Character->SetComboJumpSection(nullptr);
+
+
+	
 }

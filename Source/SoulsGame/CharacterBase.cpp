@@ -47,33 +47,37 @@ bool ACharacterBase::GetCanMove() const
 	return CanMove;
 }
 
-void ACharacterBase::TriggerJumpSectionCombo()
+bool ACharacterBase::TriggerJumpSectionCombo()
 {
 	if (this->JumpSectionNS == nullptr)
 	{
-		return;
+		UE_LOG(LogTemp, Display, TEXT("TriggerJumpSection failed:no JUmpSectioNS!"));
+		return false;
 	}
 
 	if (!GetMesh())
 	{
-		return;
+		return false;
 	}
 
 	UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
 	if (!AnimInstance)
 	{
-		return;
+		UE_LOG(LogTemp, Display, TEXT("TriggerJumpSection failed: no anim instance!"));
+		return false;
 	}
 
 	UAnimMontage * CurrentActiveMontage = AnimInstance->GetCurrentActiveMontage();
 	if (!CurrentActiveMontage)
 	{
-		return;
+		UE_LOG(LogTemp, Display, TEXT("TriggerJumpSection failed: no current montage!"));
+		return false;
 	}
 
 	if (!BufferedJumpSectionCombo)
 	{
-		return;
+		// Ignore input failures
+		return true;
 	}
 
 	const FName CurrentSectionName = AnimInstance->Montage_GetCurrentSection(CurrentActiveMontage);
@@ -124,6 +128,8 @@ void ACharacterBase::TriggerJumpSectionCombo()
 	this->JumpSectionNS = nullptr;
 	BufferedJumpSectionCombo = false;
 	JumpSectionCancellable = false;
+
+	return true;
 }
 
 void ACharacterBase::StopPlayingMontage()
@@ -141,6 +147,7 @@ void ACharacterBase::StopPlayingMontage()
 	}
 	
 	AnimInstance->Montage_Stop(0.1f, CurrentActiveMontage);
+	this->JumpSectionCancellable = false;
 }
 
 // Called when the game starts or when spawned

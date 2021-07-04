@@ -90,13 +90,13 @@ public:
 	void SetCanMove(bool Set);
 	bool GetCanMove() const;
 
-	bool OverrideRotation = true;
+	bool OverrideRotation = false;
 
 	bool BufferedJumpSectionCombo;
 
 	bool JumpSectionCancellable = false;
 
-	void TriggerJumpSectionCombo();
+	bool TriggerJumpSectionCombo();
 
 	void StopPlayingMontage();
 
