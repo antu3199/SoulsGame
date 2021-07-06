@@ -25,16 +25,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_TimestopActor.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/NewBlueprint.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Sphere_Blueprint.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model01/Assets/AM_model01_MeleeAttack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model01/Assets/AM_model01_MeleeAttack.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model01/base.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/TestMaterial.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Test_Mat.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Timestop_Mat.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SoulsGame.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/SoulsGame.uproject" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -615,6 +605,7 @@
       <workItem from="1625345222782" duration="157000" />
       <workItem from="1625355511820" duration="2716000" />
       <workItem from="1625417964577" duration="2399000" />
+      <workItem from="1625533920413" duration="1250000" />
     </task>
     <servers />
   </component>
