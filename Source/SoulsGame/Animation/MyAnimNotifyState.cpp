@@ -42,8 +42,8 @@ void UMyAnimNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequen
 		this->DoNotifyEnd(MeshComp, Animation);
 		return;
 	}
-	
 
+	
 	FAnimMontageInstance* RootMotion = AnimInstance->GetActiveMontageInstance();
 	if (!RootMotion)
 	{
@@ -52,6 +52,24 @@ void UMyAnimNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequen
 		return;
 	}
 
+	UAnimMontage * CurrentActiveMontage = AnimInstance->GetCurrentActiveMontage();
+	if (CurrentActiveMontage)
+	{
+		bool HackyMetaData = false;
+		for (auto MetaData : CurrentActiveMontage->GetMetaData())
+		{
+			if (MetaData == nullptr)
+			{
+				HackyMetaData = true;
+			}
+		}
+
+		if (HackyMetaData)
+		{
+			return;
+		}
+	}
+	
 	if (RootMotion->bPlaying == false)
 	{
 		this->CachedTime = RootMotion->GetPosition();
@@ -61,7 +79,6 @@ void UMyAnimNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequen
 	{
 		this->DoNotifyEnd(MeshComp, Animation);
 	}
-
 }
 
 
@@ -97,6 +114,25 @@ bool UMyAnimNotifyState::ShouldDoNotify(USkeletalMeshComponent* MeshComp)
 		return true;
 	}
 
+	UAnimMontage * CurrentActiveMontage = AnimInstance->GetCurrentActiveMontage();
+	if (CurrentActiveMontage)
+	{
+		bool HackyMetaData = false;
+		for (auto MetaData : CurrentActiveMontage->GetMetaData())
+		{
+			if (MetaData == nullptr)
+			{
+				HackyMetaData = true;
+			}
+		}
+
+		if (HackyMetaData)
+		{
+			return false;
+		}
+	}
+	
+	
 	const float Abs = FMath::Abs(RootMotion->GetPosition() - this->CachedTime);
 
 	if (Abs > this->MultiNotifyThresh)
@@ -107,6 +143,7 @@ bool UMyAnimNotifyState::ShouldDoNotify(USkeletalMeshComponent* MeshComp)
 	return !this->HasTriggered;
 
 }
+
 
 ACharacterBase * UMyAnimNotifyState::GetCharacter(USkeletalMeshComponent* MeshComp)
 {

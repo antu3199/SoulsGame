@@ -51,6 +51,7 @@ protected:
 
 	virtual bool ShouldDoNotify(USkeletalMeshComponent * MeshComp);
 
+
 	float CachedTime = 0;
 
 	bool HasTriggered = false;

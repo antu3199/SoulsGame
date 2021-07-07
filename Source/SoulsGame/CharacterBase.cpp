@@ -77,7 +77,7 @@ bool ACharacterBase::TriggerJumpSectionCombo()
 	if (!BufferedJumpSectionCombo)
 	{
 		// Ignore input failures
-		return true;
+		return false;
 	}
 
 	const FName CurrentSectionName = AnimInstance->Montage_GetCurrentSection(CurrentActiveMontage);
@@ -90,6 +90,7 @@ bool ACharacterBase::TriggerJumpSectionCombo()
 
 	// Jumps directly to animation
 	// AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
+
 
 	// Hack to blend two montages. Works out of the box, but need to fix callback logic...
 
@@ -124,11 +125,11 @@ bool ACharacterBase::TriggerJumpSectionCombo()
 
 	AnimInstance->Montage_JumpToSection(NextSectionName, CurrentActiveMontage);
 
-	UE_LOG(LogTemp, Warning, TEXT("Trigger section %s"), *NextSectionName.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("Trigger section %s"), *NextSectionName.ToString());
 	this->JumpSectionNS = nullptr;
 	BufferedJumpSectionCombo = false;
+	UE_LOG(LogTemp, Display, TEXT("BufferedJumpSectionCombo Set to false"));
 	JumpSectionCancellable = false;
-
 	return true;
 }
 
@@ -246,6 +247,8 @@ void ACharacterBase::BufferJumpSectionForCombo()
     }
 
 	this->BufferedJumpSectionCombo = true;
+
+	UE_LOG(LogTemp, Display, TEXT("BufferedJumpSectionCombo Set to true"));
 
 }
 
@@ -403,6 +406,7 @@ void ACharacterBase::SetComboJumpSection(UJumpSectionNS* JumpSection)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Set jump section %s"), *JumpSection->NextMontageNames[0].ToString() );
 	}
-	this->BufferedJumpSectionCombo = false; // Not necessary, but just in case
+	
+	//this->BufferedJumpSectionCombo = false; // Not necessary, but just in case
 
 }
