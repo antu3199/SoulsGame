@@ -24,18 +24,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Weapon.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Weapon.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model01/Animations/attack1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model01/Animations/attack1.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model01/Assets/AM_model01_MeleeAttack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model01/Assets/AM_model01_MeleeAttack.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ThirdParty/ImproveFights_Vfx/Blueprints/BP_Sword_Trail.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ThirdParty/ImproveFights_Vfx/Blueprints/BP_Sword_Trail.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ThirdParty/ImproveFights_Vfx/MAP/TrailsAndDashes_MAP.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ThirdParty/ImproveFights_Vfx/MAP/TrailsAndDashes_MAP.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ThirdParty/ImproveFights_Vfx/Particles/P_RibbonTrail.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ThirdParty/ImproveFights_Vfx/Particles/P_RibbonTrail.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ThirdParty/ImproveFights_Vfx/Particles/P_Simple_RibbonTrail.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ThirdParty/ImproveFights_Vfx/Particles/P_Simple_RibbonTrail.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/JumpSectionNS.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/JumpSectionNS.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/Animation/MyAnimNotifyState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SoulsGame/CharacterBase.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -627,7 +617,7 @@
       <workItem from="1625355511820" duration="2716000" />
       <workItem from="1625417964577" duration="2399000" />
       <workItem from="1625533920413" duration="1250000" />
-      <workItem from="1625618781632" duration="3783000" />
+      <workItem from="1625618781632" duration="4449000" />
     </task>
     <servers />
   </component>
