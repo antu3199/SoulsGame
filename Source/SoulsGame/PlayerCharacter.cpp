@@ -22,6 +22,23 @@ void APlayerCharacter::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
+    UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
+    if (!AnimInstance)
+    {
+        //UE_LOG(LogTemp, Display, TEXT("No anim instance!"));
+    }
+
+    UAnimMontage * CurrentActiveMontage = AnimInstance->GetCurrentActiveMontage();
+    if (!CurrentActiveMontage)
+    {
+        UE_LOG(LogTemp, Display, TEXT("No current montage!"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Display, TEXT("YES current montage!"));
+    }
+    
+
 }
 
 void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
