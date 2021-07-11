@@ -7,6 +7,7 @@
 #include "AbilitySystemGlobals.h"
 #include "GameFramework/Character.h"
 #include "CharacterAbilitySystemComponent.h"
+#include "SoulsGame/CharacterBase.h"
 
 UPlayMontageAndWaitTask::UPlayMontageAndWaitTask(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -100,6 +101,15 @@ void UPlayMontageAndWaitTask::OnDestroy(bool AbilityEnded)
     if (MyAbilitySystemComponent)
     {
         MyAbilitySystemComponent->RemoveGameplayEventTagContainerDelegate(TaskData.EventTags, EventDelegateHandle);
+    }
+
+    ACharacterBase * Character = Cast<ACharacterBase>(GetAvatarActor());
+    if (Character)
+    {
+        if (Character->BufferedJumpSectionCombo)
+        {
+            UE_LOG(LogTemp, Warning, TEXT("WARNING: Maybe decrease blend time?"));
+        }
     }
 
     Super::OnDestroy(AbilityEnded);
