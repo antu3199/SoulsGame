@@ -11,6 +11,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
+
+
 // Sets default values
 ACharacterBase::ACharacterBase()
 {
@@ -70,13 +72,14 @@ bool ACharacterBase::TriggerJumpSectionCombo()
 	UAnimMontage * CurrentActiveMontage = AnimInstance->GetCurrentActiveMontage();
 	if (!CurrentActiveMontage)
 	{
-		UE_LOG(LogTemp, Display, TEXT("TriggerJumpSection failed: no current montage!"));
+		UE_LOG(LogTemp, Display, TEXT("TriggerJumpSection failed: no current montage!" ));
 		return false;
 	}
 
-	if (!BufferedJumpSectionCombo)
+	if (!BufferedInput.InputType != EBufferedInputType::Attack)
 	{
 		// Ignore input failures
+		UE_LOG(LogTemp, Display, TEXT("TriggerJumpSection failed: Buffered input incorrect!!"));
 		return false;
 	}
 
@@ -130,7 +133,7 @@ bool ACharacterBase::TriggerJumpSectionCombo()
 	
 	//UE_LOG(LogTemp, Warning, TEXT("Trigger section %s"), *NextSectionName.ToString());
 	this->JumpSectionNS = nullptr;
-	BufferedJumpSectionCombo = false;
+	BufferedInput.Reset();
 	UE_LOG(LogTemp, Display, TEXT("BufferedJumpSectionCombo Set to false"));
 	JumpSectionCancellable = false;
 	return true;
@@ -152,6 +155,75 @@ void ACharacterBase::StopPlayingMontage()
 	
 	AnimInstance->Montage_Stop(0.1f, CurrentActiveMontage);
 	this->JumpSectionCancellable = false;
+}
+
+void ACharacterBase::CheckBufferedInput()
+{
+	if (!JumpSectionCancellable)
+	{
+		return;
+	}
+    
+	if (BufferedInput.InputType == EBufferedInputType::Attack)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("DO ATTACK!"));
+		TriggerJumpSectionCombo();
+	}
+
+}
+
+void ACharacterBase::DoOnRoll()
+{
+	if (!this->AbilitySystemComponent)
+	{
+		return;
+	}
+    
+	if (!this->CanUseAnyAbility())
+	{
+		return;
+	}
+
+	if (this->OnRollMontage == nullptr)
+	{
+		return;
+	}
+
+
+	//FRotator ControlRotation = GetControlRotation(); // Control rotation is the camera, but I don't want this.
+	//SetActorRotation(ControlRotation);
+    
+
+	//FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, Right);
+	//    PawnCharacter->SetActorRotation(Rotation);
+
+    
+	UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
+	if (!AnimInstance)
+	{
+		return;
+	}
+
+
+	AnimInstance->Montage_Play(OnRollMontage);
+
+}
+
+bool ACharacterBase::GetRootMotionEnabled() const
+{
+	UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
+	if (!AnimInstance)
+	{
+		return false;
+	}
+
+	FAnimMontageInstance* MontageInstance = AnimInstance->GetActiveMontageInstance();
+	if (!MontageInstance)
+	{
+		return false;
+	}
+
+	return !MontageInstance->IsRootMotionDisabled();
 }
 
 // Called when the game starts or when spawned
@@ -225,6 +297,13 @@ void ACharacterBase::InitializeItems()
 	}
 }
 
+bool ACharacterBase::IsAttacking() const
+{
+	const FName MeleeAbilityTag = "Ability.Melee";
+
+	return this->AbilitySystemComponent->IsUsingAbilityWithTag(MeleeAbilityTag);
+}
+
 void ACharacterBase::BufferJumpSectionForCombo()
 {
 	if (this->JumpSectionNS == nullptr)
@@ -249,7 +328,7 @@ void ACharacterBase::BufferJumpSectionForCombo()
 	    return;
     }
 
-	this->BufferedJumpSectionCombo = true;
+	this->BufferedInput.SetBufferedAttackInput();
 
 	UE_LOG(LogTemp, Display, TEXT("BufferedJumpSectionCombo Set to true"));
 
@@ -296,8 +375,13 @@ bool ACharacterBase::CanUseAnyAbility() const
 	return !this->IsDead;
 }
 
+bool ACharacterBase::CanInputAnyAbility() const
+{
+	return !IsPlayingRootMotion();
+}
+
 void ACharacterBase::HandleDamage(float DamageAmount, const FHitResult& HitInfo,
-	const FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser)
+                                  const FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser)
 {
 	UE_LOG(LogTemp, Warning, TEXT("I Got hit: %s"), *this->GetName());
 	if (this->OnHitMontage != nullptr)
@@ -412,4 +496,43 @@ void ACharacterBase::SetComboJumpSection(UJumpSectionNS* JumpSection)
 	
 	//this->BufferedJumpSectionCombo = false; // Not necessary, but just in case
 
+}
+
+
+// ================= Buffered input:
+
+void FBufferedInput::SetBufferedAttackInput()
+{
+	//if ((int) EBufferedInputType::Attack < (int)InputType)
+	//{
+	//	return;
+	//}
+
+	InputType = EBufferedInputType::Attack;
+}
+
+void FBufferedInput::SetBufferedRollInput()
+{
+	if ((int) EBufferedInputType::Roll < (int)InputType)
+	{
+		return;
+	}
+
+	InputType = EBufferedInputType::Roll;
+}
+
+void FBufferedInput::SetBufferedAbilityInput()
+{
+	if ((int) EBufferedInputType::Ability < (int)InputType)
+	{
+		return;
+	}
+
+	InputType = EBufferedInputType::Ability;
+}
+
+void FBufferedInput::Reset()
+{
+	InputType = EBufferedInputType::None;
+	
 }

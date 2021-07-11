@@ -105,9 +105,12 @@ void AMyPlayerController::SetupInputComponent()
     {
         //this->GetPawnCharacter()->UseAbility("Ability.Roll");
         APlayerCharacter* Character = this->GetPawnCharacter();
-        RotateTowardsDirection();
-        
-        Character->DoOnRoll();
+        if (Character->CanInputAnyAbility())
+        {
+            RotateTowardsDirection();
+
+            Character->DoOnRoll();
+        }
         
     });
     this->InputComponent->KeyBindings.Add(RollAbilityBinding);
@@ -146,8 +149,12 @@ void AMyPlayerController::MoveForward(const float InputAxis)
         {
             OnPreInput();
         }
+
+        if (PawnCharacter->CanInputAnyAbility())
+        {
+            PawnCharacter->AddMovementInput(Forward, InputAxis);
+        }
         
-        PawnCharacter->AddMovementInput(Forward, InputAxis);
     }
 
     if (InputAxis > 0)
@@ -178,8 +185,11 @@ void AMyPlayerController::MoveRight(const float InputAxis)
         {
             OnPreInput();
         }
-        
-        PawnCharacter->AddMovementInput(Right, InputAxis);
+
+        if (PawnCharacter->CanInputAnyAbility())
+        {
+            PawnCharacter->AddMovementInput(Right, InputAxis);
+        }
     }
     
     if (InputAxis > 0)
@@ -230,14 +240,26 @@ void AMyPlayerController::NormalAttack()
 {
 
     //RotateTowardsDirection();
-    this->GetPawnCharacter()->DoMeleeAttack();
+    APlayerCharacter* PawnCharacter = this->GetPawnCharacter();
+    if (PawnCharacter == nullptr)
+    {
+        return;
+    }
+    
+    if (PawnCharacter->IsAttacking() || PawnCharacter->CanInputAnyAbility())
+    {
+        this->GetPawnCharacter()->DoMeleeAttack();
+    }
 }
 
 // ReSharper disable once CppMemberFunctionMayBeConst
 void AMyPlayerController::UseAbility()
 {
     this->OnPreInput();
-    this->GetPawnCharacter()->UseAbility("Ability.Ranged");
+    if (this->GetPawnCharacter()->CanInputAnyAbility())
+    {
+        this->GetPawnCharacter()->UseAbility("Ability.Ranged");
+    }
 }
 
 

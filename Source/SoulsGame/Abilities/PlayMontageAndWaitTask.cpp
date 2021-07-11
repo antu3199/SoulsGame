@@ -106,7 +106,7 @@ void UPlayMontageAndWaitTask::OnDestroy(bool AbilityEnded)
     ACharacterBase * Character = Cast<ACharacterBase>(GetAvatarActor());
     if (Character)
     {
-        if (Character->BufferedJumpSectionCombo)
+        if (Character->BufferedInput.InputType != EBufferedInputType::None)
         {
             UE_LOG(LogTemp, Warning, TEXT("WARNING: Maybe decrease blend time?"));
         }

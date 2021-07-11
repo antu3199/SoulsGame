@@ -22,9 +22,6 @@ public:
 	virtual void DoMeleeAttack();
 
 
-	virtual void DoOnRoll();
-
-	bool IsRootMotionDisabled() const;
 
 
 	
@@ -38,7 +35,7 @@ protected:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(EditAnywhere, Category="Animation")
-	UAnimMontage * OnRollMontage;
+
+
 
 };

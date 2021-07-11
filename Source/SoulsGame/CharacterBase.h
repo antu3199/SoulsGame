@@ -16,6 +16,31 @@
 
 
 class UJumpSectionNS;
+
+
+enum EBufferedInputType
+{
+	None = 0,
+	Attack = 1,
+	Ability = 2,
+	Roll = 3,
+};
+
+USTRUCT()
+struct FBufferedInput
+{
+	GENERATED_BODY()
+
+	EBufferedInputType InputType = EBufferedInputType::None;
+
+	void SetBufferedAttackInput();
+	void SetBufferedRollInput();
+	void SetBufferedAbilityInput();
+
+	void Reset();
+	
+};
+
 // Note: IAbilitySystemInterface needed otherwise it won't listen to gameplay events
 UCLASS()
 class SOULSGAME_API ACharacterBase : public ACharacter, public IAbilitySystemInterface
@@ -51,6 +76,9 @@ public:
 	UFUNCTION(BlueprintCallable)
     bool CanUseAnyAbility() const;
 
+	UFUNCTION(BlueprintCallable)
+    bool CanInputAnyAbility() const;
+	
 	// Calls OnDamaged in the C++ side (Done in MyAttributeSet)
 	virtual void HandleDamage(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser);
 	virtual void HandleHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
@@ -92,9 +120,8 @@ public:
 
 	bool OverrideRotation = false;
 
-	bool BufferedJumpSectionCombo;
-
 	bool JumpSectionCancellable = false;
+	FBufferedInput BufferedInput;
 
 	bool TriggerJumpSectionCombo();
 
@@ -102,6 +129,14 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	float CharacterOverrideRotationRate = 0.05f;
+
+	void CheckBufferedInput();
+	
+
+	void DoOnRoll();
+
+	bool IsAttacking() const;
+
 
 	
 protected:
@@ -145,9 +180,16 @@ protected:
 	UPROPERTY()
 	UCharacterMovementComponent * CharacterMovementComponent;
 
-	bool CanMove = true;
 
+	bool CanMove = true;
 
 	
 	virtual void BufferJumpSectionForCombo();
+
+
+	UPROPERTY(EditAnywhere, Category="Animation")
+	UAnimMontage * OnRollMontage;
+
+	bool GetRootMotionEnabled() const;
+
 };

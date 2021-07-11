@@ -32,7 +32,6 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
     //PlayerInputComponent->BindAxis(TEXT("ChangePitch"), this, &APlayerCharacter::ChangePitch);
 }
 
-
 void APlayerCharacter::DoMeleeAttack()
 {
     if (!this->AbilitySystemComponent)
@@ -44,7 +43,6 @@ void APlayerCharacter::DoMeleeAttack()
     {
         return;
     }
-
 
     const FName MeleeAbilityTag = "Ability.Melee";
 
@@ -59,64 +57,6 @@ void APlayerCharacter::DoMeleeAttack()
     }
 }
 
-void APlayerCharacter::DoOnRoll()
-{
-    if (!this->AbilitySystemComponent)
-    {
-        return;
-    }
-    
-    if (!this->CanUseAnyAbility())
-    {
-        return;
-    }
-
-    if (this->OnRollMontage == nullptr)
-    {
-        return;
-    }
-
-    //FRotator ControlRotation = GetControlRotation(); // Control rotation is the camera, but I don't want this.
-    //SetActorRotation(ControlRotation);
-    
-
-    //FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, Right);
-    //    PawnCharacter->SetActorRotation(Rotation);
-
-    
-    UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
-    if (!AnimInstance)
-    {
-        return;
-    }
-
-
-    AnimInstance->Montage_Play(OnRollMontage);
-
-
-}
-
-bool APlayerCharacter::IsRootMotionDisabled() const
-{
-    UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
-    if (!AnimInstance)
-    {
-        return false;
-    }
-
-    FAnimMontageInstance* MontageInstance = AnimInstance->GetActiveMontageInstance();
-    if (!MontageInstance)
-    {
-        return false;
-    }
-
-    if (MontageInstance->IsRootMotionDisabled())
-    {
-        return true;
-    }
-
-    return false;
-}
 
 
 
