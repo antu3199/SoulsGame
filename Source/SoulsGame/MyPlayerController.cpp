@@ -13,18 +13,6 @@ AMyPlayerController::AMyPlayerController()
     
 }
 
-void AMyPlayerController::RotateTowardsDirection()
-{
-    APlayerCharacter* PlayerCharacter = this->GetPawnCharacter();
-    const FVector Dir = GetDirectionVector();
-
-    FRotator ThisRotation = PlayerCharacter->GetActorRotation();
-
-    FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, Dir);
-    Rotation.Pitch = ThisRotation.Pitch;
-
-    PlayerCharacter->SetActorRotation(Rotation);
-}
 
 void AMyPlayerController::BeginPlay()
 {
@@ -37,7 +25,7 @@ void AMyPlayerController::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
     APlayerCharacter* PlayerCharacter = this->GetPawnCharacter();
 
-    const FVector Dir = GetDirectionVector();
+    const FVector Dir = PlayerCharacter->GetDirectionVector();
 
     if (PlayerCharacter && PlayerCharacter->OverrideRotation && Dir != FVector::ZeroVector)
     {
@@ -107,9 +95,12 @@ void AMyPlayerController::SetupInputComponent()
         APlayerCharacter* Character = this->GetPawnCharacter();
         if (Character->CanInputAnyAbility())
         {
-            RotateTowardsDirection();
-
             Character->DoOnRoll();
+        }
+        else if (Character->BufferedInput.StartBufferingInput)
+        {
+            // Attempt to buffer Roll
+            Character->BufferedInput.SetBufferedRollInput();
         }
         
     });
@@ -152,6 +143,8 @@ void AMyPlayerController::MoveForward(const float InputAxis)
 
         if (PawnCharacter->CanInputAnyAbility())
         {
+            if (PawnCharacter->JumpSectionCancellable)
+                PawnCharacter->StopPlayingMontage();
             PawnCharacter->AddMovementInput(Forward, InputAxis);
         }
         
@@ -159,15 +152,15 @@ void AMyPlayerController::MoveForward(const float InputAxis)
 
     if (InputAxis > 0)
     {
-        ForwardBackDirectionVector = Forward;
+        PawnCharacter->ForwardBackDirectionVector = Forward;
     }
     else if (InputAxis < 0)
     {
-        ForwardBackDirectionVector = -Forward;
+        PawnCharacter->ForwardBackDirectionVector = -Forward;
     }
     else
     {
-        ForwardBackDirectionVector = FVector::ZeroVector;
+        PawnCharacter->ForwardBackDirectionVector = FVector::ZeroVector;
     }
    
 }
@@ -188,32 +181,27 @@ void AMyPlayerController::MoveRight(const float InputAxis)
 
         if (PawnCharacter->CanInputAnyAbility())
         {
+            if (PawnCharacter->JumpSectionCancellable)
+                PawnCharacter->StopPlayingMontage();
             PawnCharacter->AddMovementInput(Right, InputAxis);
         }
     }
     
     if (InputAxis > 0)
     {
-        RightLeftDirectionVector = Right;
+       PawnCharacter->RightLeftDirectionVector = Right;
     }
     else if (InputAxis < 0)
     {
-        RightLeftDirectionVector = -Right;
+        PawnCharacter->RightLeftDirectionVector = -Right;
     }
     else
     {
-        RightLeftDirectionVector = FVector::ZeroVector;
+        PawnCharacter->RightLeftDirectionVector = FVector::ZeroVector;
     }
 }
 
-FVector AMyPlayerController::GetDirectionVector() const
-{
-    FVector Result = (ForwardBackDirectionVector + RightLeftDirectionVector);
-    Result.Z = 0;
-    Result.Normalize();
-        
-    return Result;
-}
+
 
 APlayerCharacter* AMyPlayerController::GetPawnCharacter() const
 {
@@ -222,16 +210,16 @@ APlayerCharacter* AMyPlayerController::GetPawnCharacter() const
 
 void AMyPlayerController::OnPreInput()
 {
-    APlayerCharacter* PawnCharacter = this->GetPawnCharacter();
-    if (PawnCharacter == nullptr)
-    {
-        return;
-    }
-
-    if (PawnCharacter->JumpSectionCancellable)
-    {
-        PawnCharacter->StopPlayingMontage();
-    }
+    //APlayerCharacter* PawnCharacter = this->GetPawnCharacter();
+    //if (PawnCharacter == nullptr)
+    //{
+    //    return;
+    //}
+//
+    //if (PawnCharacter->JumpSectionCancellable)
+    //{
+    //    PawnCharacter->StopPlayingMontage();
+    //}
 
 }
 

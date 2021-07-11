@@ -18,8 +18,6 @@ class SOULSGAME_API AMyPlayerController : public APlayerController
 public:
 	AMyPlayerController();
 
-	void RotateTowardsDirection();
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -43,10 +41,6 @@ protected:
 
 	void UseAbility();
 
-	FVector ForwardBackDirectionVector;
-	FVector RightLeftDirectionVector;
-
-	FVector GetDirectionVector() const;
 
 	APlayerCharacter * GetPawnCharacter() const;
 

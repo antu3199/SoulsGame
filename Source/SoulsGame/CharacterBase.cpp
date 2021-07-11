@@ -12,7 +12,6 @@
 #include "Kismet/KismetMathLibrary.h"
 
 
-
 // Sets default values
 ACharacterBase::ACharacterBase()
 {
@@ -132,10 +131,7 @@ bool ACharacterBase::TriggerJumpSectionCombo()
 
 	
 	//UE_LOG(LogTemp, Warning, TEXT("Trigger section %s"), *NextSectionName.ToString());
-	this->JumpSectionNS = nullptr;
-	BufferedInput.Reset();
-	UE_LOG(LogTemp, Display, TEXT("BufferedJumpSectionCombo Set to false"));
-	JumpSectionCancellable = false;
+
 	return true;
 }
 
@@ -163,30 +159,48 @@ void ACharacterBase::CheckBufferedInput()
 	{
 		return;
 	}
-    
-	if (BufferedInput.InputType == EBufferedInputType::Attack)
+
+	if (BufferedInput.InputType == EBufferedInputType::None)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("DO ATTACK!"));
-		TriggerJumpSectionCombo();
+		return;
+	}
+
+	bool Success = false;
+
+	switch (BufferedInput.InputType)
+	{
+		case EBufferedInputType::Attack:
+			Success = TriggerJumpSectionCombo();
+			break;
+		case EBufferedInputType::Roll:
+			Success = DoOnRoll();
+			break;
+	}
+
+	if (Success)
+	{
+		BufferedInput.Reset();
+		UE_LOG(LogTemp, Display, TEXT("BufferedJumpSectionCombo Set to false"));
+		JumpSectionCancellable = false;
 	}
 
 }
 
-void ACharacterBase::DoOnRoll()
+bool ACharacterBase::DoOnRoll()
 {
 	if (!this->AbilitySystemComponent)
 	{
-		return;
+		return false;
 	}
     
 	if (!this->CanUseAnyAbility())
 	{
-		return;
+		return false;
 	}
 
 	if (this->OnRollMontage == nullptr)
 	{
-		return;
+		return false;
 	}
 
 
@@ -201,11 +215,14 @@ void ACharacterBase::DoOnRoll()
 	UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
 	if (!AnimInstance)
 	{
-		return;
+		return false;
 	}
 
+	RotateTowardsDirection();
 
 	AnimInstance->Montage_Play(OnRollMontage);
+
+	return true;
 
 }
 
@@ -224,6 +241,27 @@ bool ACharacterBase::GetRootMotionEnabled() const
 	}
 
 	return !MontageInstance->IsRootMotionDisabled();
+}
+
+FVector ACharacterBase::GetDirectionVector() const
+{
+	FVector Result = (ForwardBackDirectionVector + RightLeftDirectionVector);
+	Result.Z = 0;
+	Result.Normalize();
+        
+	return Result;
+}
+
+void ACharacterBase::RotateTowardsDirection()
+{
+	const FVector Dir = GetDirectionVector();
+
+	FRotator ThisRotation = GetActorRotation();
+
+	FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(FVector::ZeroVector, Dir);
+	Rotation.Pitch = ThisRotation.Pitch;
+
+	SetActorRotation(Rotation);
 }
 
 // Called when the game starts or when spawned
@@ -377,7 +415,7 @@ bool ACharacterBase::CanUseAnyAbility() const
 
 bool ACharacterBase::CanInputAnyAbility() const
 {
-	return !IsPlayingRootMotion();
+	return !IsPlayingRootMotion() || JumpSectionCancellable;
 }
 
 void ACharacterBase::HandleDamage(float DamageAmount, const FHitResult& HitInfo,
@@ -503,12 +541,13 @@ void ACharacterBase::SetComboJumpSection(UJumpSectionNS* JumpSection)
 
 void FBufferedInput::SetBufferedAttackInput()
 {
-	//if ((int) EBufferedInputType::Attack < (int)InputType)
-	//{
-	//	return;
-	//}
+	if ((int) EBufferedInputType::Attack < (int)InputType)
+	{
+		return;
+	}
 
 	InputType = EBufferedInputType::Attack;
+
 }
 
 void FBufferedInput::SetBufferedRollInput()
@@ -534,5 +573,6 @@ void FBufferedInput::SetBufferedAbilityInput()
 void FBufferedInput::Reset()
 {
 	InputType = EBufferedInputType::None;
+	StartBufferingInput = false;
 	
 }

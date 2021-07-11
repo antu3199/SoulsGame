@@ -19,6 +19,7 @@ void UJumpSectionNS::DoNotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequen
 	Character->SetComboJumpSection(this);
 	Character->JumpSectionCancellable = false;
 	Character->BufferedInput.Reset();
+	Character->BufferedInput.StartBufferingInput = true;
 	UE_LOG(LogTemp, Display, TEXT("TriggerJumpSectionStart!"));
 
 	
@@ -41,6 +42,7 @@ void UJumpSectionNS::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequence
 	
 	Character->JumpSectionCancellable = true;
 	Character->CheckBufferedInput();
+	Character->BufferedInput.StartBufferingInput = false;
 	Character->SetComboJumpSection(nullptr);
 	
 }

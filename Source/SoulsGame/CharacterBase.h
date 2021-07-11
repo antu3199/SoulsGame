@@ -32,6 +32,7 @@ struct FBufferedInput
 	GENERATED_BODY()
 
 	EBufferedInputType InputType = EBufferedInputType::None;
+	bool StartBufferingInput = false;
 
 	void SetBufferedAttackInput();
 	void SetBufferedRollInput();
@@ -133,10 +134,18 @@ public:
 	void CheckBufferedInput();
 	
 
-	void DoOnRoll();
+	bool DoOnRoll();
 
 	bool IsAttacking() const;
 
+
+	// Direction
+	FVector ForwardBackDirectionVector;
+	FVector RightLeftDirectionVector;
+
+	FVector GetDirectionVector() const;
+
+	void RotateTowardsDirection();
 
 	
 protected:
