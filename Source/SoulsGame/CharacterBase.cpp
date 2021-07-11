@@ -76,7 +76,7 @@ bool ACharacterBase::TriggerJumpSectionCombo()
 		return false;
 	}
 
-	if (!BufferedInput.InputType != EBufferedInputType::Attack)
+	if (BufferedInput.InputType != EBufferedInputType::Attack)
 	{
 		// Ignore input failures
 		UE_LOG(LogTemp, Display, TEXT("TriggerJumpSection failed: Buffered input incorrect!!"));
