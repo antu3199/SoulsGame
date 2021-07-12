@@ -113,6 +113,9 @@ public:
 	UPROPERTY(EditAnywhere, Category="Animation")
 	UAnimMontage * OnHitMontage;
 
+	UPROPERTY(EditAnywhere, Category="Animation")
+	UAnimMontage * OnDeathMontage;
+	
 	UPROPERTY(EditAnywhere, Category="Socket")
 	FName WeaponSocketName = TEXT("r_handSocket");
 
@@ -147,7 +150,8 @@ public:
 
 	void RotateTowardsDirection();
 
-	
+	virtual bool DoMeleeAttack();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -201,4 +205,5 @@ protected:
 
 	bool GetRootMotionEnabled() const;
 
+	
 };

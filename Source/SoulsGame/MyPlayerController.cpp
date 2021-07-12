@@ -238,6 +238,10 @@ void AMyPlayerController::NormalAttack()
     {
         this->GetPawnCharacter()->DoMeleeAttack();
     }
+    else if (PawnCharacter->BufferedInput.StartBufferingInput)
+    {
+        PawnCharacter->BufferedInput.SetBufferedAttackInput();
+    }
 }
 
 // ReSharper disable once CppMemberFunctionMayBeConst

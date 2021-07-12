@@ -10225,6 +10225,57 @@
         </e>
       </e>
     </e>
+    <e p="C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Plugins\FX\HoudiniNiagara" t="Include">
+      <e p="Config" t="Include">
+        <e p="BaseHoudiniNiagara.ini" t="Include" />
+        <e p="FilterPlugin.ini" t="Include" />
+      </e>
+      <e p="HoudiniNiagara.uplugin" t="Include" />
+      <e p="Resources" t="Include">
+        <e p="HCSVIcon128.png" t="Include" />
+        <e p="Icon128.png" t="Include" />
+      </e>
+      <e p="Source" t="Include">
+        <e p="HoudiniNiagara" t="Include">
+          <e p="Classes" t="Include">
+            <e p="NiagaraDataInterfaceHoudini.h" t="Include" />
+          </e>
+          <e p="HoudiniNiagara.Build.cs" t="Include" />
+          <e p="Private" t="Include">
+            <e p="HoudiniNiagara.cpp" t="Include" />
+            <e p="HoudiniPointCache.cpp" t="Include" />
+            <e p="HoudiniPointCacheLoader.cpp" t="Include" />
+            <e p="HoudiniPointCacheLoaderBJSON.cpp" t="Include" />
+            <e p="HoudiniPointCacheLoaderCSV.cpp" t="Include" />
+            <e p="HoudiniPointCacheLoaderJSON.cpp" t="Include" />
+            <e p="HoudiniPointCacheLoaderJSONBase.cpp" t="Include" />
+            <e p="NiagaraDataInterfaceHoudini.cpp" t="Include" />
+          </e>
+          <e p="Public" t="Include">
+            <e p="HoudiniNiagara.h" t="Include" />
+            <e p="HoudiniPointCache.h" t="Include" />
+            <e p="HoudiniPointCacheLoader.h" t="Include" />
+            <e p="HoudiniPointCacheLoaderBJSON.h" t="Include" />
+            <e p="HoudiniPointCacheLoaderCSV.h" t="Include" />
+            <e p="HoudiniPointCacheLoaderJSON.h" t="Include" />
+            <e p="HoudiniPointCacheLoaderJSONBase.h" t="Include" />
+          </e>
+        </e>
+        <e p="HoudiniNiagaraEditor" t="Include">
+          <e p="HoudiniNiagaraEditor.Build.cs" t="Include" />
+          <e p="Private" t="Include">
+            <e p="HoudiniNiagaraEditor.cpp" t="Include" />
+            <e p="HoudiniPointCacheAssetActions.cpp" t="Include" />
+            <e p="HoudiniPointCacheFactory.cpp" t="Include" />
+          </e>
+          <e p="Public" t="Include">
+            <e p="HoudiniNiagaraEditor.h" t="Include" />
+            <e p="HoudiniPointCacheAssetActions.h" t="Include" />
+            <e p="HoudiniPointCacheFactory.h" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
     <e p="C:\Program Files (x86)\Epic Games\UE_4.26\Engine\Plugins\FX\Niagara" t="Include">
       <e p="Config" t="Include">
         <e p="BaseNiagara.ini" t="Include" />
@@ -49664,6 +49715,8 @@
             <e p="MyAIController.h" t="Include" />
           </e>
           <e p="Animation" t="Include">
+            <e p="AllowBufferedInputNS.cpp" t="Include" />
+            <e p="AllowBufferedInputNS.h" t="Include" />
             <e p="GrantLooseGameplayTagNS.cpp" t="Include" />
             <e p="GrantLooseGameplayTagNS.h" t="Include" />
             <e p="JumpSectionNS.cpp" t="Include" />

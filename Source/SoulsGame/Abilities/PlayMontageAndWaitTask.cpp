@@ -154,7 +154,12 @@ bool UPlayMontageAndWaitTask::StopPlayingMontage()
         MontageInstance->OnMontageEnded.Unbind();
     }
 
-    this->AbilitySystemComponent->CurrentMontageStop();
+    ACharacterBase * Character = Cast<ACharacterBase>(GetAvatarActor());
+    if (Character && !Character->GetIsDead())
+    {
+        this->AbilitySystemComponent->CurrentMontageStop();
+    }
+
     
     return true;
 }

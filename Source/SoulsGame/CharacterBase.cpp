@@ -45,7 +45,7 @@ void ACharacterBase::SetCanMove(bool Set)
 
 bool ACharacterBase::GetCanMove() const
 {
-	return CanMove;
+	return CanMove && !IsDead;
 }
 
 bool ACharacterBase::TriggerJumpSectionCombo()
@@ -155,22 +155,32 @@ void ACharacterBase::StopPlayingMontage()
 
 void ACharacterBase::CheckBufferedInput()
 {
-	if (!JumpSectionCancellable)
-	{
-		return;
-	}
-
 	if (BufferedInput.InputType == EBufferedInputType::None)
 	{
 		return;
 	}
+
+	
+	if (!JumpSectionCancellable && IsAttacking() && BufferedInput.InputType == EBufferedInputType::Attack)
+	{
+		return;
+	}
+
 
 	bool Success = false;
 
 	switch (BufferedInput.InputType)
 	{
 		case EBufferedInputType::Attack:
-			Success = TriggerJumpSectionCombo();
+			if (!IsAttacking())
+			{
+				Success = DoMeleeAttack();
+			}
+			else
+			{
+				Success = TriggerJumpSectionCombo();
+			}
+			
 			break;
 		case EBufferedInputType::Roll:
 			Success = DoOnRoll();
@@ -242,6 +252,35 @@ bool ACharacterBase::GetRootMotionEnabled() const
 
 	return !MontageInstance->IsRootMotionDisabled();
 }
+
+bool ACharacterBase::DoMeleeAttack()
+{
+	if (!this->AbilitySystemComponent)
+	{
+		return false;
+	}
+    
+	if (!this->CanUseAnyAbility())
+	{
+		return false;
+	}
+
+	const FName MeleeAbilityTag = "Ability.Melee";
+
+	if (!this->AbilitySystemComponent->IsUsingAbilityWithTag(MeleeAbilityTag))
+	{
+		// Start melee ability
+		this->AbilitySystemComponent->ActivateAbilityWithTag(MeleeAbilityTag);
+	}
+	else
+	{
+		this->BufferJumpSectionForCombo();
+	}
+
+	return true;
+}
+
+
 
 FVector ACharacterBase::GetDirectionVector() const
 {
@@ -422,22 +461,38 @@ void ACharacterBase::HandleDamage(float DamageAmount, const FHitResult& HitInfo,
                                   const FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser)
 {
 	UE_LOG(LogTemp, Warning, TEXT("I Got hit: %s"), *this->GetName());
-	if (this->OnHitMontage != nullptr)
+	float Health = AttributeSet->GetHealth();
+
+	UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
+	if (!AnimInstance)
 	{
-		UAnimInstance * AnimInstance = GetMesh()->GetAnimInstance();
-		if (!AnimInstance)
+		return;
+	}
+	
+	if (Health > 0)
+	{
+		if (this->OnHitMontage != nullptr)
 		{
-			return;
+
+
+
+			const FName CurrentSectionName = AnimInstance->Montage_GetCurrentSection(OnHitMontage);
+
+			const int RandInt = FMath::RandRange(0, OnHitMontage->CompositeSections.Num() - 1);
+			const FName NextSectionName = OnHitMontage->GetSectionName(RandInt);
+
+			AnimInstance->Montage_Play(OnHitMontage);
+			AnimInstance->Montage_JumpToSection(NextSectionName, OnHitMontage);
 		}
-
-
-		const FName CurrentSectionName = AnimInstance->Montage_GetCurrentSection(OnHitMontage);
-
-		const int RandInt = FMath::RandRange(0, OnHitMontage->CompositeSections.Num() - 1);
-		const FName NextSectionName = OnHitMontage->GetSectionName(RandInt);
-
-		AnimInstance->Montage_Play(OnHitMontage);
-		AnimInstance->Montage_JumpToSection(NextSectionName, OnHitMontage);
+	}
+	else
+	{
+		if (this->OnDeathMontage != nullptr)
+		{
+			AnimInstance->Montage_Play(OnDeathMontage);
+		}
+		
+		IsDead = true;
 	}
 
 	bool FaceAttacker = true;

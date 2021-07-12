@@ -32,31 +32,6 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
     //PlayerInputComponent->BindAxis(TEXT("ChangePitch"), this, &APlayerCharacter::ChangePitch);
 }
 
-void APlayerCharacter::DoMeleeAttack()
-{
-    if (!this->AbilitySystemComponent)
-    {
-        return;
-    }
-    
-    if (!this->CanUseAnyAbility())
-    {
-        return;
-    }
-
-    const FName MeleeAbilityTag = "Ability.Melee";
-
-    if (!this->AbilitySystemComponent->IsUsingAbilityWithTag(MeleeAbilityTag))
-    {
-        // Start melee ability
-        this->AbilitySystemComponent->ActivateAbilityWithTag(MeleeAbilityTag);
-    }
-    else
-    {
-        this->BufferJumpSectionForCombo();
-    }
-}
-
 
 
 

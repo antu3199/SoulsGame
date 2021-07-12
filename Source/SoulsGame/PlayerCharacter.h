@@ -19,7 +19,6 @@ class SOULSGAME_API APlayerCharacter : public ACharacterBase
 public:
 	APlayerCharacter();
 
-	virtual void DoMeleeAttack();
 
 
 
