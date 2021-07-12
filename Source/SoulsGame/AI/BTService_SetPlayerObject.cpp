@@ -7,6 +7,7 @@
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "SoulsGame/CharacterBase.h"
 
 UBTService_SetPlayerObject::UBTService_SetPlayerObject()
 {
@@ -27,8 +28,9 @@ void UBTService_SetPlayerObject::TickNode(UBehaviorTreeComponent& OwnerComp, uin
 	{
 		return;
 	}
-	
+
 	OwnerComp.GetBlackboardComponent()->SetValueAsObject(GetSelectedBlackboardKey(), PlayerPawn);
+
 
 
 	/*

@@ -9,6 +9,7 @@
 #include "Abilities/GameplayAbilityTypes.h"
 #include "Chaos/GeometryParticlesfwd.h"
 #include "Components/CapsuleComponent.h"
+#include "SoulsGame/CharacterBase.h"
 
 // Sets default values
 AWeaponActor::AWeaponActor()
@@ -88,6 +89,15 @@ void AWeaponActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	if (!this->CanHit)
 	{
 		return;
+	}
+
+	ACharacterBase * TargetCharacter = Cast<ACharacterBase>(OtherActor);
+	if (TargetCharacter)
+	{
+		if (!TargetCharacter->CanGetDamaged())
+		{
+			return;
+		}
 	}
 
 

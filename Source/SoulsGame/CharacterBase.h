@@ -91,6 +91,10 @@ public:
 	TArray<FPrimaryAssetId> DefaultSlottedAbilities;
 
 
+	bool CanGetDamaged() const;
+	
+
+
 	// Handles what happens on damaged in BP size
 	
 	//virtual void OnDamaged(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser);
@@ -133,6 +137,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	float CharacterOverrideRotationRate = 0.05f;
+
+	//UPROPERTY(EditAnywhere)
+	//bool IsPlayerControlled = true;
 
 	void CheckBufferedInput();
 	

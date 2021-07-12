@@ -35,6 +35,13 @@ void UMyAnimNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequen
 {
 	Super::NotifyEnd(MeshComp, Animation);
 
+	ACharacterBase * Character = GetCharacter(MeshComp);
+	if (!Character)
+	{
+		this->DoNotifyEnd(MeshComp, Animation);
+		return;
+	}
+	
 	UAnimInstance* AnimInstance = MeshComp->GetAnimInstance();
 	if (!AnimInstance)
 	{
@@ -97,6 +104,12 @@ void UMyAnimNotifyState::DoNotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequ
 
 bool UMyAnimNotifyState::ShouldDoNotify(USkeletalMeshComponent* MeshComp)
 {
+	ACharacterBase * Character = GetCharacter(MeshComp);
+	if (!Character)
+	{
+		return true;
+	}
+	
 	if (this->CachedTime == 0)
 	{
 		return true;

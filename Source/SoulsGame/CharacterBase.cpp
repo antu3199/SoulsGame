@@ -33,6 +33,23 @@ ACharacterBase::ACharacterBase()
 	CharacterMovementComponent = Cast<UCharacterMovementComponent>(GetComponentByClass(UCharacterMovementComponent::StaticClass()));
 }
 
+bool ACharacterBase::CanGetDamaged() const
+{
+	if (IsDead)
+	{
+		return false;
+	}
+
+	const FGameplayTag InvincibleTag = UGameplayTagsManager::Get().RequestGameplayTag(TEXT("State.Invincible"));
+	//const FName InvincibleTag = "State.Invincible";
+	if (AbilitySystemComponent->HasMatchingGameplayTag(InvincibleTag))
+	{
+		return false;
+	}
+
+	return true;
+}
+
 UWeaponAsset* ACharacterBase::GetWeaponAsset() const
 {
 	return this->WeaponAsset;

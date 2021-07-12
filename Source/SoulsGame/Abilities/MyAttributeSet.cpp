@@ -62,6 +62,11 @@ void UMyAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallback
     }
     else if (Data.EvaluatedData.Attribute == GetDamageAttribute())
     {
+        if (TargetCharacter && !TargetCharacter->CanGetDamaged())
+        {
+            return;
+        }
+        
         if (Context.GetEffectCauser())
         {
             SourceActor = Context.GetEffectCauser();
