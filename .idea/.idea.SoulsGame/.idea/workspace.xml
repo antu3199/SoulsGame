@@ -24,8 +24,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7aeeaf9-5b44-4814-96e2-465e6b6a7bd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SoulsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model01/Animations/roll.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model01/Animations/roll.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Game.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_attack1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_attack1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_attack2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_attack2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_attack3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_attack3.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_attack4.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_attack4.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_death.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_death.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_hit1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_hit1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_idle.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_idle.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_roll.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_roll.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_run.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_run.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_spell.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/Animations/model02_spell.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/model02_base.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/model02_base.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/model02_base_Anim.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/model02_base_Anim.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Models/Characters/Model02/model02_base_Skeleton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Models/Characters/Model02/model02_base_Skeleton.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -631,6 +643,7 @@
       <workItem from="1625618781632" duration="4449000" />
       <workItem from="1625956783115" duration="375000" />
       <workItem from="1626036774160" duration="9708000" />
+      <workItem from="1626100223506" duration="645000" />
     </task>
     <servers />
   </component>
