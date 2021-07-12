@@ -8,6 +8,7 @@
 #include "DataAssets/AbilityAsset.h"
 #include "DataAssets/WeaponAsset.h"
 #include "Animation/JumpSectionNS.h"
+#include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
@@ -510,6 +511,7 @@ void ACharacterBase::HandleDamage(float DamageAmount, const FHitResult& HitInfo,
 		}
 		
 		IsDead = true;
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 
 	bool FaceAttacker = true;
