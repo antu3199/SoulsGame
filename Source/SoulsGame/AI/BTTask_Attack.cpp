@@ -23,7 +23,10 @@ EBTNodeResult::Type UBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerCom
 
 	ACharacterBase * Character = Cast<ACharacterBase>(OwnerComp.GetAIOwner()->GetPawn());
 
-	Character->UseAbility("Ability.Melee");
+	if (!Character->IsAttacking())
+	{
+		Character->UseAbility("Ability.Melee");
+	}
 	
 	return EBTNodeResult::Succeeded;
 	
